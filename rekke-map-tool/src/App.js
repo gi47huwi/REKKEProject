@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { MDBNavbar, MDBNavbarBrand, MDBContainer } from 'mdb-react-ui-kit';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MDBNavbar light bgColor='light'>
+        <MDBContainer>
+          <MDBNavbarBrand href='#'>
+            <img
+              src='https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp'
+              height='30'
+              alt=''
+              loading='lazy'
+            />
+          </MDBNavbarBrand>
+        </MDBContainer>
+      </MDBNavbar>
     </div>
   );
 }
