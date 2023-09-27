@@ -1,8 +1,15 @@
 import React from 'react'
+import languages from '../configData/languages.json'
 
-function Menue() {
+
+function Menue({
+    currentLanguage
+}) {
   return (
-    <div>Menue</div>
+    <>
+    
+    
+    </>
   )
 }
 

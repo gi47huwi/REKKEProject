@@ -1,22 +1,79 @@
 import logo from './logo.svg';
 import './App.css';
-import { MDBNavbar, MDBNavbarBrand, MDBContainer } from 'mdb-react-ui-kit';
+import { MDBDropdownToggle, MDBNavbar, MDBNavbarBrand, MDBContainer, MDBNavbarToggler, MDBIcon, MDBNavbarNav, MDBNavbarItem, MDBNavbarLink, MDBCollapse, MDBDropdown, MDBDropdownItem, MDBDropdownMenu } from 'mdb-react-ui-kit';
+import { useState } from 'react';
+import { BrowserRouter, NavLink, Outlet, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Menue from './pages/Menue';
+import Info from './pages/Info';
+import Settings from './pages/Settings';
+import Map from './pages/Map';
+import languages from "./configData/languages.json"
+
 
 function App() {
+  const [showNav, setShowNav] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState("de");
+
   return (
     <div className="App">
-      <MDBNavbar light bgColor='light'>
-        <MDBContainer>
-          <MDBNavbarBrand href='#'>
-            <img
-              src='https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp'
-              height='30'
-              alt=''
-              loading='lazy'
-            />
+      <MDBNavbar light bgColor='light' expand="md" sticky> 
+        <MDBContainer fluid >
+          <MDBNavbarBrand href='/'>
+            <h2>REKKE</h2>
           </MDBNavbarBrand>
+          <MDBNavbarToggler
+            type='button'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+            onClick={() => setShowNav(!showNav)}
+          >
+            <MDBIcon icon='bars' fas />
+          </MDBNavbarToggler>
+          <MDBCollapse navbar show={showNav}>
+            <MDBNavbarNav>
+              <MDBNavbarItem className='mx-3'>
+
+                <NavLink to={`menue`}>
+                  {languages[currentLanguage].navBar.menue}
+                </NavLink>
+
+              </MDBNavbarItem>
+              <MDBNavbarItem className='mx-3'>
+
+                <NavLink to={`info`}>
+                  {languages[currentLanguage].navBar.info}
+
+                </NavLink>
+
+              </MDBNavbarItem>
+
+            </MDBNavbarNav>
+            <MDBDropdown>
+              <MDBDropdownToggle tag='a' color='none' className='dropdown' >{currentLanguage}</MDBDropdownToggle>
+              <MDBDropdownMenu>
+                <MDBDropdownItem link childTag='button' onClick={() => setCurrentLanguage("de")}>
+                  Deutsch
+                </MDBDropdownItem>
+                <MDBDropdownItem link childTag='button' onClick={() => setCurrentLanguage("en")}>
+                  English
+                </MDBDropdownItem>
+
+              </MDBDropdownMenu>
+            </MDBDropdown>
+
+          </MDBCollapse>
+
         </MDBContainer>
       </MDBNavbar>
+      <Routes >
+        <Route path="/" element={<Home currentLanguage={currentLanguage} />} />
+        <Route path="menue" element={<Menue currentLanguage={currentLanguage} />} />
+        <Route path="map/:mapID" element={<Map currentLanguage={currentLanguage} />} />
+        <Route path="info" element={<Info currentLanguage={currentLanguage} />} />
+        {/* <Route path="settings" element={<Settings />} /> */}
+
+      </Routes>
     </div>
   );
 }
