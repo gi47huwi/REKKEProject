@@ -9,6 +9,7 @@ import Info from './pages/Info';
 import Settings from './pages/Settings';
 import Map from './pages/Map';
 import languages from "./configData/languages.json"
+import CookieConsent from "react-cookie-consent";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <MDBNavbar light bgColor='light' expand="md" sticky> 
+      <MDBNavbar light expand="md" sticky style={{backgroundColor:"rgb(175, 213, 175)"}}> 
         <MDBContainer fluid >
           <MDBNavbarBrand href='/'>
             <h2>REKKE</h2>
@@ -74,6 +75,17 @@ function App() {
         {/* <Route path="settings" element={<Settings />} /> */}
 
       </Routes>
+      <CookieConsent
+  location="bottom"
+  buttonText="Sure man!!"
+  cookieName="myAwesomeCookieName2"
+  style={{ background: "#2B373B" }}
+  buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+  expires={150}
+>
+  This website uses cookies to enhance the user experience.{" "}
+  <span style={{ fontSize: "10px" }}>This bit of text is smaller :O</span>
+</CookieConsent>
     </div>
   );
 }
