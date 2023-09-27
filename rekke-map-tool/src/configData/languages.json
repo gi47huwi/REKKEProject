@@ -1,0 +1,22 @@
+{
+    "de": {
+        "welcomeText": "Herzlich Willkommen zur Risikokarte des Projekts REKKE der Friedrich-Alexander-Universität Erlangen-Nürnberg.",
+        "instruction": "Einführende Worte zu dem Prokjekt",
+        "startButton": "Karte konfigurieren",
+        "preset":"Preset wählen",
+        "navBar": {
+            "menue": "Kartenauswahl",
+            "info": "Projektinformationen"
+        }
+    },
+    "en": {
+        "welcomeText": "Welcome to the webpage for the risk map of the REKKE projekt from Friedrich-Alexander-Universität Erlangen-Nürnberg.",
+        "instruction": "short project description",
+        "startButton": "select Map",
+        "preset":"choose Preset",
+        "navBar": {
+            "menue": "Configure Map",
+            "info": "Project Info"
+        }
+    }
+}
