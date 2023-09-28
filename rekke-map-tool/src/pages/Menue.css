@@ -22,41 +22,50 @@
     margin-top: 15vh;
 
 }
-.outer-row{
+
+.range{
+    margin-top: 1vh
+}
+
+.rangeCol .form-label{
+    margin-top: 8vh;
+}
+
+.outer-row {
     height: 33vh !important;
 }
 
-.source{
+.source {
     font-size: 0.7rem;
 }
-.description{
+
+.description {
     text-align: justify;
     hyphens: auto;
 }
 
-@media only screen and (max-width: 575px){
-    .turned{
+@media only screen and (max-width: 575px) {
+    .turned {
         transform: rotate(0deg);
 
-    /* Legacy vendor prefixes that you probably don't need... */
+        /* Legacy vendor prefixes that you probably don't need... */
 
-    /* Safari */
-    -webkit-transform: rotate(0deg);
+        /* Safari */
+        -webkit-transform: rotate(0deg);
 
-    /* Firefox */
-    -moz-transform: rotate(0deg);
+        /* Firefox */
+        -moz-transform: rotate(0deg);
 
-    /* IE */
-    -ms-transform: rotate(0deg);
+        /* IE */
+        -ms-transform: rotate(0deg);
 
-    /* Opera */
-    -o-transform: rotate(0deg);
+        /* Opera */
+        -o-transform: rotate(0deg);
 
-    /* Internet Explorer */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    margin-top: 0;
+        /* Internet Explorer */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+        margin-top: 0;
     }
 
-    
-}
 
+}
