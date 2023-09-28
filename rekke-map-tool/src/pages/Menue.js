@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import languages from '../configData/languages.json'
-import { MDBCol, MDBCollapse, MDBContainer, MDBRadio, MDBRange, MDBRow } from 'mdb-react-ui-kit'
+import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBRadio, MDBRange, MDBRow } from 'mdb-react-ui-kit'
 import './Menue.css'
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import RadioSelector from './menueSelections/RadioSelector';
 
 
@@ -20,6 +20,7 @@ function Menue({
 
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     // var frequency;
     useEffect(()=>{
@@ -180,12 +181,22 @@ function Menue({
 
                 </MDBRow>
                 <MDBRow className='outer-row my-4 '>
+                <MDBRow className='my-4 '>
+
                     <h3 >
                         {languages[currentLanguage].showMap}
                     </h3>
+                    </MDBRow>
 
 
                 </MDBRow>
+                <MDBRow className='my-4 '>
+                    <MDBBtn onClick={()=>navigate("/map/001")} >
+                    {languages[currentLanguage].showMap}
+                    </MDBBtn>
+
+                </MDBRow>
+
 
 
             </MDBCol>
