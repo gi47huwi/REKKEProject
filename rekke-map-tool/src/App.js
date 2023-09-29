@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Menue from './pages/Menue';
 import Info from './pages/Info';
 import Settings from './pages/Settings';
-import Map from './pages/Map';
+import MapView from './pages/Map';
 import languages from "./configData/languages.json"
 import CookieConsent from "react-cookie-consent";
 
@@ -70,7 +70,7 @@ function App() {
       <Routes >
         <Route path="/" element={<Home currentLanguage={currentLanguage} />} />
         <Route path="menue" element={<Menue currentLanguage={currentLanguage} />} />
-        <Route path="map/:mapID" element={<Map currentLanguage={currentLanguage} />} />
+        <Route path="map/:mapID" element={<MapView currentLanguage={currentLanguage} />} />
         <Route path="info" element={<Info currentLanguage={currentLanguage} />} />
         {/* <Route path="settings" element={<Settings />} /> */}
 

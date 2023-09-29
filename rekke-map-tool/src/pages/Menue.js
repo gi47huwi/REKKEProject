@@ -4,6 +4,14 @@ import { MDBBtn, MDBCol, MDBCollapse, MDBContainer, MDBRadio, MDBRange, MDBRow }
 import './Menue.css'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import RadioSelector from './menueSelections/RadioSelector';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import SlideCard from './SlideCard'
 
 
 function Menue({
@@ -11,7 +19,6 @@ function Menue({
 }) {
 
     const [climateModel, setClimateModel] = useState();
-
     const [szenario, setSzenario] = useState();
     const [frequency, setFrequency] = useState();
     const [intensity, setIntensity] = useState();
@@ -23,12 +30,42 @@ function Menue({
     const navigate = useNavigate();
 
     // var frequency;
-    useEffect(()=>{
-        if(searchParams.get("frequency")!=null){
-            setFrequency(searchParams.get("frequency"));
+    useEffect(() => {
+        if (searchParams.get("frequency") != null) {
+            var frequencyNumber = searchParams.get("frequency");
+            if (frequencyNumber > languages[currentLanguage].selection.frequency.values.length - 1) {
+                setFrequency();
+            } else {
+                setFrequency(searchParams.get("frequency"));
+
+            }
         }
 
-    },[])
+    }, [])
+
+    useEffect(() => {
+        // if (searchParams == null) return;
+        if (searchParams.get("frequency") != null) {
+            var frequencyNumber = searchParams.get("frequency");
+            if (frequencyNumber > languages[currentLanguage].selection.frequency.values.length - 1) {
+                setFrequency();
+            } else {
+                setFrequency(searchParams.get("frequency"));
+
+            }
+        }
+        if (searchParams.get("model") != null) {
+            setClimateModel(searchParams.get("model"));
+
+
+        }
+        if (searchParams.get("szenario") != null) {
+            setSzenario(searchParams.get("szenario"));
+        }
+
+
+
+    }, [searchParams])
 
 
 
@@ -36,6 +73,57 @@ function Menue({
     return (
         <>
             <MDBCol>
+                <MDBRow className='mb-3'>
+                    <MDBCol sm={1} md={1} >
+                        <h3 className='turned'>
+                            {languages[currentLanguage].preset}
+                        </h3>
+                    </MDBCol>
+                    <MDBCol md={10} sm={10}>
+                        <Swiper
+                            modules={[Navigation, Pagination, A11y]}
+                            spaceBetween={30}
+                            allowTouchMove
+                            slidesPerView={window.innerWidth < 775 ? 1 : 3}
+                            navigation
+                            pagination={{ clickable: true }}>
+                            <SwiperSlide >
+                                <SlideCard
+                                    presetName={"worst"}
+                                    model="1"
+                                    szenario={2}
+                                    frequency={3}
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide >
+                                <SlideCard
+                                    presetName={"easy"}
+                                    model="0"
+                                    szenario={1}
+                                    frequency={0}
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide >
+                                <SlideCard
+                                    presetName={"moderate"}
+                                    model="0"
+                                    szenario={2}
+                                    frequency={2}
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide >
+                                <SlideCard
+                                    presetName={"high"}
+                                    model="1"
+                                    szenario={3}
+                                    frequency={2}
+                                />
+                            </SwiperSlide>
+                        </Swiper>
+
+                    </MDBCol>
+
+                </MDBRow>
                 <MDBRow className='outer-row my-4'>
                     <MDBCol sm={1} md={1} >
                         <h3 className='turned'>
@@ -85,19 +173,20 @@ function Menue({
                     </MDBCol>
                     <MDBCol sm={10} md={10}>
                         <MDBRow className=' square border rounded-8 my-2' style={{ height: "28vh" }}>
-                            <MDBCol style={{ height: "100%", overflowX: "hidden", overflowY: "scroll"}} className='rangeCol'>
-                                    
-                                    <MDBRange
-                                        value={frequency}
-                                        onChange={(val)=>{
-                                            console.log(val);
-                                            setFrequency(val.target.valueAsNumber)}}
-                                        min='0'
-                                        max={languages[currentLanguage].selection.frequency.values.length-1}
-                                        step='1'
-                                        id='heatFrequency'
-                                        label={languages[currentLanguage].selection.frequency.name}
-                                    />
+                            <MDBCol style={{ height: "100%", overflowX: "hidden", overflowY: "scroll" }} className='rangeCol'>
+
+                                <MDBRange
+                                    value={frequency}
+                                    onChange={(val) => {
+                                        console.log(val);
+                                        setFrequency(val.target.valueAsNumber)
+                                    }}
+                                    min='0'
+                                    max={languages[currentLanguage].selection.frequency.values.length - 1}
+                                    step='1'
+                                    id='heatFrequency'
+                                    label={languages[currentLanguage].selection.frequency.name}
+                                />
 
                             </MDBCol>
                             <MDBCol style={{ height: "100%", overflowY: "scroll", overflowX: "hidden", padding: "10px" }}>
@@ -181,18 +270,18 @@ function Menue({
 
                 </MDBRow>
                 <MDBRow className='outer-row my-4 '>
-                <MDBRow className='my-4 '>
+                    <MDBRow className='my-4 '>
 
-                    <h3 >
-                        {languages[currentLanguage].showMap}
-                    </h3>
+                        <h3 >
+                            {languages[currentLanguage].showMap}
+                        </h3>
                     </MDBRow>
 
 
                 </MDBRow>
                 <MDBRow className='my-4 '>
-                    <MDBBtn onClick={()=>navigate("/map/001")} >
-                    {languages[currentLanguage].showMap}
+                    <MDBBtn onClick={() => navigate("/map/001")} >
+                        {languages[currentLanguage].showMap}
                     </MDBBtn>
 
                 </MDBRow>

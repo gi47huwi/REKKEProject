@@ -1,29 +1,36 @@
 import { MDBCard, MDBCardBody, MDBCardHeader } from 'mdb-react-ui-kit'
 import React from 'react'
 import './SliderCard.css'
+import { useNavigate } from 'react-router-dom'
 
 function SlideCard({
-    presetNumber
+  presetName,
+  model,
+  szenario,
+  frequency,
 }) {
+
+  const navigate = useNavigate();
+
   return (
     <>
-    <MDBCard  >
+      <MDBCard  onClick={()=>navigate(`/menue?model=${model}&szenario=${szenario}&frequency=${frequency}`)}>
         <MDBCardHeader>
-        {presetNumber}
+          {presetName}
 
 
         </MDBCardHeader>
         <MDBCardBody>
-            <ul>
-                <li> preset item 01</li>
-                <li> preset item 02</li>
-                <li> preset item 03</li>
+          <ul>
+            <li> {model}</li>
+            <li> {szenario}</li>
+            <li> {frequency}</li>
 
-            </ul>
+          </ul>
 
         </MDBCardBody>
 
-    </MDBCard>
+      </MDBCard>
     </>
   )
 }

@@ -35,7 +35,7 @@ function Home({
 
                     </MDBRow>
                 </MDBCol>
-                <MDBRow className='position-absolute align-items-center justify-content-center' style={{ bottom: "15vh"}}>
+                <MDBRow className='position-absolute align-items-center justify-content-center' style={{ bottom: "15vh" }}>
                     <MDBBtn color="secondary" onClick={() => navigate("/menue")}>
                         {languages[currentLanguage].startButton}
 
@@ -51,56 +51,80 @@ function Home({
                     {languages[currentLanguage].preset}
                 </h3>
                 <div className='backgroundSwiper'>
-                <Swiper 
-                    modules={[Navigation, Pagination, A11y]}
-                    spaceBetween={30}
-                    allowTouchMove
-                    slidesPerView={window.innerWidth<775?1:3}
-                    navigation
-                    pagination={{ clickable: true }}>
-                    <SwiperSlide >
-                        <SlideCard
-                            presetNumber={1}
-                        />
+                    <Swiper
+                        modules={[Navigation, Pagination, A11y]}
+                        spaceBetween={30}
+                        allowTouchMove
+                        slidesPerView={window.innerWidth < 775 ? 1 : 3}
+                        navigation
+                        pagination={{ clickable: true }}>
+                        <SwiperSlide >
+                            <SlideCard
+                                presetName={"moderate"}
+                                model="0"
+                                szenario={2}
+                                frequency={3}
 
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SlideCard
-                            presetNumber={2}
+                            />
 
-                        />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <SlideCard
+                                presetName={"worst"}
+                                model="1"
+                                szenario={1}
+                                frequency={3}
 
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SlideCard
-                            presetNumber={3}
 
-                        />
+                            />
 
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SlideCard
-                            presetNumber={4}
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <SlideCard
+                                presetName={"low"}
+                                model="0"
+                                szenario={2}
+                                frequency={1}
 
-                        />
 
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SlideCard
-                            presetNumber={5}
+                            />
 
-                        />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <SlideCard
+                                presetName={"4"}
+                                model="1"
+                                szenario={2}
+                                frequency={1}
 
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <SlideCard
-                            presetNumber={6}
 
-                        />
+                            />
 
-                    </SwiperSlide>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <SlideCard
+                                presetName={"5"}
+                                model="1"
+                                szenario={3}
+                                frequency={0}
 
-                </Swiper>
+
+                            />
+
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <SlideCard
+                                presetName={"6"}
+                                model="1"
+                                szenario={4}
+                                frequency={3}
+
+
+                            />
+
+                        </SwiperSlide>
+
+                    </Swiper>
                 </div>
 
             </div>
