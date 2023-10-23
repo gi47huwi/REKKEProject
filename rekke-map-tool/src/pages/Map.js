@@ -6,7 +6,9 @@ import GeoTIFF, { fromUrl, fromUrls, fromArrayBuffer, fromBlob } from 'geotiff';
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { useMap } from 'react-leaflet/hooks'
-import { Marker, Popup } from 'leaflet';
+import { Marker, Popup, LatLngBounds } from 'leaflet';
+import { ImageOverlay } from 'react-leaflet/ImageOverlay'
+import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 
 
 async function toHTMLImage(geoTiffDataRGB, width, height) {
@@ -16,6 +18,7 @@ async function toHTMLImage(geoTiffDataRGB, width, height) {
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   const imageData = ctx.getImageData(0, 0, width, height);
   const data = imageData.data;  // array of RGBA values
+
 
   // convert GeoTiff's RGB values to ImageData's RGBA values
   for (let i = 0; i < height; i++) {
@@ -42,11 +45,16 @@ async function toHTMLImage(geoTiffDataRGB, width, height) {
 
 
 function MapView() {
+  const [southWest, setSouthWest] = useState([49.8333, 10.5])
+  const [northEast, setNorthEast] = useState([49.9333, 10.7])
+
+  const bounds = new LatLngBounds(southWest, northEast);
+  const [dragLeft, setDragLeft] = useState("5vw");
+
+
 
 
   useEffect(() => {
-
-
     // fetch("https://backend.fiolu.de/map/s2_anomaly_observed_2016.tif")
     //   .then(response => {
 
@@ -61,17 +69,59 @@ function MapView() {
 
 
 
+
+
+
+
+
   return (
-    <MapContainer center={[49.8333,10.5]} zoom={10} scrollWheelZoom={false}>
-    {/* <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    /> */}
-    <TileLayer url="https://osm.rrze.fau.de/tiles/{z}/{x}/{y}.png"/>
-    
-    
-    
-  </MapContainer>
+    <>
+      <div className='drag-bar-container'>
+        <div className='drag-bar-line'></div>
+        <div className='drag-handle' style={{ left: dragLeft }}
+          onDrag={(e) => {
+            if (e.screenX != 0) {
+              setDragLeft(`${e.screenX}px`);
+              var prognosisEl = document.querySelectorAll(".leaflet-image-layer")[0]
+              console.log(`rect(0px,0px,0px,${e.screenX}px)`);
+              prognosisEl.style.cssText += `clip:rect(0px,${window.innerWidth}px,${window.innerHeight}px,${(window.innerWidth / 2) - (window.innerWidth - e.screenX)}px);`;
+
+
+
+            }
+
+          }}
+        >
+        </div>
+      </div>
+
+      <MDBBtn tag='a' color='secondary' className='m-1 back-button'>
+        <MDBIcon fas icon='fa fa-arrow-left' />
+      </MDBBtn>
+      <MapContainer center={[49.8333, 10.5]} zoom={10} scrollWheelZoom={true} >
+
+
+
+        <TileLayer url="https://osm.rrze.fau.de/tiles/{z}/{x}/{y}.png" />
+        <ImageOverlay
+          url="http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
+          bounds={bounds}
+          opacity={0.5}
+          zIndex={10}
+
+
+
+        />
+
+
+
+
+
+
+      </MapContainer>
+
+
+    </>
 
   )
 }
