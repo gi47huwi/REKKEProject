@@ -1,6 +1,6 @@
 .leaflet-container {
     width: 100%;
-    height: 90vh;
+    height: 92.3vh;
     z-index: 10;
   }
 
@@ -40,4 +40,34 @@
   border-color: black;
   border-style: solid;
   border-width: 1px;
+}
+
+.drag-overlay{
+  cursor: pointer;
+  top: 0px;
+  position: absolute;
+  z-index: 500 !important;
+  width: 5px;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.5;
+}
+.drag-overlay:hover{
+  opacity: 1;
+}
+
+.drag-middle{
+  cursor: pointer;
+  position: absolute;
+  z-index: 500 !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-color: black;
+  border-style: solid;
+  border-width: 4px;
+  top: 50vh;
+  left: -22px;
+  background-color: lightblue;
+
 }

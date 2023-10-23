@@ -44,13 +44,23 @@ async function toHTMLImage(geoTiffDataRGB, width, height) {
 }
 
 
+
+
 function MapView() {
-  const [southWest, setSouthWest] = useState([49.8333, 10.5])
+
+  const [southWest, setSouthWest] = useState([49.5333, 9.9])
   const [northEast, setNorthEast] = useState([49.9333, 10.7])
 
   const bounds = new LatLngBounds(southWest, northEast);
-  const [dragLeft, setDragLeft] = useState("5vw");
+  const [dragLeft, setDragLeft] = useState("50vw");
 
+  var map;
+
+  function MyComponent() {
+    map = useMap()
+    console.log('map center:', map.getCenter())
+    return null
+  }
 
 
 
@@ -67,16 +77,9 @@ function MapView() {
 
   }, [])
 
-
-
-
-
-
-
-
   return (
     <>
-      <div className='drag-bar-container'>
+      {/* <div className='drag-bar-container'>
         <div className='drag-bar-line'></div>
         <div className='drag-handle' style={{ left: dragLeft }}
           onDrag={(e) => {
@@ -93,20 +96,25 @@ function MapView() {
           }}
         >
         </div>
-      </div>
+      </div> */}
 
       <MDBBtn tag='a' color='secondary' className='m-1 back-button'>
         <MDBIcon fas icon='fa fa-arrow-left' />
       </MDBBtn>
-      <MapContainer center={[49.8333, 10.5]} zoom={10} scrollWheelZoom={true} >
+      <MapContainer
+        center={[49.8333, 10.5]}
+        zoom={10}
+        scrollWheelZoom={true}
+
+      >
 
 
-
+        <MyComponent />
         <TileLayer url="https://osm.rrze.fau.de/tiles/{z}/{x}/{y}.png" />
         <ImageOverlay
           url="http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
           bounds={bounds}
-          opacity={0.5}
+          opacity={0.7}
           zIndex={10}
 
 
@@ -118,7 +126,31 @@ function MapView() {
 
 
 
+
       </MapContainer>
+      <div className='drag-overlay' id="drag-overlay" style={{ left: dragLeft }}
+        onDragStart={()=>document.querySelector("#drag-overlay").style.cssText+='opacity:1'}
+        onDragEnd={()=>document.querySelector("#drag-overlay").style.cssText+='opacity:0.5'}
+        onDrag={(e) => {
+          var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
+          var prognosisEl = document.querySelectorAll(".leaflet-image-layer")[0]
+          var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) +  parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
+          // console.log(`${paneStart}, ${imageVal}, ${imageStart}`)
+          if (e.screenX >imageStart) {
+            prognosisEl.style.cssText += `clip:rect(0px,${window.innerWidth}px,${window.innerHeight}px,${(window.innerWidth-(imageStart^1)) - (window.innerWidth - e.screenX)}px);`;
+          }
+          if(e.screenX!=0){
+            setDragLeft(`${e.screenX}px`);
+
+          }
+
+        }}>
+          <div className='drag-middle' />
+
+      </div>
+
+
+
 
 
     </>
