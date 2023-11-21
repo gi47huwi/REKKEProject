@@ -164,54 +164,7 @@ function Menue({
                     </MDBCol>
 
                 </MDBRow>
-                <MDBRow className='outer-row my-3'>
-
-                    <MDBCol sm={1} md={1}>
-                        <h3 className='turned'>
-                            {languages[currentLanguage].selection.frequency.name}
-                        </h3>
-                    </MDBCol>
-                    <MDBCol sm={10} md={10}>
-                        <MDBRow className=' square border rounded-8 my-2' style={{ height: "28vh" }}>
-                            <MDBCol style={{ height: "100%", overflowX: "hidden", overflowY: "scroll" }} className='rangeCol'>
-
-                                <MDBRange
-                                    value={frequency}
-                                    onChange={(val) => {
-                                        console.log(val);
-                                        setFrequency(val.target.valueAsNumber)
-                                    }}
-                                    min='0'
-                                    max={languages[currentLanguage].selection.frequency.values.length - 1}
-                                    step='1'
-                                    id='heatFrequency'
-                                    label={languages[currentLanguage].selection.frequency.name}
-                                />
-
-                            </MDBCol>
-                            <MDBCol style={{ height: "100%", overflowY: "scroll", overflowX: "hidden", padding: "10px" }}>
-                                <h4>
-                                    {frequency != null && `${languages[currentLanguage].selection.frequency.name}: ${languages[currentLanguage].selection.frequency.values[frequency].id}`}
-                                </h4>
-                                <p className='description'>
-                                    {frequency != null && languages[currentLanguage].selection.frequency.values[frequency].details}
-                                </p>
-                                {
-                                    frequency != null &&
-                                    <a className='source' target='_blank' href={languages[currentLanguage].selection.frequency.values[frequency].source}>
-                                        {languages[currentLanguage].selection.frequency.values[frequency].source}
-                                    </a>
-                                }
-
-                            </MDBCol>
-
-
-
-                        </MDBRow>
-
-                    </MDBCol>
-
-                </MDBRow>
+                
                 <MDBRow className='outer-row my-4 '>
 
                     <MDBCol sm={1} md={1} >

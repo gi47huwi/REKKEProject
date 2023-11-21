@@ -7,6 +7,7 @@ import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { useMap } from 'react-leaflet/hooks'
 import { Marker, Popup, LatLngBounds } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 import { ImageOverlay } from 'react-leaflet/ImageOverlay'
 import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 
@@ -116,7 +117,6 @@ function MapView() {
           bounds={bounds}
           opacity={0.7}
           zIndex={10}
-
 
 
         />

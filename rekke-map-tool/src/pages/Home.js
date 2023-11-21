@@ -45,7 +45,6 @@ function Home({
                 </MDBRow>
 
             </div>
-            <hr />
             <div className='bottom_panel'>
                 <h3>
                     {languages[currentLanguage].preset}
