@@ -1,0 +1,2 @@
+### NDVI extrapolation based on non-forest areas
+Assuming a complete deforestation of Upper Franconia, relative changes in NDVI are further estimated for the periods 2045-2054 and 2085-2094 following the SSP1 and SSP5 emission scenarios as well as the respective mean (Fig.6) and maximum (Fig.7) number of heatwaves per decade. 
