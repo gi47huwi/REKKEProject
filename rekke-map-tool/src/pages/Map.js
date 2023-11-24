@@ -10,6 +10,7 @@ import { Marker, Popup, LatLngBounds } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ImageOverlay } from 'react-leaflet/ImageOverlay'
 import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
+import GeotiffLayer from './geoTiffLayer';
 
 
 async function toHTMLImage(geoTiffDataRGB, width, height) {
@@ -44,9 +45,6 @@ async function toHTMLImage(geoTiffDataRGB, width, height) {
   });
 }
 
-
-
-
 function MapView() {
 
   const [southWest, setSouthWest] = useState([49.5333, 9.9])
@@ -54,8 +52,39 @@ function MapView() {
 
   const bounds = new LatLngBounds(southWest, northEast);
   const [dragLeft, setDragLeft] = useState("50vw");
-
   var map;
+  const geoTiffLayerRef = useRef();
+  const image = useRef();
+
+  
+
+
+  const options = {
+    pixelValuesToColorFn: (values) => {
+      // transforming single value into an rgba color
+      const nir = values[0];
+
+      if (nir === 0) return;
+      // console.log("nir:", nir);
+      const r = (nir / 20000) * 255;
+      const g = 0;
+      const b = 0;
+      return `rgba(${r},${g},${b}, 1)`;
+    },
+    resolution: 64,
+    opacity: 1
+  };
+
+  // const tiffUrl = "https://geo-services.geographie.uni-erlangen.de/rekke/getTiff?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.tif"
+
+  // async function loadGeoTiff(tif) {
+  //   const tiff = await fromUrl(tif).then(
+  //     (returnedTif)=>{
+  //       image.current = returnedTif.getImage()
+
+  //     }
+  //   )
+  // }
 
   function MyComponent() {
     map = useMap()
@@ -63,41 +92,33 @@ function MapView() {
     return null
   }
 
+  
 
 
   useEffect(() => {
-    // fetch("https://backend.fiolu.de/map/s2_anomaly_observed_2016.tif")
-    //   .then(response => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://geo-services.geographie.uni-erlangen.de/rekke/getMeta?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.json");
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        console.log(jsonData)
+        setNorthEast(prev=>[jsonData['north'], jsonData['east']])
+        setSouthWest(prev=>[jsonData['south'], jsonData['west']])
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-    //     response.arrayBuffer().then(buffered=>{
-    //       console.log(buffered);
+    fetchData();
 
-
-    //     });
-    //   });
 
   }, [])
 
   return (
     <>
-      {/* <div className='drag-bar-container'>
-        <div className='drag-bar-line'></div>
-        <div className='drag-handle' style={{ left: dragLeft }}
-          onDrag={(e) => {
-            if (e.screenX != 0) {
-              setDragLeft(`${e.screenX}px`);
-              var prognosisEl = document.querySelectorAll(".leaflet-image-layer")[0]
-              console.log(`rect(0px,0px,0px,${e.screenX}px)`);
-              prognosisEl.style.cssText += `clip:rect(0px,${window.innerWidth}px,${window.innerHeight}px,${(window.innerWidth / 2) - (window.innerWidth - e.screenX)}px);`;
-
-
-
-            }
-
-          }}
-        >
-        </div>
-      </div> */}
+      
 
       <MDBBtn tag='a' color='secondary' className='m-1 back-button'>
         <MDBIcon fas icon='fa fa-arrow-left' />
@@ -108,23 +129,19 @@ function MapView() {
         scrollWheelZoom={true}
 
       >
+        <MyComponent/>
 
-
-        <MyComponent />
         <TileLayer url="https://osm.rrze.fau.de/tiles/{z}/{x}/{y}.png" />
+
+        {/* <GeotiffLayer options={options} url={tiffUrl}/> */}
         <ImageOverlay
-          url="http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg"
+          url={"https://geo-services.geographie.uni-erlangen.de/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png"}
           bounds={bounds}
           opacity={0.7}
           zIndex={10}
 
 
         />
-
-
-
-
-
 
 
       </MapContainer>
