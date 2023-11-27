@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <MDBNavbar light expand="md" sticky style={{backgroundColor:"rgb(175, 213, 175)"}}> 
         <MDBContainer fluid >
-          <MDBNavbarBrand href='/'>
+          <MDBNavbarBrand href='/rekke/home'>
             <h2>REKKE</h2>
           </MDBNavbarBrand>
           <MDBNavbarToggler
@@ -68,7 +68,7 @@ function App() {
         </MDBContainer>
       </MDBNavbar>
       <Routes >
-        <Route path="/" element={<Home currentLanguage={currentLanguage} />} />
+        <Route path="/home" element={<Home currentLanguage={currentLanguage} />} />
         <Route path="menue" element={<Menue currentLanguage={currentLanguage} />} />
         <Route path="map/:mapID" element={<MapView currentLanguage={currentLanguage} />} />
         <Route path="info" element={<Info currentLanguage={currentLanguage} />} />

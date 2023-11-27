@@ -1,4 +1,4 @@
-## Data
+## II. Data
 ### Sattalite imagery
 For the assessment of NDVI values of vegetated areas in Upper Franconia, we use optical imagery of the Sentinel-2 satellite mission of the European Space Agency (ESA). The Sentinel-2 mission includes two polar-orbiting satellites with multi-spectral optical sensors for land surface monitoring. The MultiSpectral Instrument (MSI) sensor of the Sentinel-2 satellites comprises 13 spectral bands which acquire reflectance of visible light, near-infrared and short-wave infrared. The MSI system has a field of view of 290 km with a spatial resolution between 10m to 60m, depending on the spectral band. Both satellites share the same orbit and provide a minimum revisiting time of five days at the equator (Drusch et al., 2012; Spoto et al., 2012). Here, we use ~7,000 Sentinel-2 acquisitions of Upper Franconia of the Harmonized Sentinel-2 MSI collection provided by Google Earth Engine Data Catalog (Gorelick et al., 2017). For the Harmonized collection, the respective range of digital numbers (DN) has been already homogenized between different acquisitions.
 

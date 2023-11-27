@@ -1,5 +1,5 @@
 # Technical summary NDVI analysis (REKKE)
 
-## Introduction
+## I. Introduction
 In ecological studies, the Normalized Difference Vegetation Index (NDVI) is frequently used to estimate the greenness of plants and thereby assess the health and density of vegetated areas from either airborne or spaceborne spectrometric remote sensing data. The NDVI is based on differences in the reflected radiation of different spectral bands. In general, vegetation reflects more radiation in the near-infrared than in the visible wavelength and the degree of reflectance in the near-infrared wavelengths increases if the vegetation is dense and healthy. Therefore, the NDVI is usually calculated as a ratio between the reflectance of red and near infrared spectral bands of an optical remote sensing sensor (Jensen, 2007). NDVI values range between -1 and 1 whereby NDVI value close to 1 indicate areas with dense and healthy vegetation while values below 0 typically refer to areas without vegetation or water. Repeated measurements of NDVI values can be used to monitor the annual growth rate of vegetation and identify events of reduced vegetation health such as drought or heat stress (e.g. Nanzad et al., 2019; Varghese et al., 2021). 
 

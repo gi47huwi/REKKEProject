@@ -1,4 +1,4 @@
-## Methods
+## III. Methods
 ### NDVI calculation
 Multi-temporal NDVI maps of Upper Franconia are created from optical imagery via the Google Earth Engine service (Gorelick et al., 2017). We use data of the Sentinel-2 harmonized collection (Drusch et al., 2012) between 2016 and 2022 at a spatial resolution of 10m. Images are selected by removing granules with a spatial cloud coverage of more than 75% as well as raster cells with a high likelihood of cloud cover. The pixel-specific cloud probability is estimated by the provided cloud probability bitmask band (QA60). NDVI values are calculated from the ratio of reflectance of NIR and red light following (eq.1): 
 

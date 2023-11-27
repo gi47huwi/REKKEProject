@@ -13,7 +13,7 @@ import App from "./App.js";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter >
+  <BrowserRouter basename="/rekke" >
     <App />
   </BrowserRouter>
 );

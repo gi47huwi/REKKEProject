@@ -75,7 +75,7 @@ function MapView() {
     opacity: 1
   };
 
-  // const tiffUrl = "https://geo-services.geographie.uni-erlangen.de/rekke/getTiff?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.tif"
+  // const tiffUrl = "https://geo-services.geographie.uni-erlangen.de/api/rekke/getTiff?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.tif"
 
   // async function loadGeoTiff(tif) {
   //   const tiff = await fromUrl(tif).then(
@@ -98,7 +98,7 @@ function MapView() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://geo-services.geographie.uni-erlangen.de/rekke/getMeta?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.json");
+        const response = await fetch("https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.json");
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -135,7 +135,7 @@ function MapView() {
 
         {/* <GeotiffLayer options={options} url={tiffUrl}/> */}
         <ImageOverlay
-          url={"https://geo-services.geographie.uni-erlangen.de/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png"}
+          url={"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png"}
           bounds={bounds}
           opacity={0.7}
           zIndex={10}
