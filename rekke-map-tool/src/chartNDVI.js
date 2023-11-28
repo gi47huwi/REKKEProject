@@ -52,7 +52,7 @@ function ChartNDVI({
             type: 'scatter',
             name: 'non forest areas',
             marker: { size: 2 },
-            line: { width: 1, color:"red"}
+            line: { width: 1, color: "red" }
 
         }
         var trace2 = {
@@ -62,7 +62,7 @@ function ChartNDVI({
             type: 'scatter',
             name: 'forest areas',
             marker: { size: 2 },
-            line: { width: 1, color:"lightblue"}
+            line: { width: 1, color: "lightblue" }
 
 
         }
@@ -73,7 +73,7 @@ function ChartNDVI({
             if (element[2] != "NA") {
                 trace2.y.push(element[2])
             }
-            
+
         });
 
         setData([trace1, trace2]);
@@ -84,32 +84,59 @@ function ChartNDVI({
 
     return (
         loaded ?
-            <Plot
-                data={data}
-                layout={{
-                    width: "100%",
-                    showlegend: true,
-                    legend: {
-                        orientation: "v",
+            window.innerWidth < 575 ?
+                <Plot
+                    data={data}
+                    layout={{
+                        width: window.innerWidth/1.2,
+                        showlegend: true,
+                        legend: {
+                            orientation: "h",
 
-                    },
-                    xaxis: {
-                        title: { text: 'Number of heat waves', standoff: 5 },
-                        showgrid: false,
-                        automargin: false,
-                        zeroline:true
+                        },
+                        xaxis: {
+                            title: { text: 'Number of heat waves', standoff: 5 },
+                            showgrid: false,
+                            automargin: false,
+                            zeroline: true
 
-                    },
-                    yaxis: {
-                        title: 'Mean NDVI',
-                        zeroline:true,
-                        rangemode: 'tozero',
-                        range:[0.45, 0.7]
-                        
-                    }
-                }}
+                        },
+                        yaxis: {
+                            title: 'Mean NDVI',
+                            zeroline: true,
+                            rangemode: 'tozero',
+                            range: [0.45, 0.7]
 
-            />
+                        }
+                    }}
+
+                />
+                : <Plot
+                    data={data}
+                    layout={{
+                        width: window.innerWidth / 1.5,
+                        showlegend: true,
+                        legend: {
+                            orientation: "v",
+
+                        },
+                        xaxis: {
+                            title: { text: 'Number of heat waves', standoff: 5 },
+                            showgrid: false,
+                            automargin: false,
+                            zeroline: true
+
+                        },
+                        yaxis: {
+                            title: 'Mean NDVI',
+                            zeroline: true,
+                            rangemode: 'tozero',
+                            range: [0.45, 0.7]
+
+                        }
+                    }}
+
+                />
             : <></>
     );
 

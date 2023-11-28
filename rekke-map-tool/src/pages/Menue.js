@@ -17,7 +17,7 @@ import SlideCard from './SlideCard'
 function Menue({
     currentLanguage
 }) {
-
+    const [compareTime, setCompareTime] = useState();
     const [climateModel, setClimateModel] = useState();
     const [szenario, setSzenario] = useState();
     const [frequency, setFrequency] = useState();
@@ -61,6 +61,9 @@ function Menue({
         }
         if (searchParams.get("szenario") != null) {
             setSzenario(searchParams.get("szenario"));
+        }
+        if (searchParams.get("time") != null) {
+            setCompareTime(searchParams.get("time"));
         }
 
 
@@ -122,6 +125,27 @@ function Menue({
                         </Swiper>
 
                     </MDBCol>
+
+                </MDBRow>
+                <MDBRow className='outer-row my-4'>
+                    <MDBCol sm={1} md={1} >
+                        <h3 className='turned'>
+                            {languages[currentLanguage].selection.time.name}
+                        </h3>
+                    </MDBCol>
+
+                    <MDBCol sm={10} md={10}>
+                        <RadioSelector
+                            currentLanguage={currentLanguage}
+                            selectedFilter={compareTime}
+                            setSelectedFilter={(val) => setCompareTime(val)}
+                            name={"time"}
+                            currentLanguageData={languages[currentLanguage].selection.time}
+                        />
+
+
+                    </MDBCol>
+
 
                 </MDBRow>
                 <MDBRow className='outer-row my-4'>

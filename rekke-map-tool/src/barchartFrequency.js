@@ -91,19 +91,37 @@ function BarchartFrequency({
 
     return (
         loaded ?
+        window.innerWidth<575?
             <Plot
                 data={data}
                 layout={{
-                    width: 450,
+                    width: window.innerWidth/1.2,
                     showlegend: true,
                     title:{text:title},
                     yaxis:{
                         title:yLabel
-                    }
+                    },
+                    legend: {
+                        orientation: "h",
+
+                    },
                    
                 }}
 
             />
+            : <Plot
+            data={data}
+            layout={{
+                width:window.innerWidth/4,
+                showlegend: true,
+                title:{text:title},
+                yaxis:{
+                    title:yLabel
+                }
+               
+            }}
+
+        />
             : <></>
     );
 

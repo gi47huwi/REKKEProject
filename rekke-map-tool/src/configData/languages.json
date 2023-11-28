@@ -11,6 +11,30 @@
             "info": "Projektinformationen"
         },
         "selection": {
+            "time":{
+                "name":"Zeiträume",
+                "values":[
+                    {
+                        "label":"1993-2002 vs. 2045-2054 ",
+                        "id":"0",
+                        "details":"ERA5I: Vergleichszeitraum",
+                        "source":""
+                    },
+
+                    {
+                        "label":"1993-2002vs 2085-2094",
+                        "id":"1",
+                        "details":"Erster Projektionszeitraum",
+                        "source":""
+                    },
+                    {
+                        "label":"2045-2054 vs 2085-2094",
+                        "id":"2",
+                        "details":"Erster Projektionszeitraum",
+                        "source":""
+                    }
+                ]
+            },
             "climate": {
                 "name": "Klimaszenario",
                 "values":[
@@ -115,6 +139,30 @@
             "info": "Project Info"
         },
         "selection": {
+            "time":{
+                "name":"Zeiträume",
+                "values":[
+                    {
+                        "label":"1993-2002 vs. 2045-2054 ",
+                        "id":"0",
+                        "details":"ERA5I: Vergleichszeitraum",
+                        "source":""
+                    },
+
+                    {
+                        "label":"1993-2002vs 2085-2094",
+                        "id":"1",
+                        "details":"Erster Projektionszeitraum",
+                        "source":""
+                    },
+                    {
+                        "label":"2045-2054 vs 2085-2094",
+                        "id":"2",
+                        "details":"Erster Projektionszeitraum",
+                        "source":""
+                    }
+                ]
+            },
             "climate": {
                 "name": "climate model",
                 "values":[
