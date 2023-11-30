@@ -123,16 +123,16 @@ function Info({
             <MDBCol lg={6}>
               <BarchartFrequency 
               url='https://geo-services.geographie.uni-erlangen.de/api/rekke/getPlotCSV?filename=FIG_mean_heat_days2.csv' 
-              title={"Heatwaves per decade"}
-              yLabel={"mean heatwaves per decade"}
+              title={"Heatdays per decade"}
+              yLabel={"mean heatdays per decade"}
 
               />
             </MDBCol>
             <MDBCol lg={6}>
               <BarchartFrequency 
               url='https://geo-services.geographie.uni-erlangen.de/api/rekke/getPlotCSV?filename=FIG_mean_heat_waves2.csv' 
-              title={"Heatdays per decade"}
-              yLabel={"mean heatdays per decade"}
+              title={"Heatwaves per decade"}
+              yLabel={"mean heatwaves per decade"}
 
               />
             </MDBCol>

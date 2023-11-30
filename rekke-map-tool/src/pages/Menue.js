@@ -75,8 +75,8 @@ function Menue({
 
     return (
         <>
-            <MDBCol>
-                <MDBRow className='mb-3'>
+            <MDBCol className='mx-4'>
+                <MDBRow className='mb-3' style={{width:"99vw"}}>
                     <MDBCol sm={1} md={1} >
                         <h3 className='turned'>
                             {languages[currentLanguage].preset}
@@ -247,7 +247,7 @@ function Menue({
 
                 </MDBRow>
                 <MDBRow className='outer-row my-4 '>
-                    <MDBRow className='my-4 '>
+                    <MDBRow className='m-4 '>
 
                         <h3 >
                             {languages[currentLanguage].showMap}
@@ -256,8 +256,8 @@ function Menue({
 
 
                 </MDBRow>
-                <MDBRow className='my-4 '>
-                    <MDBBtn onClick={() => navigate("/map/001")} >
+                <MDBRow className='my-4 d-flex align-items-center justify-content-center' style={{width:"100%"}}>
+                    <MDBBtn onClick={() => navigate("/map/001")} style={{width:"90vw"}}>
                         {languages[currentLanguage].showMap}
                     </MDBBtn>
 

@@ -89,6 +89,7 @@ function ChartNDVI({
                     data={data}
                     layout={{
                         width: window.innerWidth/1.2,
+                        dragmode:"pan",
                         showlegend: true,
                         legend: {
                             orientation: "h",

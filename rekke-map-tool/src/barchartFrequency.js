@@ -96,6 +96,7 @@ function BarchartFrequency({
                 data={data}
                 layout={{
                     width: window.innerWidth/1.2,
+                    dragmode:"pan",
                     showlegend: true,
                     title:{text:title},
                     yaxis:{

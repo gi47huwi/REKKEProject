@@ -97,6 +97,7 @@ function ChartTemperaturesMean({
                     title: { text: "Mean 30-yrs temperature per day of year" },
                     width: window.innerWidth<575?window.innerWidth:window.innerWidth/3,
                     showlegend: true,
+                    dragmode:window.innerWidth<575?"pan":"select",
                     legend: {
                         orientation: "h",
 
