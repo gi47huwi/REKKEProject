@@ -12,7 +12,8 @@ import { ImageOverlay } from 'react-leaflet/ImageOverlay'
 import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
 import GeotiffLayer from './geoTiffLayer';
 import { LayerGroup, useMapEvent, useMapEvents } from 'react-leaflet';
-
+import { useParams, useSearchParams } from 'react-router-dom';
+import menue from '../configData/menue.json'
 
 async function toHTMLImage(geoTiffDataRGB, width, height) {
   const canvas = document.createElement("canvas");
@@ -47,6 +48,19 @@ async function toHTMLImage(geoTiffDataRGB, width, height) {
 }
 
 function MapView() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [leftImage, setLeftImage] = useState()
+  const [rightImage, setRightImage] = useState()
+  const [culturalLayer, setCulturalLayer] = useState()
+  const [resilienceLayer, setResilienceLayer] = useState()
+  const [historicalRelevantLayer, setHistoricalRelevantLayer] = useState()
+  const [monumentLayer, setMonumentLayer] = useState()
+  const [landscapeFeatureLayer, setLandscapeFeatureLayer] = useState()
+  const [socialMeetingLayer, setSocialMeetingLayer] = useState()
+  const [closeNatureLayer, setCloseNatureLayer] = useState()
+  const [sportsLayer, setSportsLayer] = useState()
+
 
   const [southWest, setSouthWest] = useState([49.5333, 9.9])
   const [northEast, setNorthEast] = useState([49.9333, 10.7])
@@ -57,23 +71,66 @@ function MapView() {
   var map;
 
 
+  //fetch the image src from the search query and the menue.json
+  useEffect(() => {
+    console.log(searchParams);
+    //fetch the image data id from searchparams for leftImage and rightImage
+    if (searchParams.get("leftImage") != null) {
+      setLeftImage(menue.image_configuration[searchParams.get("leftImage")].src);
+    }
+    if (searchParams.get("rightImage") != null) {
+      setRightImage(menue.image_configuration[searchParams.get("rightImage")].src);
+    }
+    
+    if (searchParams.get("historical") != null && searchParams.get("historical")==true) {
+      setHistoricalRelevantLayer(menue.additional_layers[searchParams.get("historical")].src);
+    }
+    if (searchParams.get("landscape")!= null && searchParams.get("landscape")==true) {
+      setLandscapeFeatureLayer(menue.additional_layers[searchParams.get("landscape")].src);
+    }
+    if (searchParams.get('nature')!= null && searchParams.get('nature')==true) {
+      setCloseNatureLayer(menue.additional_layers[searchParams.get("nature")].src);
+    }
+    if (searchParams.get("monument")!= null && searchParams.get("monument")==true) {
+      setMonumentLayer(menue.additional_layers[searchParams.get("monument")].src);
+    }
+    if (searchParams.get("social")!= null && searchParams.get("social")==true) {
+      setSocialMeetingLayer(menue.additional_layers[searchParams.get("social")].src);
+    }
+    if (searchParams.get("sports")!= null && searchParams.get("sports")==true) {
+      setSportsLayer(menue.additional_layers[searchParams.get("sports")].src);
+    }
+  }, [])
 
+  //function for fetching the src folder from the server by callin ...api/rekke/getGeojsonFolder?foldername=src and return the list of files inside these folders.
+  const getGeojsonFolder = async (foldername) => {
+    try {
+      const response = await fetch(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getGeojsonFolder?foldername=${foldername}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      return jsonData
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-  // const options = {
-  //   pixelValuesToColorFn: (values) => {
-  //     // transforming single value into an rgba color
-  //     const nir = values[0];
+  //function for fetching the geojson data from the server by callin ...api/rekke/getGeojson?filename=filename&foldername=src and return the geojson data.
+  //The filenames will be fetched by the getGeojsonFolder function.
+  const getGeojson = async (filename, foldername) => {
+    try {
+      const response = await fetch(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getGeojson?filename=${filename}&foldername=${foldername}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      return jsonData
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-  //     if (nir === 0) return;
-  //     // console.log("nir:", nir);
-  //     const r = (nir / 20000) * 255;
-  //     const g = 0;
-  //     const b = 0;
-  //     return `rgba(${r},${g},${b}, 1)`;
-  //   },
-  //   resolution: 64,
-  //   opacity: 1
-  // };
 
 
   const handleSliderChange = (event) => {
@@ -108,7 +165,6 @@ function MapView() {
       move: () => recalculateClip()
     },
     );
-    // add the image overlays to the map
 
 
 
@@ -145,7 +201,7 @@ function MapView() {
         <div className="map-overlay">
           <div className="map-overlay-content">
             <h1>Rekke Map Tool</h1>
-            <p>Drag the slider to compare the map with the prognosis</p>
+            <p>Long press and Drag the slider to compare the map with the prognosis</p>
           </div>
           {/* <div className="map-overlay-slider">
             <input type="range" min="0" max="1" step="0.01" defaultValue="0.5" onChange={handleSliderChange} />
@@ -174,32 +230,36 @@ function MapView() {
               className="image-overlay"
 
             >
+              {rightImage &&
+                <ImageOverlay
+                  className="prognosis"
+                  url={rightImage}
+                  bounds={bounds}
+                  opacity={0.9}
+                  zoomAnimation={false}
+                  maxZoom={5}
+                  onZoom={() => {
+                    console.log(map.getZoom())
+                  }
+                  }
 
-              <ImageOverlay
-                className="prognosis"
-                url={"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png"}
-                bounds={bounds}
-                opacity={0.9}
-                zoomAnimation={false}
-                maxZoom={5}
-                onZoom={() => {
-                  console.log(map.getZoom())
-                }
-                }
+                />
+              }
+              {leftImage &&
+                <ImageOverlay
+                  className="current"
+                  url={leftImage}
+                  bounds={bounds}
+                  opacity={0.7}
+                  zoomAnimation={false}
+                  maxZoom={5}
+                  onZoom={() => {
+                    console.log(map.getZoom())
+                  }
+                  }
+                />
+              }
 
-              />
-              <ImageOverlay
-                className="current"
-                url={"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_mean_ndvi_ssp_2085-94_ssp5_relChange_vf.png"}
-                bounds={bounds}
-                opacity={0.7}
-                zoomAnimation={false}
-                maxZoom={5}
-                onZoom={() => {
-                  console.log(map.getZoom())
-                }
-                }
-              />
             </LayerGroup>
 
           </MapContainer>
@@ -209,7 +269,9 @@ function MapView() {
       </div>
       <div className='drag-overlay' id="drag-overlay" style={{ left: dragLeft }}
         onDragStart={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:1'}
+        onTouchStart={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:1'}
         onDragEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
+        onTouchEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
         onDrag={(e) => {
           var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
           var prognosisEl = document.querySelectorAll(".prognosis")[0]
@@ -226,7 +288,27 @@ function MapView() {
             setDragLeft(`${e.screenX}px`);
           }
 
-        }}>
+        }}
+
+        onTouchMove={(e) => {
+          var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
+          var prognosisEl = document.querySelectorAll(".prognosis")[0]
+          var currentEl = document.querySelectorAll(".current")[0]
+          var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
+          var dragOverlay = document.querySelector("#drag-overlay")
+          if (e.screenX > imageStart) {
+            console.log(prognosisEl.style.height);
+            prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
+            // reset the clip of the current image on the right side
+            currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
+          }
+          if (e.screenX != 0) {
+            setDragLeft(`${e.screenX}px`);
+          }
+
+        }}
+
+      >
 
         <div className='drag-middle' />
       </div>

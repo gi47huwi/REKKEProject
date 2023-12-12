@@ -1,6 +1,6 @@
 {
     "de": {
-        "title":"REKKE Risikokarte",
+        "title": "REKKE Risikokarte",
         "welcomeText": "Herzlich Willkommen zur Risikokarte des Projekts REKKE der Friedrich-Alexander-Universität Erlangen-Nürnberg.",
         "instruction": "Einführende Worte zu dem Prokjekt",
         "startButton": "Karte konfigurieren",
@@ -11,124 +11,90 @@
             "info": "Projektinformationen"
         },
         "selection": {
-            "time":{
-                "name":"Zeiträume",
-                "values":[
-                    {
-                        "label":"1993-2002 vs. 2045-2054 ",
-                        "id":"0",
-                        "details":"ERA5I: Vergleichszeitraum",
-                        "source":""
-                    },
-
-                    {
-                        "label":"1993-2002vs 2085-2094",
-                        "id":"1",
-                        "details":"Erster Projektionszeitraum",
-                        "source":""
-                    },
-                    {
-                        "label":"2045-2054 vs 2085-2094",
-                        "id":"2",
-                        "details":"Erster Projektionszeitraum",
-                        "source":""
+            "compare_layer":{
+                "name":"Vergleichslayer wählen",
+                "left":"Linkes Bild",
+                "right":"Rechtes Bild",
+                "warning": "Bitte wählen Sie zwei Bilder aus."
+            },
+            "additional_layer": {
+                "name": "Zusatzlayer auswählen",
+                "warning":"Bitte mindestens einen Zusatzlayer auswählen.",
+                "culture": {
+                    "name": "Kulturlandschaft",
+                    "options": [{
+                            "id":0,
+                            "name": "Historisch bedeutsame Flächen",
+                            "param":"historical",
+                            "src":"Historisch",
+                            "description": [
+                                "(Historische Flurformen)",
+                                "(Historische Landeskulturfluren)",
+                                "(Assoziativer Bedeutungsgehalt)"
+                            ]
+                        },{
+                            "id":1,
+                            "name": "Landschaftsmerkmale",
+                            "param":"landscape",
+                            "src":"Landschaft",
+                            "description": [
+                                "Wiesenbewässerung",
+                                "Weiden",
+                                "Wald",
+                                "Streuobst",
+                                "Hecken",
+                                "Weinbergslagen"
+                            ]
+                        },{
+                            "id":2,
+                            "name": "Denkmäler",
+                            "param":"monument",
+                            "src":"Denkmaeler",
+                            "description": [
+                                "Bestand Bodendenkmal",
+                                "Erwartung Bodendenkmal",
+                                "Naturdenkmale"
+                            ]
+                        }
+                    ]
+                },
+                "resiliance": {
+                    "name": "Resilienz stifetende Orte",
+                    "options": [
+                        {
+                        "id":0,
+                        "name": "soziale Treffpunkte",
+                        "param":"social",
+                        "src":"Soziale_Treffpunkte",
+                        "description": [
+                            "Gastronomie und Einzelhandel",
+                            "Sehenswürdigkeiten",
+                            "Öffentliche Plätze"
+                        ]
+                    },{
+                        "id":1,
+                        "name": "Naturnah",
+                        "param":"nature",
+                        "src":"Naturnah",
+                        "description": [
+                            ""
+                        ]
+                    },{
+                        "id":2,
+                        "name": "Bewegung und Sport",
+                        "param":"sport",
+                        "src":"Bewegung_und_Sport",
+                        "description": [
+                            ""
+                        ]
                     }
                 ]
-            },
-            "climate": {
-                "name": "Klimaszenario",
-                "values":[
-                    {
-                        "label":"SSP 2.6: moderater Weg",
-                        "id":"0",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"SSP 5: Der fossile Weg",
-                        "id":"1",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    }
-                ]
-            },
-            "szenario": {
-                "name": "Hitzeperioden",
-                "values":[
-                    {
-                        "label":"niedrig",
-                        "id":"1",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"medium",
-                        "id":"2",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    },
-                    {
-                        "label":"hoch",
-                        "id":"3",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"extrem",
-                        "id":"4",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    }
-                   
-                ]
-            },
-            "frequency": {
-                "name": "Frequenz",
-                "values":[
-                    {
-                        "label":"Der 2 Grad Weg",
-                        "id":"01",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"Der fossile Weg",
-                        "id":"02",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    },
-                    {
-                        "label":"Der 2 Grad Weg",
-                        "id":"03",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"Der fossile Weg",
-                        "id":"04",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    }
-                   
-                ]
-            },
-            "intensity": {
-                "name": "Intensität"
-            },
-            "landuse": {
-                "name": "Landnutzung"
-            },
-            "landcoverage":{
-                "name":"Landschaftstyp"}
+                }
+            }
         }
     },
     "en": {
-        "title":"REKKE risk map",
+        "title": "REKKE risk map",
         "welcomeText": "Welcome to the webpage for the risk map of the REKKE projekt from Friedrich-Alexander-Universität Erlangen-Nürnberg.",
         "instruction": "short project description",
         "startButton": "select Map",
@@ -139,121 +105,64 @@
             "info": "Project Info"
         },
         "selection": {
-            "time":{
-                "name":"Zeiträume",
-                "values":[
-                    {
-                        "label":"1993-2002 vs. 2045-2054 ",
-                        "id":"0",
-                        "details":"ERA5I: Vergleichszeitraum",
-                        "source":""
-                    },
-
-                    {
-                        "label":"1993-2002vs 2085-2094",
-                        "id":"1",
-                        "details":"Erster Projektionszeitraum",
-                        "source":""
-                    },
-                    {
-                        "label":"2045-2054 vs 2085-2094",
-                        "id":"2",
-                        "details":"Erster Projektionszeitraum",
-                        "source":""
+            "compare_layer":{
+                "name":"Select compare layer",
+                "left":"Left image",
+                "right":"Right image",
+                "warning": "Please select two images."
+            },
+            "additional_layer": {
+                "name": "Select additional layers",
+                "warning":"Please select at least one additional layer.",
+                "culture": {
+                    "name": "Kulturlandschaft",
+                    "options": [{
+                        "id":0,
+                        "name": "Historisch bedeutsame Flächen",
+                        "param":"historical",
+                        "description": [
+                            "(Historische Flurformen)",
+                            "(Historische Landeskulturfluren)",
+                            "(Assoziativer Bedeutungsgehalt)"
+                        ]
+                    },{
+                        "id":1,
+                        "name": "Landschaftsmerkmale",
+                        "param":"landscape",
+                        "description": [
+                            "Wiesenbewässerung",
+                            "Weiden",
+                            "Wald",
+                            "Streuobst",
+                            "Hecken",
+                            "Weinbergslagen"
+                        ]
+                    },{
+                        "id":2,
+                        "name": "Denkmäler",
+                        "param":"monument",
+                        "description": [
+                            "Bestand Bodendenkmal",
+                            "Erwartung Bodendenkmal",
+                            "Naturdenkmale"
+                        ]
                     }
                 ]
-            },
-            "climate": {
-                "name": "climate model",
-                "values":[
-                    {
-                        "label":"SSP 2.6: moderater Weg",
-                        "id":"0",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"SSP 5: Der fossile Weg",
-                        "id":"1",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
+                },
+                "resiliance": {
+                    "name": "Resilienz",
+                    "options":[{
+                        "id":0,
+                        "name": "Historisch bedeutsame Flächen",
+                        "description": [
+                            "(Historische Flurformen)",
+                            "(Historische Landeskulturfluren)",
+                            "(Assoziativer Bedeutungsgehalt)"
+                        ]
                     }
                 ]
-            },
-            "szenario": {
-                "name": "heat",
-                "values":[
-                    {
-                        "label":"niedrig",
-                        "id":"1",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"medium",
-                        "id":"2",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    },
-                    {
-                        "label":"hoch",
-                        "id":"3",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"extrem",
-                        "id":"4",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    }
-                   
-                ]
-            },
-            "frequency": {
-                "name": "frequency",
-                "values":[
-                    {
-                        "label":"Der 2 Grad Weg",
-                        "id":"01",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"Der fossile Weg",
-                        "id":"02",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    },
-                    {
-                        "label":"Der 2 Grad Weg",
-                        "id":"03",
-                        "details":"Die Welt beschreitet verstärkt einen nachhaltigen Entwicklungspfad. Die globalen Gemeinschaftsgüter werden als wichtig erachtet und bewahrt, die Grenzen natürlicher Systeme werden respektiert. Der Konsum orientiert sich an einem geringen Material- und Energieverbrauch. Der Einsatz erneuerbarer Energien hat gesellschaftlich eine hohe Priorität und wird dementsprechend stark forciert. Die Treibhausgasemissionen werden bis zum Jahr 2030 massiv reduziert. Die Treibhausgaskonzentrationen nehmen bis zum Ende des Jahrhunderts allmählich ab. Ende des 21. Jahrhunderts gibt es keine anthropogen verursachten Treibhausgasemissionen mehr. Dieses wird u.a. erreicht durch negative Emissionen (aktive Entnahme von Kohledioxid aus der Atmosphäre) in der zweiten Hälfte des Jahrhunderts. Die globale Erwärmung kann auf weniger als 2°C gegenüber der vorindustriellen Zeit begrenzt werden. Es kommt jedoch zu Auswirkungen auf natürliche und sozioökonomische Systeme. Dafür existieren globale Anpassungsmechanismen zur Bewältigung von Verlusten und Schäden im globalen Süden.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    },
-                    {
-                        "label":"Der fossile Weg",
-                        "id":"04",
-                        "details":"Die soziale und ökonomische Entwicklung basiert auf der verstärkten Ausbeutung der fossilen Brennstoffressourcen mit einem energieintensiven Lebensstil weltweit. Die globale Wirtschaft wächst schnell. Das ist vor allem auf die Entwicklung in Industrie- und Schwellenländern zurückzuführen. Der Nutzung fossiler Brennstoffe wird eine hohe gesellschaftliche Akzeptanz entgegengebracht, erneuerbare Energien sind hingegen wenig anerkannt. Das führt zu einer starken Erhöhung der Treibhausgaskonzentrationen in der Atmosphäre. Der Anstieg der Treibhausgasemissionen hält bis zum Ende des 21. Jahrhunderts an. Die klimatischen Veränderungen sind sehr stark. Durch internationale Zusammenarbeit, die sich im Rahmen einer stark vernetzten Weltwirtschaft etabliert hat, erhalten jedoch die durch die Klimaänderung am stärksten betroffenen Länder Unterstützung. Ein effektiver Mechanismus zum Umgang mit klimabedingten Risiken jenseits der Anpassungsgrenzen ermöglicht es vielen Ländern, die notwendigen und oftmals transformativen Anpassungsmaßnahmen (zumindest teilweise) umzusetzen. Für Schäden und Verluste durch die Klimaänderung, für welche keine proaktiven Anpassungsmaßnahmen mehr greifen, existieren international abgestimmte Kompensationsmechanismen.",
-                        "source":"https://www.umweltbundesamt.de/sites/default/files/medien/380/dokumente/szenariennamen-stand_20220315.pdf"
-                    
-                    }
-                   
-                ]
-
-            },
-            "intensity": {
-                "name": "intensity"
-            },
-            "landuse": {
-                "name": "landuse"
-            },
-            "landcoverage":{
-                "name":"landcoverage"}
+                }
+            }
         }
     }
 }

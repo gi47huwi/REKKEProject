@@ -10,13 +10,18 @@ import Settings from './pages/Settings';
 import MapView from './pages/Map';
 import languages from "./configData/languages.json"
 import CookieConsent from "react-cookie-consent";
+import { DndProvider } from 'react-dnd';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
 function App() {
   const [showNav, setShowNav] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("de");
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
   return (
+    <DndProvider backend={isTouchDevice?TouchBackend:HTML5Backend}>
     <div className="App">
       <MDBNavbar light expand="md" sticky style={{backgroundColor:"rgb(175, 213, 175)"}}> 
         <MDBContainer fluid >
@@ -70,23 +75,24 @@ function App() {
       <Routes >
         <Route path="/home" element={<Home currentLanguage={currentLanguage} />} />
         <Route path="menue" element={<Menue currentLanguage={currentLanguage} />} />
-        <Route path="map/:mapID" element={<MapView currentLanguage={currentLanguage} />} />
+        <Route path="map" element={<MapView currentLanguage={currentLanguage} />} />
         <Route path="info" element={<Info currentLanguage={currentLanguage} />} />
         {/* <Route path="settings" element={<Settings />} /> */}
 
       </Routes>
       <CookieConsent
   location="bottom"
-  buttonText="Sure man!!"
-  cookieName="myAwesomeCookieName2"
+  buttonText="Yes"
+  cookieName="basic cookie alert"
   style={{ background: "#2B373B" }}
   buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
   expires={150}
 >
   This website uses cookies to enhance the user experience.{" "}
-  <span style={{ fontSize: "10px" }}>This bit of text is smaller :O</span>
+  <span style={{ fontSize: "10px" }}>No cookies are stored. No cookies from third party websites are used.</span>
 </CookieConsent>
     </div>
+    </DndProvider>
   );
 }
 

@@ -1,72 +1,9 @@
-.turned {
-    transform: rotate(-90deg);
+.drop-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    /* Legacy vendor prefixes that you probably don't need... */
-
-    /* Safari */
-    -webkit-transform: rotate(-90deg);
-
-    /* Firefox */
-    -moz-transform: rotate(-90deg);
-
-    /* IE */
-    -ms-transform: rotate(-90deg);
-
-    /* Opera */
-    -o-transform: rotate(-90deg);
-
-    /* Internet Explorer */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    /* width: 200px !important;
-    margin-left: 50px !important; */
-    margin-top: 15vh;
-
-}
-
-.range{
-    margin-top: 1vh
-}
-
-.rangeCol .form-label{
-    margin-top: 8vh;
-}
-
-.outer-row {
-    height: 33vh !important;
-    width: 95vw !important;
-}
-
-.source {
-    font-size: 0.7rem;
-}
-
-.description {
-    text-align: justify;
-    hyphens: auto;
-}
-
-@media only screen and (max-width: 575px) {
-    .turned {
-        transform: rotate(0deg);
-
-        /* Legacy vendor prefixes that you probably don't need... */
-
-        /* Safari */
-        -webkit-transform: rotate(0deg);
-
-        /* Firefox */
-        -moz-transform: rotate(0deg);
-
-        /* IE */
-        -ms-transform: rotate(0deg);
-
-        /* Opera */
-        -o-transform: rotate(0deg);
-
-        /* Internet Explorer */
-        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-        margin-top: 0;
-    }
-
-
+.swiper-slide{
+  height: 100% !important;
 }

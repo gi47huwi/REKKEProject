@@ -1,0 +1,62 @@
+{
+    "image_configuration":[
+        {
+            "name":"2045-2054 ssp1",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png",
+            "description":"This is a description",
+            "id":"0",
+            "color":"#FFE4B2"
+        },
+        {
+            "name":"2045-2054 ssp5",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp5_relChange_vf.png",
+            "description":"This is a description",
+            "id":"1",
+            "color":"#FFCC9D"
+        },
+        {
+            "name":"2085-2094 ssp1",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2085-94_ssp1_relChange_vf.png",
+            "description":"This is a description",
+            "id":"2",
+            "color":"#FFC0C0"
+
+        },
+        {
+            "name":"2085-2094 ssp5",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2085-94_ssp5_relChange_vf.png",
+            "description":"This is a description",
+            "id":"3",
+            "color":"#FF5F5F"
+        },
+        {
+            "name":"moderate 2045-2054 ssp1",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2045-54_ssp1_relChange_vf.png",
+            "description":"This is a description",
+            "id":"4",
+            "color":"#FFE4B2"
+        },
+        {
+            "name":"moderate 2045-2054 ssp5",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2045-54_ssp5_relChange_vf.png",
+            "description":"This is a description",
+            "id":"5",
+            "color":"#FFCC9D"
+        },
+        {
+            "name":"moderate 2085-2094 ssp1",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2085-94_ssp1_relChange_vf.png",
+            "description":"This is a description",
+            "id":"6",
+            "color":"#FFC0C0"
+
+        },
+        {
+            "name":"moderate 2085-2094 ssp5",
+            "src":"https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2085-94_ssp5_relChange_vf.png",
+            "description":"This is a description",
+            "id":"7",
+            "color":"#FF5F5F"
+        }
+    ]
+}
