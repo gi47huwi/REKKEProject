@@ -11,32 +11,34 @@
             "info": "Projektinformationen"
         },
         "selection": {
-            "compare_layer":{
-                "name":"Vergleichslayer wählen",
-                "left":"Linkes Bild",
-                "right":"Rechtes Bild",
+            "compare_layer": {
+                "name": "Vergleichslayer wählen",
+                "left": "Linkes Bild",
+                "right": "Rechtes Bild",
                 "warning": "Bitte wählen Sie zwei Bilder aus."
             },
             "additional_layer": {
                 "name": "Zusatzlayer auswählen",
-                "warning":"Bitte mindestens einen Zusatzlayer auswählen.",
+                "warning": "Bitte mindestens einen Zusatzlayer auswählen.",
                 "culture": {
                     "name": "Kulturlandschaft",
-                    "options": [{
-                            "id":0,
+                    "options": [
+                        {
+                            "id": 0,
                             "name": "Historisch bedeutsame Flächen",
-                            "param":"historical",
-                            "src":"Historisch",
+                            "param": "historical",
+                            "src": "Historisch",
                             "description": [
                                 "(Historische Flurformen)",
                                 "(Historische Landeskulturfluren)",
                                 "(Assoziativer Bedeutungsgehalt)"
                             ]
-                        },{
-                            "id":1,
+                        },
+                        {
+                            "id": 1,
                             "name": "Landschaftsmerkmale",
-                            "param":"landscape",
-                            "src":"Landschaft",
+                            "param": "landscape",
+                            "src": "Landschaft",
                             "description": [
                                 "Wiesenbewässerung",
                                 "Weiden",
@@ -45,11 +47,12 @@
                                 "Hecken",
                                 "Weinbergslagen"
                             ]
-                        },{
-                            "id":2,
+                        },
+                        {
+                            "id": 2,
                             "name": "Denkmäler",
-                            "param":"monument",
-                            "src":"Denkmaeler",
+                            "param": "monument",
+                            "src": "Denkmaeler",
                             "description": [
                                 "Bestand Bodendenkmal",
                                 "Erwartung Bodendenkmal",
@@ -62,33 +65,35 @@
                     "name": "Resilienz stifetende Orte",
                     "options": [
                         {
-                        "id":0,
-                        "name": "soziale Treffpunkte",
-                        "param":"social",
-                        "src":"Soziale_Treffpunkte",
-                        "description": [
-                            "Gastronomie und Einzelhandel",
-                            "Sehenswürdigkeiten",
-                            "Öffentliche Plätze"
-                        ]
-                    },{
-                        "id":1,
-                        "name": "Naturnah",
-                        "param":"nature",
-                        "src":"Naturnah",
-                        "description": [
-                            ""
-                        ]
-                    },{
-                        "id":2,
-                        "name": "Bewegung und Sport",
-                        "param":"sport",
-                        "src":"Bewegung_und_Sport",
-                        "description": [
-                            ""
-                        ]
-                    }
-                ]
+                            "id": 0,
+                            "name": "soziale Treffpunkte",
+                            "param": "social",
+                            "src": "Soziale_Treffpunkte",
+                            "description": [
+                                "Gastronomie und Einzelhandel",
+                                "Sehenswürdigkeiten",
+                                "Öffentliche Plätze"
+                            ]
+                        },
+                        {
+                            "id": 1,
+                            "name": "Naturnah",
+                            "param": "nature",
+                            "src": "Naturnah",
+                            "description": [
+                                ""
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "name": "Bewegung und Sport",
+                            "param": "sport",
+                            "src": "Bewegung_und_Sport",
+                            "description": [
+                                ""
+                            ]
+                        }
+                    ]
                 }
             }
         }
@@ -105,62 +110,66 @@
             "info": "Project Info"
         },
         "selection": {
-            "compare_layer":{
-                "name":"Select compare layer",
-                "left":"Left image",
-                "right":"Right image",
+            "compare_layer": {
+                "name": "Select compare layer",
+                "left": "Left image",
+                "right": "Right image",
                 "warning": "Please select two images."
             },
             "additional_layer": {
                 "name": "Select additional layers",
-                "warning":"Please select at least one additional layer.",
+                "warning": "Please select at least one additional layer.",
                 "culture": {
                     "name": "Kulturlandschaft",
-                    "options": [{
-                        "id":0,
-                        "name": "Historisch bedeutsame Flächen",
-                        "param":"historical",
-                        "description": [
-                            "(Historische Flurformen)",
-                            "(Historische Landeskulturfluren)",
-                            "(Assoziativer Bedeutungsgehalt)"
-                        ]
-                    },{
-                        "id":1,
-                        "name": "Landschaftsmerkmale",
-                        "param":"landscape",
-                        "description": [
-                            "Wiesenbewässerung",
-                            "Weiden",
-                            "Wald",
-                            "Streuobst",
-                            "Hecken",
-                            "Weinbergslagen"
-                        ]
-                    },{
-                        "id":2,
-                        "name": "Denkmäler",
-                        "param":"monument",
-                        "description": [
-                            "Bestand Bodendenkmal",
-                            "Erwartung Bodendenkmal",
-                            "Naturdenkmale"
-                        ]
-                    }
-                ]
+                    "options": [
+                        {
+                            "id": 0,
+                            "name": "Historisch bedeutsame Flächen",
+                            "param": "historical",
+                            "description": [
+                                "(Historische Flurformen)",
+                                "(Historische Landeskulturfluren)",
+                                "(Assoziativer Bedeutungsgehalt)"
+                            ]
+                        },
+                        {
+                            "id": 1,
+                            "name": "Landschaftsmerkmale",
+                            "param": "landscape",
+                            "description": [
+                                "Wiesenbewässerung",
+                                "Weiden",
+                                "Wald",
+                                "Streuobst",
+                                "Hecken",
+                                "Weinbergslagen"
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "name": "Denkmäler",
+                            "param": "monument",
+                            "description": [
+                                "Bestand Bodendenkmal",
+                                "Erwartung Bodendenkmal",
+                                "Naturdenkmale"
+                            ]
+                        }
+                    ]
                 },
                 "resiliance": {
                     "name": "Resilienz",
-                    "options":[{
-                        "id":0,
-                        "name": "Historisch bedeutsame Flächen",
-                        "description": [
-                            "(Historische Flurformen)",
-                            "(Historische Landeskulturfluren)",
-                            "(Assoziativer Bedeutungsgehalt)"
-                        ]
-                    }
-                ]
+                    "options": [
+                        {
+                            "id": 0,
+                            "name": "Historisch bedeutsame Flächen",
+                            "description": [
+                                "(Historische Flurformen)",
+                                "(Historische Landeskulturfluren)",
+                                "(Assoziativer Bedeutungsgehalt)"
+                            ]
+                        }
+                    ]
                 }
             }
         }

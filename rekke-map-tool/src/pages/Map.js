@@ -1,19 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Map.css'
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import accesstoken from '../configData/accesstoken';
-import GeoTIFF, { fromUrl, fromUrls, fromArrayBuffer, fromBlob } from 'geotiff';
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
-import { useMap } from 'react-leaflet/hooks'
-import { Marker, Popup, LatLngBounds } from 'leaflet';
+import { LatLngBounds } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ImageOverlay } from 'react-leaflet/ImageOverlay'
-import { MDBBtn, MDBIcon } from 'mdb-react-ui-kit';
-import GeotiffLayer from './geoTiffLayer';
-import { LayerGroup, useMapEvent, useMapEvents } from 'react-leaflet';
+import { LayerGroup, LayersControl, useMapEvent, useMapEvents } from 'react-leaflet';
+import { GeoJSON } from 'react-leaflet/GeoJSON'
 import { useParams, useSearchParams } from 'react-router-dom';
 import menue from '../configData/menue.json'
+import languages from '../configData/languages.json'
+import example from '../configData/example.json'
 
 async function toHTMLImage(geoTiffDataRGB, width, height) {
   const canvas = document.createElement("canvas");
@@ -47,7 +44,9 @@ async function toHTMLImage(geoTiffDataRGB, width, height) {
   });
 }
 
-function MapView() {
+function MapView({
+  currentLanguage
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [leftImage, setLeftImage] = useState()
@@ -68,12 +67,12 @@ function MapView() {
   const bounds = new LatLngBounds(southWest, northEast);
   const [leftBound, setLeftBound] = useState(0);
   const [dragLeft, setDragLeft] = useState("50vw");
+  const [showDrag, setShowDrag] = useState(false);
   var map;
 
 
   //fetch the image src from the search query and the menue.json
   useEffect(() => {
-    console.log(searchParams);
     //fetch the image data id from searchparams for leftImage and rightImage
     if (searchParams.get("leftImage") != null) {
       setLeftImage(menue.image_configuration[searchParams.get("leftImage")].src);
@@ -81,26 +80,114 @@ function MapView() {
     if (searchParams.get("rightImage") != null) {
       setRightImage(menue.image_configuration[searchParams.get("rightImage")].src);
     }
-    
-    if (searchParams.get("historical") != null && searchParams.get("historical")==true) {
-      setHistoricalRelevantLayer(menue.additional_layers[searchParams.get("historical")].src);
+    console.log(searchParams.get("historical"))
+    if (searchParams.get("historical")) {
+      //fetch the historical folder from the server
+      getGeojsonFolder(languages[currentLanguage].selection.additional_layer.culture.options[0].src).then((data) => {
+        //fetch the geojson data from the server
+        var jsonList = []
+        data.forEach((element) => {
+          getGeojson(element, languages[currentLanguage].selection.additional_layer.culture.options[0].src).then((geojson) => {
+            //set the geojson data to the state
+            jsonList.push(geojson)
+          })
+        })
+        setHistoricalRelevantLayer(jsonList)
+      })
     }
-    if (searchParams.get("landscape")!= null && searchParams.get("landscape")==true) {
-      setLandscapeFeatureLayer(menue.additional_layers[searchParams.get("landscape")].src);
+    if (searchParams.get("landscape")) {
+      //fetch the landscape folder from the server
+      getGeojsonFolder(languages[currentLanguage].selection.additional_layer.culture.options[1].src).then((data) => {
+        //fetch the geojson data from the server
+        if (data == undefined) {
+          return
+        }
+        var jsonList = []
+        data.forEach((element) => {
+          getGeojson(element, languages[currentLanguage].selection.additional_layer.culture.options[1].src).then((geojson) => {
+            //set the geojson data to the state
+            jsonList.push(geojson)
+          })
+        })
+        setLandscapeFeatureLayer(jsonList)
+      })
     }
-    if (searchParams.get('nature')!= null && searchParams.get('nature')==true) {
-      setCloseNatureLayer(menue.additional_layers[searchParams.get("nature")].src);
+    if (searchParams.get("monument")) {
+      //fetch the monument folder from the server
+      getGeojsonFolder(languages[currentLanguage].selection.additional_layer.culture.options[2].src).then((data) => {
+        //fetch the geojson data from the server
+        if (data == undefined) {
+          return
+        }
+        var jsonList = []
+        data.forEach((element) => {
+          getGeojson(element, languages[currentLanguage].selection.additional_layer.culture.options[2].src).then((geojson) => {
+            //set the geojson data to the state
+            jsonList.push(geojson)
+          })
+        })
+        setMonumentLayer(jsonList)
+      })
     }
-    if (searchParams.get("monument")!= null && searchParams.get("monument")==true) {
-      setMonumentLayer(menue.additional_layers[searchParams.get("monument")].src);
+
+    if (searchParams.get("social")) {
+      //fetch the social folder from the server
+      getGeojsonFolder(languages[currentLanguage].selection.additional_layer.resiliance.options[0].src).then((data) => {
+        //fetch the geojson data from the server
+        if (data == undefined) {
+          return
+        }
+        var jsonList = []
+        data.forEach((element) => {
+          getGeojson(element, languages[currentLanguage].selection.additional_layer.resiliance.options[0].src).then((geojson) => {
+            //set the geojson data to the state
+            jsonList.push(geojson)
+          })
+        })
+        setSocialMeetingLayer(jsonList)
+      })
     }
-    if (searchParams.get("social")!= null && searchParams.get("social")==true) {
-      setSocialMeetingLayer(menue.additional_layers[searchParams.get("social")].src);
+    if (searchParams.get("nature")) {
+      //fetch the nature folder from the server
+      getGeojsonFolder(languages[currentLanguage].selection.additional_layer.resiliance.options[1].src).then((data) => {
+        //fetch the geojson data from the server
+        if (data == undefined) {
+          return
+        }
+        var jsonList = []
+        data.forEach((element) => {
+          getGeojson(element, languages[currentLanguage].selection.additional_layer.resiliance.options[1].src).then((geojson) => {
+            //set the geojson data to the state
+            jsonList.push(geojson)
+          })
+        })
+        setCloseNatureLayer(jsonList)
+      })
     }
-    if (searchParams.get("sports")!= null && searchParams.get("sports")==true) {
-      setSportsLayer(menue.additional_layers[searchParams.get("sports")].src);
+    if (searchParams.get("sports")) {
+      //fetch the sports folder from the server
+      getGeojsonFolder(languages[currentLanguage].selection.additional_layer.resiliance.options[2].src).then((data) => {
+        //fetch the geojson data from the server
+        if (data == undefined) {
+          return
+        }
+        var jsonList = []
+        data.forEach((element) => {
+          getGeojson(element, languages[currentLanguage].selection.additional_layer.resiliance.options[2].src).then((geojson) => {
+            //set the geojson data to the state
+            jsonList.push(geojson)
+          })
+        })
+        setSportsLayer(jsonList)
+      })
     }
+
   }, [])
+
+  //use effect to print historicalRelevantLayer
+  useEffect(() => {
+    console.log(historicalRelevantLayer)
+  }, [historicalRelevantLayer])
 
   //function for fetching the src folder from the server by callin ...api/rekke/getGeojsonFolder?foldername=src and return the list of files inside these folders.
   const getGeojsonFolder = async (foldername) => {
@@ -144,6 +231,9 @@ function MapView() {
   };
 
   const recalculateClip = () => {
+    if (document.querySelectorAll(".prognosis")[0] == undefined) {
+      return
+    };
     //recalculate the clipt of image overlay
     var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
     var prognosisEl = document.querySelectorAll(".prognosis")[0]
@@ -162,7 +252,20 @@ function MapView() {
     map = useMapEvents({
       load: () => recalculateClip(),
       zoom: () => recalculateClip(),
-      move: () => recalculateClip()
+      move: () => recalculateClip(),
+      layeradd: (handler) => {
+        //If the layer is the image overlay add the drag overlay
+        if (handler.layer._url != undefined) {
+          setShowDrag(true)
+        }
+      },
+      layerremove: (handler) => {
+        //If the layer is the image overlay remove the drag overlay
+        if (handler.layer._url != undefined) {
+          setShowDrag(false)
+        }
+      }
+
     },
     );
 
@@ -182,7 +285,6 @@ function MapView() {
           throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-        console.log(jsonData)
         setNorthEast(prev => [jsonData['north'] - 0.001, jsonData['east']])
         setSouthWest(prev => [jsonData['south'] - 0.001, jsonData['west']])
       } catch (error) {
@@ -223,95 +325,271 @@ function MapView() {
 
           >
             <MyComponent />
-
-            <TileLayer url="https://osm.rrze.fau.de/tiles/{z}/{x}/{y}.png" />
-
-            <LayerGroup
-              className="image-overlay"
-
+            <LayersControl
+              position="topright"
             >
-              {rightImage &&
-                <ImageOverlay
-                  className="prognosis"
-                  url={rightImage}
-                  bounds={bounds}
-                  opacity={0.9}
-                  zoomAnimation={false}
-                  maxZoom={5}
-                  onZoom={() => {
-                    console.log(map.getZoom())
+              <LayersControl.BaseLayer checked={true} name="OpenStreetMap">
+
+                <TileLayer url="https://osm.rrze.fau.de/tiles/{z}/{x}/{y}.png" />
+              </LayersControl.BaseLayer>
+
+
+              <LayersControl.Overlay
+                checked={true}
+                name="Image Layer">
+
+                <LayerGroup className="image-overlay" >
+                  {rightImage &&
+                    <ImageOverlay
+                      className="prognosis"
+                      url={rightImage}
+                      bounds={bounds}
+                      opacity={0.9}
+                      zoomAnimation={false}
+                      maxZoom={5}
+                      onZoom={() => {
+                        console.log(map.getZoom())
+                      }
+                      }
+
+                    />
                   }
+                  {leftImage &&
+                    <ImageOverlay
+                      className="current"
+                      url={leftImage}
+                      bounds={bounds}
+                      opacity={0.7}
+                      zoomAnimation={false}
+                      maxZoom={5}
+                      onZoom={() => {
+                        console.log(map.getZoom())
+                      }
+                      }
+                    />
                   }
 
-                />
-              }
-              {leftImage &&
-                <ImageOverlay
-                  className="current"
-                  url={leftImage}
-                  bounds={bounds}
-                  opacity={0.7}
-                  zoomAnimation={false}
-                  maxZoom={5}
-                  onZoom={() => {
-                    console.log(map.getZoom())
-                  }
-                  }
-                />
-              }
+                </LayerGroup>
 
-            </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay
+                name={languages[currentLanguage].selection.additional_layer.culture.options[0].name}
+                checked={searchParams.get("historical")=="true"?true:false}
+              >
+
+                <LayerGroup>
+                  {historicalRelevantLayer != undefined &&
+
+                    <>
+                      {historicalRelevantLayer.map((geojson, index) => {
+                        console.log(geojson)
+                        return <GeoJSON
+                          key={index}
+                          data={geojson}
+                          style={{
+                            color: "lightblue",
+                            weight: 1,
+                            opacity: 0.8,
+                            fillColor: "lightblue",
+                            fillOpacity: 0.7
+                          }
+                          }
+
+                        />
+                      })}
+                    </>
+                  }
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay
+                name={languages[currentLanguage].selection.additional_layer.culture.options[1].name}
+                checked={searchParams.get("landscape")=="true"?true:false}
+              >
+                <LayerGroup>
+                  {landscapeFeatureLayer != undefined &&
+                    <>
+                      {landscapeFeatureLayer.map((geojson, index) => {
+                        console.log(geojson)
+                        return <GeoJSON
+                          key={index}
+                          data={geojson}
+                          style={{
+                            color: "lightgreen",
+                            weight: 1,
+                            opacity: 0.8,
+                            fillColor: "lightgreen",
+                            fillOpacity: 0.7
+                          }
+                          }
+                        />
+                      })}
+                    </>
+                  }
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay
+                name={languages[currentLanguage].selection.additional_layer.culture.options[2].name}
+                checked={searchParams.get("monument")=="true"?true:false}
+                
+              >
+                <LayerGroup>
+                  {monumentLayer != undefined &&
+                    <>
+                      {monumentLayer.map((geojson, index) => {
+                        console.log(geojson)
+                        return <GeoJSON
+                          key={index}
+                          data={geojson}
+                          style={{
+                            color: "lightred",
+                            weight: 1,
+                            opacity: 0.8,
+                            fillColor: "lightred",
+                            fillOpacity: 0.7
+                          }
+                          }
+                        />
+                      })}
+                    </>
+                  }
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay
+                name={languages[currentLanguage].selection.additional_layer.resiliance.options[0].name}
+                checked={searchParams.get("social")=="true"?true:false}
+              >
+                <LayerGroup>
+                  {socialMeetingLayer != undefined &&
+                    <>
+                      {socialMeetingLayer.map((geojson, index) => {
+                        console.log(geojson)
+                        return <GeoJSON
+                          key={index}
+                          data={geojson}
+                          style={{
+                            color: "lightblue",
+                            weight: 1,
+                            opacity: 0.8,
+                            fillColor: "lightblue",
+                            fillOpacity: 0.7,
+
+                          }
+                          }
+                        />
+                      })}
+                    </>
+                  }
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay
+                name={languages[currentLanguage].selection.additional_layer.resiliance.options[1].name}
+                checked={searchParams.get("nature")=="true"?true:false}
+              >
+                <LayerGroup>
+                  {closeNatureLayer != undefined &&
+                    <>
+                      {closeNatureLayer.map((geojson, index) => {
+                        console.log(geojson)
+                        return <GeoJSON
+                          key={index}
+                          data={geojson}
+                          style={{
+                            color: "lightgreen",
+                            weight: 1,
+                            opacity: 0.8,
+                            fillColor: "lightgreen",
+                            fillOpacity: 0.7
+                          }
+                          }
+                        />
+                      })}
+                    </>
+                  }
+                </LayerGroup>
+              </LayersControl.Overlay>
+              <LayersControl.Overlay
+                name={languages[currentLanguage].selection.additional_layer.resiliance.options[2].name}
+                checked={searchParams.get("sport")=="true"?true:false}
+              >
+                <LayerGroup>
+                  {sportsLayer != undefined &&
+                    <>
+                      {sportsLayer.map((geojson, index) => {
+                        console.log(geojson)
+                        return <GeoJSON
+                          key={index}
+                          data={geojson}
+                          style={{
+                            color: "lightred",
+                            weight: 1,
+                            opacity: 0.8,
+                            fillColor: "lightred",
+                            fillOpacity: 0.7
+                          }
+                          }
+                        />
+                      })}
+                    </>
+                  }
+                </LayerGroup>
+              </LayersControl.Overlay>
+
+            </LayersControl>
+
 
           </MapContainer>
 
         </div>
 
       </div>
-      <div className='drag-overlay' id="drag-overlay" style={{ left: dragLeft }}
-        onDragStart={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:1'}
-        onTouchStart={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:1'}
-        onDragEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
-        onTouchEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
-        onDrag={(e) => {
-          var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
-          var prognosisEl = document.querySelectorAll(".prognosis")[0]
-          var currentEl = document.querySelectorAll(".current")[0]
-          var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
-          var dragOverlay = document.querySelector("#drag-overlay")
-          if (e.screenX > imageStart) {
-            console.log(prognosisEl.style.height);
-            prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
-            // reset the clip of the current image on the right side
-            currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
-          }
-          if (e.screenX != 0) {
-            setDragLeft(`${e.screenX}px`);
-          }
+      {showDrag &&
+        <div className='drag-overlay' id="drag-overlay" style={{ left: dragLeft }}
+          onDragStart={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:1'}
+          onTouchStart={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:1'}
 
-        }}
+          onDragEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
+          onTouchEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
+          onDrag={(e) => {
+            var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
+            var prognosisEl = document.querySelectorAll(".prognosis")[0]
+            var currentEl = document.querySelectorAll(".current")[0]
+            var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
+            var dragOverlay = document.querySelector("#drag-overlay")
+            if (e.screenX > imageStart) {
+              console.log(prognosisEl.style.height);
+              prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
+              // reset the clip of the current image on the right side
+              currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
+            }
+            if (e.screenX != 0) {
+              setDragLeft(`${e.screenX}px`);
+            }
 
-        onTouchMove={(e) => {
-          var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
-          var prognosisEl = document.querySelectorAll(".prognosis")[0]
-          var currentEl = document.querySelectorAll(".current")[0]
-          var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
-          var dragOverlay = document.querySelector("#drag-overlay")
-          if (e.screenX > imageStart) {
-            console.log(prognosisEl.style.height);
-            prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
-            // reset the clip of the current image on the right side
-            currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
-          }
-          if (e.screenX != 0) {
-            setDragLeft(`${e.screenX}px`);
-          }
+          }}
 
-        }}
+          onTouchMove={(e) => {
+            var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
+            var prognosisEl = document.querySelectorAll(".prognosis")[0]
+            var currentEl = document.querySelectorAll(".current")[0]
+            var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
+            var dragOverlay = document.querySelector("#drag-overlay")
+            if (e.screenX > imageStart) {
+              console.log(prognosisEl.style.height);
+              prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
+              // reset the clip of the current image on the right side
+              currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
+            }
+            if (e.screenX != 0) {
+              setDragLeft(`${e.screenX}px`);
+            }
 
-      >
+          }}
 
-        <div className='drag-middle' />
-      </div>
+        >
+
+          <div className='drag-middle' />
+        </div>
+      }
     </>
 
   )
