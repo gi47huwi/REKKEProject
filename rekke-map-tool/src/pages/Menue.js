@@ -13,6 +13,7 @@ import menue from '../configData/menue.json'
 import './Menue.css'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Markdown from 'react-markdown'
 
 
 const DraggableCard = ({ item }) => {
@@ -28,11 +29,10 @@ const DraggableCard = ({ item }) => {
 
     if (isTouchDevice) {
         return (
-            <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1, width: "fit-content", height: "fit-content" }}>
+            <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1, height: "10rem" }}>
                 <MDBCard
                     style={{
-                        width: "fit-content",
-                        maxWidth: "40vw",
+                        width: "100%",
                         height: "fit-content",
                         borderStyle: "solid",
                         borderWidth: "2px",
@@ -50,12 +50,15 @@ const DraggableCard = ({ item }) => {
     } else {
         return (
 
-            <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1, width: "fit-content", height: "fit-content" }}>
-                <MDBCard style={{ width: "10rem", height: "20rem", borderStyle: "solid", borderWidth: "2px", borderColor: item.color }}>
+            <div ref={drag} style={{ opacity: isDragging ? 0.5 : 1, width: "80%" }}>
+                <MDBCard style={{ width: "100%", height: "fit-content", borderStyle: "solid", borderWidth: "2px", borderColor: item.color }}>
                     <MDBCardImage src={item.src} alt={item.name} />
                     <MDBCardBody>
                         <MDBCardTitle>{item.name}</MDBCardTitle>
-                        <MDBCardText>{item.description}</MDBCardText>
+                        <MDBCardText>
+                            <Markdown>{item.description}</Markdown>
+
+                        </MDBCardText>
                     </MDBCardBody>
                 </MDBCard>
             </div>
@@ -99,13 +102,13 @@ const DropArea = ({ side, currentLanguage }) => {
     return (
         <div ref={drop} style={{
             backgroundColor: isOver ? 'lightblue' : side === "left" ? "rgb(175, 213, 175)" : "rgb(175, 213, 175)",
-            maxWidth: isTouchDevice ? "100vw" : "50vw",
-            minHeight: isTouchDevice ? "" : "30rem",
+            maxWidth: isTouchDevice ? "100vw" : "40vw",
+            minHeight: isTouchDevice ? "" : "40rem",
             borderBottom: isTouchDevice ? "1px solid grey" : "",
         }}>
             {side === 'left' && <h3>{languages[currentLanguage].selection.compare_layer.left}</h3>}
             {side === 'right' && <h3>{languages[currentLanguage].selection.compare_layer.right}</h3>}
-            <div style={{ width: "100%", height: "100%" }}>
+            <div style={{ width: "80%", height: "100%", marginLeft: "10%" }}>
                 {droppedCard != undefined ?
                     isTouchDevice ?
                         <>
@@ -115,7 +118,6 @@ const DropArea = ({ side, currentLanguage }) => {
                                     id={droppedCard.id}
                                     style={{
                                         width: "fit-content",
-                                        maxWidth: "40vw",
                                         height: "fit-content",
                                         borderStyle: "solid",
                                         borderWidth: "2px",
@@ -129,7 +131,7 @@ const DropArea = ({ side, currentLanguage }) => {
                                 </MDBCard>
                             </MDBRow>
                             <MDBRow className='d-flex align-items-center justify-content-center mb-2'>
-                                <MDBBtn style={{ width: "10rem" }} color="danger" onClick={handleRemove}><MDBIcon fas icon='trash-alt' /></MDBBtn>
+                                <MDBBtn style={{ width: "15rem" }} color="danger" onClick={handleRemove}><MDBIcon fas icon='trash-alt' /></MDBBtn>
                             </MDBRow>
                         </>
                         :
@@ -139,23 +141,27 @@ const DropArea = ({ side, currentLanguage }) => {
                                     className={'droppedCard ' + side}
                                     id={droppedCard.id}
                                     style={{
-                                        width: "10rem",
-                                        height: "20rem",
+                                        width: "15rem",
+                                        height: "30rem",
                                         borderStyle: "solid",
                                         borderWidth: "2px",
                                         borderColor: menue.image_configuration[droppedCard.id].color,
                                     }}
                                 >
-                                    <MDBCardImage style={{ width: "100%", height: "50%" }}
+                                    <MDBCardImage style={{ width: "100%", aspectRatio: "auto" }}
                                         src={menue.image_configuration[droppedCard.id].src} alt={menue.image_configuration[droppedCard.id].name} />
                                     <MDBCardBody>
                                         <MDBCardTitle>{menue.image_configuration[droppedCard.id].name}</MDBCardTitle>
-                                        <MDBCardText>{menue.image_configuration[droppedCard.id].description}</MDBCardText>
+                                        <MDBCardText style={{ height: "50%", overflow: "hidden" }}>
+                                            <Markdown>
+                                                {menue.image_configuration[droppedCard.id].description}
+                                            </Markdown>
+                                        </MDBCardText>
                                     </MDBCardBody>
                                 </MDBCard>
                             </MDBRow>
                             <MDBRow className='d-flex align-items-center justify-content-center'>
-                                <MDBBtn style={{ width: "10rem" }} color="danger" onClick={handleRemove}><MDBIcon fas icon='trash-alt' /></MDBBtn>
+                                <MDBBtn style={{ width: "15rem" }} color="danger" onClick={handleRemove}><MDBIcon fas icon='trash-alt' /></MDBBtn>
                             </MDBRow>
                         </>
                     : null}
@@ -270,6 +276,8 @@ function Menue({
 
     //set all layers from the url if they are set
     useEffect(() => {
+        window.scrollTo(0, 0)
+
         var subcultureLayer1Name = languages[currentLanguage].selection.additional_layer.culture.options[0].param;
         var subcultureLayer2Name = languages[currentLanguage].selection.additional_layer.culture.options[1].param;
         var subcultureLayer3Name = languages[currentLanguage].selection.additional_layer.culture.options[2].param;
@@ -333,8 +341,8 @@ function Menue({
 
             return;
         }
-         //if none of the layers is selected return and set a warning
-         if (!cultureLayer && !resilianceLayer && !subcultureLayer1 && !subcultureLayer2 && !subcultureLayer3 && !subresuliencelayer1 && !subresuliencelayer2 && !subresuliencelayer3) {
+        //if none of the layers is selected return and set a warning
+        if (!cultureLayer && !resilianceLayer && !subcultureLayer1 && !subcultureLayer2 && !subcultureLayer3 && !subresuliencelayer1 && !subresuliencelayer2 && !subresuliencelayer3) {
             setWarning(languages[currentLanguage].selection.additional_layer.warning);
             return;
         }
@@ -347,7 +355,7 @@ function Menue({
         var subresuliencelayer1String = subresuliencelayer1 ? "true" : "false";
         var subresuliencelayer2String = subresuliencelayer2 ? "true" : "false";
         var subresuliencelayer3String = subresuliencelayer3 ? "true" : "false";
-        
+
         setSearchParams({
             leftImage: leftImage,
             rightImage: rightImage,
@@ -362,7 +370,7 @@ function Menue({
         });
 
         setNavigateBool(true);
-       
+
 
     }
 
@@ -378,8 +386,8 @@ function Menue({
     //effect for navigate when search params are set
     useEffect(() => {
         if (navigateBool) {
-        //add search parameters to navigate to the map
-            navigate("/map?"+searchParams.toString()+"&language="+currentLanguage);
+            //add search parameters to navigate to the map
+            navigate("/map?" + searchParams.toString() + "&language=" + currentLanguage);
             setNavigateBool(false);
         }
     }, [navigateBool]);
@@ -393,12 +401,12 @@ function Menue({
                         1. {languages[currentLanguage].selection.compare_layer.name}
                     </h3>
                 </MDBRow>
-                <MDBRow className='mb-3' style={{ height: "fit-content", maxHeight: isTouchDevice ? "20vh" : "fit-content" }}>
+                <MDBRow className='mb-3' style={{ height: "fit-content" }}>
                     <Swiper
-                        style={{ height: "fit-content", maxHeight: isTouchDevice ? "20vh" : "fit-content" }}
+                        style={{ height: "50rem" }}
                         modules={[Navigation, Pagination, A11y]}
-                        spaceBetween={window.innerWidth < 775 ? 5 : 30}
-                        slidesPerView={window.innerWidth < 775 ? 2 : 3}
+                        spaceBetween={50}
+                        slidesPerView={isTouchDevice ? 1 : 2}
                         navigation
                         allowTouchMove={false}
                         draggable={false}
@@ -571,10 +579,10 @@ function Menue({
                             </p>
                         </MDBRow>
                     }
-                    <MDBBtn 
-                    disabled={warning}
-                    onClick={() => navigateToMapWithParameters()} 
-                    style={{ width: "90vw" }}
+                    <MDBBtn
+                        disabled={warning}
+                        onClick={() => navigateToMapWithParameters()}
+                        style={{ width: "90vw" }}
                     >
                         {languages[currentLanguage].showMap}
                     </MDBBtn>
