@@ -1,10 +1,6 @@
 
 .center_panel{
     background-color: rgb(175, 213, 175);
-    margin: 5vh 10vw 5vh 10vw;
-    height:70vh;
-    width: 80vw;
-    display: block;
     box-shadow: 5px 5px 10px;
     
 }
@@ -18,17 +14,9 @@
     align-items: center;
 }
 
-.backgroundSwiper{
-    width: 80vw ;
-    height: 90vh;
-    margin-bottom: 10vh;
+.backgroundContainer{
     background-color: rgb(175, 213, 175) ;
     box-shadow: 5px 5px 10px ;
-    justify-content: center;
-    display: flex;
-    
-    align-items: center;
-
 }
 
 .swiper{

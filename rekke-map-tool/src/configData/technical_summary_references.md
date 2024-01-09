@@ -27,3 +27,7 @@ Varghese, D., Radulović, M., Stojković, S., and Crnojević, V.: Reviewing the 
 
 Wong, C. Y. S. and Gamon, J. A.: The photochemical reflectance index provides an optical indicator of spring photosynthetic activation in evergreen conifers, New Phytol., 206, 196–208, https://doi.org/10.1111/nph.13251, 2015.
 
+BÜTTNER, T. (2004): *Erläuterungsbericht zum Pilotprojekt. Die historische Kulturlandschaft in der Region Oberfranken-West.* Augsburg. München.
+OPENSTREETMAP (2023): *Overpass Turbo.* Online abrufbar unter: [https://overpass-turbo.eu/](https://overpass-turbo.eu/) (letzter Zugriff 19.12.2023).
+
+STADT BAMBERG (2023): *Sozialberichterstattung. Sozialstrukturatlas.* Online abrufbar unter: [https://www.stadt.bamberg.de/B%C3%BCrgerservice/%C3%84mter/Amt-f%C3%BCr-Inklusion/Sachgebiet-Sozialplanung/index.php?La=1&object=tx,3481.257.1&kat=&kuo=2&sub=0&NavID=2730.386&La=1](https://www.stadt.bamberg.de/B%C3%BCrgerservice/%C3%84mter/Amt-f%C3%BCr-Inklusion/Sachgebiet-Sozialplanung/index.php?La=1&object=tx,3481.257.1&kat=&kuo=2&sub=0&NavID=2730.386&La=1) (letzter Zugriff: 14.12.2023).

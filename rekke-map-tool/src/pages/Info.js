@@ -21,15 +21,8 @@ function Info({
   const [markdownResultII, setMarkdownResultII] = useState('');
   const [markdownResultIII, setMarkdownResultIII] = useState('');
   const [markdownReferences, setMarkdownReferences] = useState('');
+  const [markdownInfoQualitative, setMarkdownInfoQualitative] = useState('');
 
-
-
-
-  const [heatPlot, setHeatPlot] = useState('')
-
-
-
-  const [markdownContent, setMarkdownContent] = useState('');
 
   const fetchMarkdown = async (url, setValue) => {
     try {
@@ -58,7 +51,7 @@ function Info({
     fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_2.md', setMarkdownResultII);
     fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_3.md', setMarkdownResultIII);
     fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_references.md', setMarkdownReferences);
-
+    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_qualitative.md', setMarkdownInfoQualitative);
 
   }, [])
 
@@ -148,6 +141,11 @@ function Info({
         <MDBRow className='text-panel text-start'>
           <Markdown >
             {markdownResultIII}
+          </Markdown>
+        </MDBRow>
+        <MDBRow className='text-panel text-start'>
+          <Markdown >
+            {markdownInfoQualitative}
           </Markdown>
         </MDBRow>
         <MDBRow className='text-panel text-start'>

@@ -1,5 +1,5 @@
 .card{
-    width: 200px !important;
+    width: 100% !important;
 }
 .card:hover{
     scale: 1.05 !important;

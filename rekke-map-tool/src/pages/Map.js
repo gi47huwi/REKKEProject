@@ -11,6 +11,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import menue from '../configData/menue.json'
 import languages from '../configData/languages.json'
 import example from '../configData/example.json'
+import { MDBCol, MDBContainer, MDBIcon, MDBRow } from 'mdb-react-ui-kit';
 
 async function toHTMLImage(geoTiffDataRGB, width, height) {
   const canvas = document.createElement("canvas");
@@ -66,16 +67,37 @@ function MapView({
 
   const bounds = new LatLngBounds(southWest, northEast);
   const [leftBound, setLeftBound] = useState(0);
-  const [dragLeft, setDragLeft] = useState("50vw");
+  const [dragLeft, setDragLeft] = useState(window.innerWidth / 2 + "px");
   const [showDrag, setShowDrag] = useState(false);
   var map;
 
+  const [sliderGrabbed, setSliderGrabbed] = useState(false);
 
+
+  const fetchData = async (imageURL) => {
+    console.log(imageURL)
+    try {
+      const response = await fetch(imageURL);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      setNorthEast(prev => [jsonData['north'] - 0.001, jsonData['east']])
+      setSouthWest(prev => [jsonData['south'] - 0.001, jsonData['west']])
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
   //fetch the image src from the search query and the menue.json
   useEffect(() => {
+
+    // scroll to top of page
+    window.scrollTo(0, 0)
     //fetch the image data id from searchparams for leftImage and rightImage
     if (searchParams.get("leftImage") != null) {
       setLeftImage(menue.image_configuration[searchParams.get("leftImage")].src);
+      fetchData(menue.image_configuration[searchParams.get("leftImage")].meta)
+
     }
     if (searchParams.get("rightImage") != null) {
       setRightImage(menue.image_configuration[searchParams.get("rightImage")].src);
@@ -182,6 +204,7 @@ function MapView({
       })
     }
 
+
   }, [])
 
   //use effect to print historicalRelevantLayer
@@ -235,15 +258,16 @@ function MapView({
       return
     };
     //recalculate the clipt of image overlay
-    var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
+    var leafletPane = document.querySelectorAll(".leaflet-image-layer")[0]
     var prognosisEl = document.querySelectorAll(".prognosis")[0]
     var currentEl = document.querySelectorAll(".current")[0]
-    var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
+    var imageStart = parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0]) + (parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]));
     var dragOverlay = document.querySelector("#drag-overlay")
     if (dragOverlay.style.left != "50vw") {
-      if (dragOverlay.style.left.split("px")[0] > imageStart) {
-        prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
-        currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
+      if (parseFloat(dragOverlay.style.left.split("px")[0]) > imageStart) {
+        prognosisEl.style.cssText += `clip: rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - parseFloat(dragOverlay.style.left.split("px")[0]))}px);`;
+
+        currentEl.style.cssText += `clip: rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - parseFloat(dragOverlay.style.left.split("px")[0]))}px,${currentEl.style.height},0px);`;
       }
     }
   }
@@ -277,46 +301,72 @@ function MapView({
 
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.json");
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const jsonData = await response.json();
-        setNorthEast(prev => [jsonData['north'] - 0.001, jsonData['east']])
-        setSouthWest(prev => [jsonData['south'] - 0.001, jsonData['west']])
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
 
 
-  }, [])
+  const handleDragMove = (e) => {
+    e.preventDefault();
+
+    var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0];
+    var prognosisEl = document.querySelectorAll(".prognosis")[0];
+    var currentEl = document.querySelectorAll(".current")[0];
+    console.log(leafletPane.style.transform.split("(")[1].split("px")[0]);
+    var imageStart = parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0]) + (parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]));
+    var dragOverlay = document.querySelector("#drag-overlay");
+
+    console.log(e);
+
+    if (e.pageX > imageStart || (e.touches && e.touches[0].pageX > imageStart)) {
+      prognosisEl.style.cssText += `clip: rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - parseFloat(dragOverlay.style.left.split("px")[0]))}px);`;
+
+      currentEl.style.cssText += `clip: rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - parseFloat(dragOverlay.style.left.split("px")[0]))}px,${currentEl.style.height},0px);`;
+    }
+
+    if (e.pageX != 0 || (e.touches && e.touches[0].pageX != 0)) {
+      setDragLeft(`${e.pageX || e.touches[0].pageX}px`);
+    }
+  };
 
   return (
     <>
-      <div className="map-container">
+      <div className="map-container" style={{ width: "100%" }}>
         <div className="map-overlay">
           <div className="map-overlay-content">
             <h1>Rekke Map Tool</h1>
-            <p>Long press and Drag the slider to compare the map with the prognosis</p>
+            <MDBRow>
+            <MDBCol md={1}>
+              {/* Button to change go back to the map selection with the selected parameters from the top*/}
+              <MDBContainer
+                fluid
+                className="d-flex justify-content-center"
+              >
+                <MDBRow className="d-flex justify-content-center">
+                  <a href={`/rekke/menue?leftImage=${searchParams.get("leftImage")}&rightImage=${searchParams.get("rightImage")}&historical=${searchParams.get("historical")}&landscape=${searchParams.get("landscape")}&monument=${searchParams.get("monument")}&social=${searchParams.get("social")}&nature=${searchParams.get("nature")}&sports=${searchParams.get("sports")}`}>
+                    <MDBIcon fas icon="arrow-left" size="lg" />
+                  </a>
+                  <p>
+                    Karte neu auswählen
+                  </p>
+                </MDBRow>
+              </MDBContainer>
+
+
+            </MDBCol>
+            <MDBCol >
+              <p>Klicken Sie mit Ihrer linken Maus-Taste auf einen blauen Punkt des Sliders um diesen mit Ihrer Maus zu bewegen. Bewegen Sie den Slider mit Hilfe der blauen Punkte und beobachten Sie die Veränderungen der Klimadaten. Zum loslassen Klicken sie erneut</p>
+            </MDBCol>
+            </MDBRow>
           </div>
           {/* <div className="map-overlay-slider">
             <input type="range" min="0" max="1" step="0.01" defaultValue="0.5" onChange={handleSliderChange} />
           </div> */}
 
         </div>
-
         <div className="map" id="map">
           <MapContainer
             center={[49.8333, 11.2]}
             zoom={10}
             scrollWheelZoom={true}
-            style={{ height: "100%", width: "100%" }}
+            style={{ height: "100%", width: "100%", left: "0px" }}
             whenCreated={(map) => {
               map.setMaxBounds(bounds);
               map.setMinZoom(map.getBoundsZoom(bounds));
@@ -344,13 +394,10 @@ function MapView({
                       className="prognosis"
                       url={rightImage}
                       bounds={bounds}
-                      opacity={0.9}
+                      opacity={0.8}
                       zoomAnimation={false}
                       maxZoom={5}
-                      onZoom={() => {
-                        console.log(map.getZoom())
-                      }
-                      }
+
 
                     />
                   }
@@ -362,10 +409,6 @@ function MapView({
                       opacity={0.7}
                       zoomAnimation={false}
                       maxZoom={5}
-                      onZoom={() => {
-                        console.log(map.getZoom())
-                      }
-                      }
                     />
                   }
 
@@ -374,7 +417,7 @@ function MapView({
               </LayersControl.Overlay>
               <LayersControl.Overlay
                 name={languages[currentLanguage].selection.additional_layer.culture.options[0].name}
-                checked={searchParams.get("historical")=="true"?true:false}
+                checked={searchParams.get("historical") == "true" ? true : false}
               >
 
                 <LayerGroup>
@@ -382,14 +425,13 @@ function MapView({
 
                     <>
                       {historicalRelevantLayer.map((geojson, index) => {
-                        console.log(geojson)
                         return <GeoJSON
                           key={index}
                           data={geojson}
                           style={{
                             color: "lightblue",
                             weight: 1,
-                            opacity: 0.8,
+                            opacity: 0.4,
                             fillColor: "lightblue",
                             fillOpacity: 0.7
                           }
@@ -403,20 +445,19 @@ function MapView({
               </LayersControl.Overlay>
               <LayersControl.Overlay
                 name={languages[currentLanguage].selection.additional_layer.culture.options[1].name}
-                checked={searchParams.get("landscape")=="true"?true:false}
+                checked={searchParams.get("landscape") == "true" ? true : false}
               >
                 <LayerGroup>
                   {landscapeFeatureLayer != undefined &&
                     <>
                       {landscapeFeatureLayer.map((geojson, index) => {
-                        console.log(geojson)
                         return <GeoJSON
                           key={index}
                           data={geojson}
                           style={{
                             color: "lightgreen",
                             weight: 1,
-                            opacity: 0.8,
+                            opacity: 0.4,
                             fillColor: "lightgreen",
                             fillOpacity: 0.7
                           }
@@ -429,21 +470,20 @@ function MapView({
               </LayersControl.Overlay>
               <LayersControl.Overlay
                 name={languages[currentLanguage].selection.additional_layer.culture.options[2].name}
-                checked={searchParams.get("monument")=="true"?true:false}
-                
+                checked={searchParams.get("monument") == "true" ? true : false}
+
               >
                 <LayerGroup>
                   {monumentLayer != undefined &&
                     <>
                       {monumentLayer.map((geojson, index) => {
-                        console.log(geojson)
                         return <GeoJSON
                           key={index}
                           data={geojson}
                           style={{
                             color: "lightred",
                             weight: 1,
-                            opacity: 0.8,
+                            opacity: 0.4,
                             fillColor: "lightred",
                             fillOpacity: 0.7
                           }
@@ -456,20 +496,19 @@ function MapView({
               </LayersControl.Overlay>
               <LayersControl.Overlay
                 name={languages[currentLanguage].selection.additional_layer.resiliance.options[0].name}
-                checked={searchParams.get("social")=="true"?true:false}
+                checked={searchParams.get("social") == "true" ? true : false}
               >
                 <LayerGroup>
                   {socialMeetingLayer != undefined &&
                     <>
                       {socialMeetingLayer.map((geojson, index) => {
-                        console.log(geojson)
                         return <GeoJSON
                           key={index}
                           data={geojson}
                           style={{
                             color: "lightblue",
                             weight: 1,
-                            opacity: 0.8,
+                            opacity: 0.4,
                             fillColor: "lightblue",
                             fillOpacity: 0.7,
 
@@ -483,20 +522,19 @@ function MapView({
               </LayersControl.Overlay>
               <LayersControl.Overlay
                 name={languages[currentLanguage].selection.additional_layer.resiliance.options[1].name}
-                checked={searchParams.get("nature")=="true"?true:false}
+                checked={searchParams.get("nature") == "true" ? true : false}
               >
                 <LayerGroup>
                   {closeNatureLayer != undefined &&
                     <>
                       {closeNatureLayer.map((geojson, index) => {
-                        console.log(geojson)
                         return <GeoJSON
                           key={index}
                           data={geojson}
                           style={{
                             color: "lightgreen",
                             weight: 1,
-                            opacity: 0.8,
+                            opacity: 0.4,
                             fillColor: "lightgreen",
                             fillOpacity: 0.7
                           }
@@ -509,20 +547,19 @@ function MapView({
               </LayersControl.Overlay>
               <LayersControl.Overlay
                 name={languages[currentLanguage].selection.additional_layer.resiliance.options[2].name}
-                checked={searchParams.get("sport")=="true"?true:false}
+                checked={searchParams.get("sport") == "true" ? true : false}
               >
                 <LayerGroup>
                   {sportsLayer != undefined &&
                     <>
                       {sportsLayer.map((geojson, index) => {
-                        console.log(geojson)
                         return <GeoJSON
                           key={index}
                           data={geojson}
                           style={{
                             color: "lightred",
                             weight: 1,
-                            opacity: 0.8,
+                            opacity: 0.4,
                             fillColor: "lightred",
                             fillOpacity: 0.7
                           }
@@ -549,45 +586,29 @@ function MapView({
 
           onDragEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
           onTouchEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
-          onDrag={(e) => {
-            var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
-            var prognosisEl = document.querySelectorAll(".prognosis")[0]
-            var currentEl = document.querySelectorAll(".current")[0]
-            var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
-            var dragOverlay = document.querySelector("#drag-overlay")
-            if (e.screenX > imageStart) {
-              console.log(prognosisEl.style.height);
-              prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
-              // reset the clip of the current image on the right side
-              currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
-            }
-            if (e.screenX != 0) {
-              setDragLeft(`${e.screenX}px`);
-            }
+          onDrag={(e) => handleDragMove(e)}
+          onTouchMove={(e) => handleDragMove(e)}
 
-          }}
-
-          onTouchMove={(e) => {
-            var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0]
-            var prognosisEl = document.querySelectorAll(".prognosis")[0]
-            var currentEl = document.querySelectorAll(".current")[0]
-            var imageStart = parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]) + parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0])
-            var dragOverlay = document.querySelector("#drag-overlay")
-            if (e.screenX > imageStart) {
-              console.log(prognosisEl.style.height);
-              prognosisEl.style.cssText += `clip:rect(0px,${prognosisEl.style.width},${prognosisEl.style.height},${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px);`;
-              // reset the clip of the current image on the right side
-              currentEl.style.cssText += `clip:rect(0px,${(window.innerWidth - (imageStart ^ 1)) - (window.innerWidth - dragOverlay.style.left.split("px")[0])}px,${currentEl.style.height},0px);`;
+          onMouseDown={(e) => setSliderGrabbed(!sliderGrabbed)}
+          onMouseMove={(e) => {
+            if (!sliderGrabbed) {
+              document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'
+              return;
             }
-            if (e.screenX != 0) {
-              setDragLeft(`${e.screenX}px`);
-            }
+            document.querySelector("#drag-overlay").style.cssText += 'opacity:1'
+            handleDragMove(e);
 
           }}
 
         >
 
-          <div className='drag-middle' />
+          <div className='drag-middle'>
+            <i class="fa-solid fa-chevron-left"></i>
+            <i class="fa-solid fa-chevron-right"></i>
+
+          </div>
+          <div className='drag-bottom' />
+
         </div>
       }
     </>
