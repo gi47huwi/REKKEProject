@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { MDBBtn, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBIcon, MDBContainer, MDBCheckbox, MDBListGroup, MDBListGroupItem } from 'mdb-react-ui-kit';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import { useDrop, useDrag } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import 'swiper/css';
@@ -11,9 +11,13 @@ import 'swiper/css/scrollbar';
 import languages from '../configData/languages.json'
 import menue from '../configData/menue.json'
 import './Menue.css'
+import backround_asset from '../assets/background_asset.jpg'
+
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Markdown from 'react-markdown'
+import SelectionProgress from './selectionProgress';
+import MultiStepProgressBar from './selectionProgress';
 
 
 const DraggableCard = ({ item }) => {
@@ -171,210 +175,218 @@ const DropArea = ({ side, currentLanguage }) => {
 };
 
 function Menue({
-    currentLanguage
+    currentLanguage,
+    leftImage,
+    rightImage,
+    cultureLayer,
+    resilianceLayer,
+    subcultureLayerList,
+    subresuliencelayerList,
+    page,
+    setPage,
 }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
     const [warning, setWarning] = useState(false)
-    const [cultureLayer, setCultureLayer] = useState(false)
-    const [resilianceLayer, setResilianceLayer] = useState(false)
-    const [subcultureLayer1, setSubcultureLayer1] = useState(false)
-    const [subcultureLayer2, setSubcultureLayer2] = useState(false)
-    const [subcultureLayer3, setSubcultureLayer3] = useState(false)
-    const [subresuliencelayer1, setSubresuliencelayer1] = useState(false)
-    const [subresuliencelayer2, setSubresuliencelayer2] = useState(false)
-    const [subresuliencelayer3, setSubresuliencelayer3] = useState(false)
-    const [navigateBool, setNavigateBool] = useState(false)
-    var subcultureLayerList = [
-        subcultureLayer1,
-        subcultureLayer2,
-        subcultureLayer3
-    ]
-    var setSubCultureLayerList = [
-        setSubcultureLayer1,
-        setSubcultureLayer2,
-        setSubcultureLayer3
-    ]
+    // const [cultureLayer, setCultureLayer] = useState(false)
+    // const [resilianceLayer, setResilianceLayer] = useState(false)
+    // const [subcultureLayer1, setSubcultureLayer1] = useState(false)
+    // const [subcultureLayer2, setSubcultureLayer2] = useState(false)
+    // const [subcultureLayer3, setSubcultureLayer3] = useState(false)
+    // const [subresuliencelayer1, setSubresuliencelayer1] = useState(false)
+    // const [subresuliencelayer2, setSubresuliencelayer2] = useState(false)
+    // const [subresuliencelayer3, setSubresuliencelayer3] = useState(false)
+    // const [navigateBool, setNavigateBool] = useState(false)
+    // var subcultureLayerList = [
+    //     subcultureLayer1,
+    //     subcultureLayer2,
+    //     subcultureLayer3
+    // ]
+    // var setSubCultureLayerList = [
+    //     setSubcultureLayer1,
+    //     setSubcultureLayer2,
+    //     setSubcultureLayer3
+    // ]
 
-    var subresuliencelayerList = [
-        subresuliencelayer1,
-        subresuliencelayer2,
-        subresuliencelayer3
-    ]
-    var setSubResuliencelayerList = [
-        setSubresuliencelayer1,
-        setSubresuliencelayer2,
-        setSubresuliencelayer3
-    ]
-
-
-    function handleCultureLayer() {
-        setCultureLayer(!cultureLayer);
-        if (cultureLayer) {
-            setSubcultureLayer1(false);
-            setSubcultureLayer2(false);
-            setSubcultureLayer3(false);
-        } else {
-
-            setSubcultureLayer1(true);
-            setSubcultureLayer2(true);
-            setSubcultureLayer3(true);
-        }
-    }
-
-    function handleSubcultureLayer(index) {
-        setSubCultureLayerList[index](!subcultureLayerList[index]);
-        if (subcultureLayerList[index]) {
-            setCultureLayer(false);
-        } else {
-            var allSelected = true;
-            for (var i = 0; i < subcultureLayerList.length; i++) {
-                if (index != i && !subcultureLayerList[i]) {
-                    allSelected = false;
-                }
-            }
-            if (allSelected) {
-                setCultureLayer(true);
-            }
-        }
-
-    }
+    // var subresuliencelayerList = [
+    //     subresuliencelayer1,
+    //     subresuliencelayer2,
+    //     subresuliencelayer3
+    // ]
+    // var setSubResuliencelayerList = [
+    //     setSubresuliencelayer1,
+    //     setSubresuliencelayer2,
+    //     setSubresuliencelayer3
+    // ]
 
 
-    function handleResilianceLayer() {
-        setResilianceLayer(!resilianceLayer);
-        if (resilianceLayer) {
-            setSubresuliencelayer1(false);
-            setSubresuliencelayer2(false);
-            setSubresuliencelayer3(false);
-        } else {
+    // function handleCultureLayer() {
+    //     setCultureLayer(!cultureLayer);
+    //     if (cultureLayer) {
+    //         setSubcultureLayer1(false);
+    //         setSubcultureLayer2(false);
+    //         setSubcultureLayer3(false);
+    //     } else {
 
-            setSubresuliencelayer1(true);
-            setSubresuliencelayer2(true);
-            setSubresuliencelayer3(true);
-        }
-    }
+    //         setSubcultureLayer1(true);
+    //         setSubcultureLayer2(true);
+    //         setSubcultureLayer3(true);
+    //     }
+    // }
 
-    function handleSubresuliencelayer(index) {
-        setSubResuliencelayerList[index](!subresuliencelayerList[index]);
-        if (subresuliencelayerList[index]) {
-            setResilianceLayer(false);
-        } else {
-            var allSelected = true;
-            for (var i = 0; i < subresuliencelayerList.length; i++) {
-                if (index != i && !subresuliencelayerList[i]) {
-                    allSelected = false;
-                }
-            }
-            if (allSelected) {
-                setResilianceLayer(true);
-            }
-        }
-    }
+    // function handleSubcultureLayer(index) {
+    //     setSubCultureLayerList[index](!subcultureLayerList[index]);
+    //     if (subcultureLayerList[index]) {
+    //         setCultureLayer(false);
+    //     } else {
+    //         var allSelected = true;
+    //         for (var i = 0; i < subcultureLayerList.length; i++) {
+    //             if (index != i && !subcultureLayerList[i]) {
+    //                 allSelected = false;
+    //             }
+    //         }
+    //         if (allSelected) {
+    //             setCultureLayer(true);
+    //         }
+    //     }
 
-    //set all layers from the url if they are set
-    useEffect(() => {
-        window.scrollTo(0, 0)
-
-        var subcultureLayer1Name = languages[currentLanguage].selection.additional_layer.culture.options[0].param;
-        var subcultureLayer2Name = languages[currentLanguage].selection.additional_layer.culture.options[1].param;
-        var subcultureLayer3Name = languages[currentLanguage].selection.additional_layer.culture.options[2].param;
-        var subresuliencelayer1Name = languages[currentLanguage].selection.additional_layer.resiliance.options[0].param;
-        var subresuliencelayer2Name = languages[currentLanguage].selection.additional_layer.resiliance.options[1].param;
-        var subresuliencelayer3Name = languages[currentLanguage].selection.additional_layer.resiliance.options[2].param;
-        if (searchParams.get("cultureLayer") != null) {
-            setCultureLayer(searchParams.get("cultureLayer") == "true");
-        }
-        if (searchParams.get("resilianceLayer") != null) {
-            setResilianceLayer(searchParams.get("resilianceLayer") == "true");
-        }
-        if (searchParams.get(subcultureLayer1Name) != null) {
-            setSubcultureLayer1(searchParams.get(subcultureLayer1Name) == "true");
-        }
-        if (searchParams.get(subcultureLayer2Name) != null) {
-            setSubcultureLayer2(searchParams.get(subcultureLayer2Name) == "true");
-        }
-        if (searchParams.get(subcultureLayer3Name) != null) {
-            setSubcultureLayer3(searchParams.get(subcultureLayer3Name) == "true");
-        }
-        if (searchParams.get(subresuliencelayer1Name) != null) {
-            setSubresuliencelayer1(searchParams.get(subresuliencelayer1Name) == "true");
-        }
-        if (searchParams.get(subresuliencelayer2Name) != null) {
-            setSubresuliencelayer2(searchParams.get(subresuliencelayer2Name) == "true");
-        }
-        if (searchParams.get(subresuliencelayer3Name) != null) {
-            setSubresuliencelayer3(searchParams.get(subresuliencelayer3Name) == "true");
-        }
-    }, []);
-
-    function navigateToMapWithParameters() {
-        ///set the parameters in the url
-        /// - leftImage
-        /// - rightImage
-        /// - cultureLayer
-        /// - resilianceLayer
-        /// - subcultureLayer1
-        /// - subcultureLayer2
-        /// - subcultureLayer3
-        /// - subresuliencelayer1
-        /// - subresuliencelayer2
-        /// - subresuliencelayer3
-
-        var leftImage = undefined;
-
-        var rightImage = undefined;
-        //select by class name "droppedCard" and differentiating by side
-        var droppedCards = document.querySelectorAll(".droppedCard");
-        for (var i = 0; i < droppedCards.length; i++) {
-            if (droppedCards[i].classList.contains("left")) {
-                leftImage = droppedCards[i].id;
-            } else if (droppedCards[i].classList.contains("right")) {
-                rightImage = droppedCards[i].id;
-            }
-        }
-        //if no image is selected, return and set a warning
-        if (leftImage == undefined || rightImage == undefined) {
-            setWarning(languages[currentLanguage].selection.compare_layer.warning);
-
-            return;
-        }
-        //if none of the layers is selected return and set a warning
-        if (!cultureLayer && !resilianceLayer && !subcultureLayer1 && !subcultureLayer2 && !subcultureLayer3 && !subresuliencelayer1 && !subresuliencelayer2 && !subresuliencelayer3) {
-            setWarning(languages[currentLanguage].selection.additional_layer.warning);
-            return;
-        }
-
-        var cultureLayerString = cultureLayer ? "true" : "false";
-        var resilianceLayerString = resilianceLayer ? "true" : "false";
-        var subcultureLayer1String = subcultureLayer1 ? "true" : "false";
-        var subcultureLayer2String = subcultureLayer2 ? "true" : "false";
-        var subcultureLayer3String = subcultureLayer3 ? "true" : "false";
-        var subresuliencelayer1String = subresuliencelayer1 ? "true" : "false";
-        var subresuliencelayer2String = subresuliencelayer2 ? "true" : "false";
-        var subresuliencelayer3String = subresuliencelayer3 ? "true" : "false";
-
-        setSearchParams({
-            leftImage: leftImage,
-            rightImage: rightImage,
-            cultureLayer: cultureLayerString,
-            resilianceLayer: resilianceLayerString,
-            historical: subcultureLayer1String,
-            landscape: subcultureLayer2String,
-            monument: subcultureLayer3String,
-            social: subresuliencelayer1String,
-            nature: subresuliencelayer2String,
-            sport: subresuliencelayer3String,
-        });
-
-        setNavigateBool(true);
+    // }
 
 
-    }
+    // function handleResilianceLayer() {
+    //     setResilianceLayer(!resilianceLayer);
+    //     if (resilianceLayer) {
+    //         setSubresuliencelayer1(false);
+    //         setSubresuliencelayer2(false);
+    //         setSubresuliencelayer3(false);
+    //     } else {
 
-    //effect for make warning dissappear after 5 seconds
+    //         setSubresuliencelayer1(true);
+    //         setSubresuliencelayer2(true);
+    //         setSubresuliencelayer3(true);
+    //     }
+    // }
+
+    // function handleSubresuliencelayer(index) {
+    //     setSubResuliencelayerList[index](!subresuliencelayerList[index]);
+    //     if (subresuliencelayerList[index]) {
+    //         setResilianceLayer(false);
+    //     } else {
+    //         var allSelected = true;
+    //         for (var i = 0; i < subresuliencelayerList.length; i++) {
+    //             if (index != i && !subresuliencelayerList[i]) {
+    //                 allSelected = false;
+    //             }
+    //         }
+    //         if (allSelected) {
+    //             setResilianceLayer(true);
+    //         }
+    //     }
+    // }
+
+    // //set all layers from the url if they are set
+    // useEffect(() => {
+    //     window.scrollTo(0, 0)
+
+    //     var subcultureLayer1Name = languages[currentLanguage].selection.additional_layer.culture.options[0].param;
+    //     var subcultureLayer2Name = languages[currentLanguage].selection.additional_layer.culture.options[1].param;
+    //     var subcultureLayer3Name = languages[currentLanguage].selection.additional_layer.culture.options[2].param;
+    //     var subresuliencelayer1Name = languages[currentLanguage].selection.additional_layer.resiliance.options[0].param;
+    //     var subresuliencelayer2Name = languages[currentLanguage].selection.additional_layer.resiliance.options[1].param;
+    //     var subresuliencelayer3Name = languages[currentLanguage].selection.additional_layer.resiliance.options[2].param;
+    //     if (searchParams.get("cultureLayer") != null) {
+    //         setCultureLayer(searchParams.get("cultureLayer") == "true");
+    //     }
+    //     if (searchParams.get("resilianceLayer") != null) {
+    //         setResilianceLayer(searchParams.get("resilianceLayer") == "true");
+    //     }
+    //     if (searchParams.get(subcultureLayer1Name) != null) {
+    //         setSubcultureLayer1(searchParams.get(subcultureLayer1Name) == "true");
+    //     }
+    //     if (searchParams.get(subcultureLayer2Name) != null) {
+    //         setSubcultureLayer2(searchParams.get(subcultureLayer2Name) == "true");
+    //     }
+    //     if (searchParams.get(subcultureLayer3Name) != null) {
+    //         setSubcultureLayer3(searchParams.get(subcultureLayer3Name) == "true");
+    //     }
+    //     if (searchParams.get(subresuliencelayer1Name) != null) {
+    //         setSubresuliencelayer1(searchParams.get(subresuliencelayer1Name) == "true");
+    //     }
+    //     if (searchParams.get(subresuliencelayer2Name) != null) {
+    //         setSubresuliencelayer2(searchParams.get(subresuliencelayer2Name) == "true");
+    //     }
+    //     if (searchParams.get(subresuliencelayer3Name) != null) {
+    //         setSubresuliencelayer3(searchParams.get(subresuliencelayer3Name) == "true");
+    //     }
+    // }, []);
+
+    // function navigateToMapWithParameters() {
+    //     ///set the parameters in the url
+    //     /// - leftImage
+    //     /// - rightImage
+    //     /// - cultureLayer
+    //     /// - resilianceLayer
+    //     /// - subcultureLayer1
+    //     /// - subcultureLayer2
+    //     /// - subcultureLayer3
+    //     /// - subresuliencelayer1
+    //     /// - subresuliencelayer2
+    //     /// - subresuliencelayer3
+
+    //     var leftImage = undefined;
+
+    //     var rightImage = undefined;
+    //     //select by class name "droppedCard" and differentiating by side
+    //     var droppedCards = document.querySelectorAll(".droppedCard");
+    //     for (var i = 0; i < droppedCards.length; i++) {
+    //         if (droppedCards[i].classList.contains("left")) {
+    //             leftImage = droppedCards[i].id;
+    //         } else if (droppedCards[i].classList.contains("right")) {
+    //             rightImage = droppedCards[i].id;
+    //         }
+    //     }
+    //     //if no image is selected, return and set a warning
+    //     if (leftImage == undefined || rightImage == undefined) {
+    //         setWarning(languages[currentLanguage].selection.compare_layer.warning);
+
+    //         return;
+    //     }
+    //     //if none of the layers is selected return and set a warning
+    //     if (!cultureLayer && !resilianceLayer && !subcultureLayer1 && !subcultureLayer2 && !subcultureLayer3 && !subresuliencelayer1 && !subresuliencelayer2 && !subresuliencelayer3) {
+    //         setWarning(languages[currentLanguage].selection.additional_layer.warning);
+    //         return;
+    //     }
+
+    //     var cultureLayerString = cultureLayer ? "true" : "false";
+    //     var resilianceLayerString = resilianceLayer ? "true" : "false";
+    //     var subcultureLayer1String = subcultureLayer1 ? "true" : "false";
+    //     var subcultureLayer2String = subcultureLayer2 ? "true" : "false";
+    //     var subcultureLayer3String = subcultureLayer3 ? "true" : "false";
+    //     var subresuliencelayer1String = subresuliencelayer1 ? "true" : "false";
+    //     var subresuliencelayer2String = subresuliencelayer2 ? "true" : "false";
+    //     var subresuliencelayer3String = subresuliencelayer3 ? "true" : "false";
+
+    //     setSearchParams({
+    //         leftImage: leftImage,
+    //         rightImage: rightImage,
+    //         cultureLayer: cultureLayerString,
+    //         resilianceLayer: resilianceLayerString,
+    //         historical: subcultureLayer1String,
+    //         landscape: subcultureLayer2String,
+    //         monument: subcultureLayer3String,
+    //         social: subresuliencelayer1String,
+    //         nature: subresuliencelayer2String,
+    //         sport: subresuliencelayer3String,
+    //     });
+
+    //     setNavigateBool(true);
+
+
+    // }
+
+    // //effect for make warning dissappear after 5 seconds
     useEffect(() => {
         if (warning) {
             setTimeout(() => {
@@ -384,19 +396,52 @@ function Menue({
     }, [warning]);
 
     //effect for navigate when search params are set
-    useEffect(() => {
-        if (navigateBool) {
-            //add search parameters to navigate to the map
-            navigate("/map?" + searchParams.toString() + "&language=" + currentLanguage);
-            setNavigateBool(false);
+    // useEffect(() => {
+    //     if (navigateBool) {
+    //         //add search parameters to navigate to the map
+    //         navigate("/map?" + searchParams.toString() + "&language=" + currentLanguage);
+    //         setNavigateBool(false);
+    //     }
+    // }, [navigateBool]);
+
+
+    const nextPage = (page) => {
+        setPage(page);
+      };
+
+    
+    const nextPageNumber = (pageNumber) => {
+        switch (pageNumber) {
+        case "1":
+            setPage("pageone");
+            navigate("./leftImage");
+            break;
+        case "2":
+            setPage("pagetwo");
+            navigate("./rightImage");
+            break;
+        case "3":
+            setPage("pagethree");
+            navigate("./additionalLayer");
+            break;
+        case "4":
+            setPage("pagefour");
+            navigate("./selectionOverview");
+            break;
+        default:
+            setPage("1");
         }
-    }, [navigateBool]);
+    };
+
 
     return (
-        <MDBContainer >
+       
+            <MDBContainer style={{ opacity:"1", width:"100%"}}>
+                <MDBRow>
+                <MultiStepProgressBar page={page} onPageNumberClick={nextPageNumber} />
+                <Outlet />
 
-            <MDBCol>
-                <MDBRow className='mt-4 mb-4'>
+                {/* <MDBRow className='mt-4 mb-4'>
                     <h3 >
                         1. {languages[currentLanguage].selection.compare_layer.name}
                     </h3>
@@ -588,12 +633,13 @@ function Menue({
                     </MDBBtn>
 
 
-                </MDBRow>
+                </MDBRow> */}
 
 
 
-            </MDBCol >
-        </MDBContainer >
+
+            </MDBRow>
+            </MDBContainer>
     )
 }
 

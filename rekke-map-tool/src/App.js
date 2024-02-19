@@ -1,18 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
-import { 
-  MDBDropdownToggle, 
-  MDBNavbar, 
-  MDBNavbarBrand, 
-  MDBContainer, 
-  MDBNavbarToggler, 
-  MDBIcon, 
-  MDBNavbarNav, 
-  MDBNavbarItem, 
-  MDBNavbarLink, 
-  MDBCollapse, 
-  MDBDropdown, 
-  MDBDropdownItem, 
+import {
+  MDBDropdownToggle,
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBContainer,
+  MDBNavbarToggler,
+  MDBIcon,
+  MDBNavbarNav,
+  MDBNavbarItem,
+  MDBNavbarLink,
+  MDBCollapse,
+  MDBDropdown,
+  MDBDropdownItem,
   MDBDropdownMenu,
   MDBFooter,
   MDBRow,
@@ -31,6 +31,11 @@ import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Impressum from './pages/impress';
+import ImageSelection from './pages/imageSelection';
+import AdditionalLayer from './pages/additionalLayer';
+import SelectionOverview from './pages/selectionOverview';
+import LeftImageSelection from './pages/leftImageSelection';
+import RightImageSelection from './pages/rightImageSelection';
 
 
 function App() {
@@ -38,6 +43,41 @@ function App() {
   const [currentLanguage, setCurrentLanguage] = useState("de");
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
+
+  const [page, setPage] = useState("pageone");
+
+  const [leftImage, setLeftImage] = useState(null)
+  const [rightImage, setRightImage] = useState(null)
+  const [warning, setWarning] = useState(false)
+  const [cultureLayer, setCultureLayer] = useState(false)
+  const [resilianceLayer, setResilianceLayer] = useState(false)
+  const [subcultureLayer1, setSubcultureLayer1] = useState(false)
+  const [subcultureLayer2, setSubcultureLayer2] = useState(false)
+  const [subcultureLayer3, setSubcultureLayer3] = useState(false)
+  const [subresuliencelayer1, setSubresuliencelayer1] = useState(false)
+  const [subresuliencelayer2, setSubresuliencelayer2] = useState(false)
+  const [subresuliencelayer3, setSubresuliencelayer3] = useState(false)
+  var subcultureLayerList = [
+    subcultureLayer1,
+    subcultureLayer2,
+    subcultureLayer3
+  ]
+  var setSubCultureLayerList = [
+    setSubcultureLayer1,
+    setSubcultureLayer2,
+    setSubcultureLayer3
+  ]
+
+  var subresuliencelayerList = [
+    subresuliencelayer1,
+    subresuliencelayer2,
+    subresuliencelayer3
+  ]
+  var setSubResuliencelayerList = [
+    setSubresuliencelayer1,
+    setSubresuliencelayer2,
+    setSubresuliencelayer3
+  ]
   return (
     <DndProvider backend={isTouchDevice ? TouchBackend : HTML5Backend}>
       <div className="App">
@@ -58,7 +98,7 @@ function App() {
               <MDBNavbarNav>
                 <MDBNavbarItem className='mx-3'>
 
-                  <NavLink to={`menue`}>
+                  <NavLink to={`menue/leftImage`}>
                     {languages[currentLanguage].navBar.menue}
                   </NavLink>
 
@@ -92,7 +132,51 @@ function App() {
         </MDBNavbar>
         <Routes >
           <Route path="/home" element={<Home currentLanguage={currentLanguage} />} />
-          <Route path="menue" element={<Menue currentLanguage={currentLanguage} />} />
+          <Route path="menue" element={
+          <Menue 
+          currentLanguage={currentLanguage} 
+          leftImage={leftImage}
+          rightImage={rightImage}
+          cultureLayer={cultureLayer}
+          resilianceLayer={resilianceLayer}
+          subcultureLayerList={subcultureLayerList}
+          subresuliencelayerList={subresuliencelayerList}
+          page={page}
+          setPage={setPage}
+
+
+          />
+          }>
+            <Route path="leftImage" element={
+            <ImageSelection 
+            side="left" 
+            currentLanguage={currentLanguage}
+            setImage={setLeftImage}
+            setSecondaryImage={setRightImage}
+            leftImage={leftImage}
+            rightImage={rightImage}
+            setPage={setPage}
+
+            
+             />
+            } />
+            <Route path="rightImage" element={
+            <ImageSelection 
+            side="right" 
+            currentLanguage={currentLanguage}
+            setImage={setRightImage}
+            setSecondaryImage={setLeftImage}
+            leftImage={leftImage}
+            rightImage={rightImage}
+            setPage={setPage}
+
+            />
+            } />
+            <Route path="additionalLayer" element={<AdditionalLayer currentLanguage={currentLanguage} />} />
+            <Route path="selectionOverview" element={<SelectionOverview currentLanguage={currentLanguage} />} />
+
+
+          </Route>
           <Route path="map" element={<MapView currentLanguage={currentLanguage} />} />
           <Route path="info" element={<Info currentLanguage={currentLanguage} />} />
           <Route path="impressum" element={<Impressum currentLanguage={currentLanguage} />} />
@@ -137,7 +221,7 @@ function App() {
                     REKKE Project FAU Erlangen-Nürnberg
                   </h6>
                   <p>
-                    
+
                   </p>
                 </MDBCol>
 
@@ -148,34 +232,20 @@ function App() {
                       Institut für Geographie Erlangen Nürnberg
                     </a>
                   </p>
-                  <p>
-                    <a href='#!' className='text-reset'>
-                      Placeholder
-                    </a>
-                  </p>
-                  <p>
-                    <a href='#!' className='text-reset'>
-                    Placeholder
-                    </a>
-                  </p>
-                  <p>
-                    <a href='#!' className='text-reset'>
-                    Placeholder
-                    </a>
-                  </p>
+                 
                 </MDBCol>
 
                 <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
                   <h6 className='text-uppercase fw-bold mb-4'>Impressum</h6>
-                  
+
                 </MDBCol>
 
-                
+
               </MDBRow>
             </MDBContainer>
           </section>
 
-          
+
         </MDBFooter>
       </div>
     </DndProvider>

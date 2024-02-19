@@ -15,7 +15,11 @@
                 "name": "Vergleichslayer wählen",
                 "left": "Linkes Bild",
                 "right": "Rechtes Bild",
-                "warning": "Bitte wählen Sie zwei Bilder aus."
+                "warning": "Bitte wählen Sie zwei Bilder aus.",
+                "select": "Auswählen",
+                "none": "Bilder entfernen",
+                "switch": "Bilder tauschen",
+                "submit": "Weiter"
             },
             "additional_layer": {
                 "name": "Zusatzlayer auswählen",
@@ -114,7 +118,11 @@
                 "name": "Select compare layer",
                 "left": "Left image",
                 "right": "Right image",
-                "warning": "Please select two images."
+                "warning": "Please select two images.",
+                "select": "Select",
+                "none": "Remove images",
+                "switch": "Switch images",
+                "submit": "Next Step"
             },
             "additional_layer": {
                 "name": "Select additional layers",
