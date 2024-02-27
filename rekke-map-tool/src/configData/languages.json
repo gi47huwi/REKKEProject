@@ -4,6 +4,7 @@
         "welcomeText": "Herzlich Willkommen zur Risikokarte des Projekts REKKE der Friedrich-Alexander-Universität Erlangen-Nürnberg.",
         "instruction": "Einführende Worte zu dem Prokjekt",
         "startButton": "Karte konfigurieren",
+        "startAgain": "Neue Karte konfigurieren",
         "showMap": "Karte anzeigen",
         "preset": "Preset wählen",
         "navBar": {
@@ -15,15 +16,20 @@
                 "name": "Vergleichslayer wählen",
                 "left": "Linkes Bild",
                 "right": "Rechtes Bild",
-                "warning": "Bitte wählen Sie zwei Bilder aus.",
+                "warning": "Bitte wählen Sie ein Bild aus.",
                 "select": "Auswählen",
                 "none": "Bilder entfernen",
                 "switch": "Bilder tauschen",
-                "submit": "Weiter"
+                "submit": "Weiter",
+                "no_image": "Kein Bild ausgewählt.",
+                "change":"Bild ändern"
+                
             },
             "additional_layer": {
+                "title":"Zusatzlayer",
                 "name": "Zusatzlayer auswählen",
                 "warning": "Bitte mindestens einen Zusatzlayer auswählen.",
+                "change":"Layerauswahl ändern",
                 "culture": {
                     "name": "Kulturlandschaft",
                     "options": [
@@ -99,6 +105,11 @@
                         }
                     ]
                 }
+            },
+            "overview":{
+                "name": "Übersicht",
+                "warning": "Bitte mindestens einen Layer auswählen."
+
             }
         }
     },
@@ -107,6 +118,7 @@
         "welcomeText": "Welcome to the webpage for the risk map of the REKKE projekt from Friedrich-Alexander-Universität Erlangen-Nürnberg.",
         "instruction": "short project description",
         "startButton": "select Map",
+        "startAgain": "select new Map",
         "showMap": "show Map",
         "preset": "choose Preset",
         "navBar": {
@@ -118,15 +130,19 @@
                 "name": "Select compare layer",
                 "left": "Left image",
                 "right": "Right image",
-                "warning": "Please select two images.",
+                "warning": "Please select an image.",
                 "select": "Select",
                 "none": "Remove images",
                 "switch": "Switch images",
-                "submit": "Next Step"
+                "submit": "Next Step",
+                "no_image": "No image selected.",
+                "change":"change image"
             },
             "additional_layer": {
+                "title":"Additional layers",
                 "name": "Select additional layers",
                 "warning": "Please select at least one additional layer.",
+                "change":"change layer selection",
                 "culture": {
                     "name": "Kulturlandschaft",
                     "options": [
@@ -179,6 +195,10 @@
                         }
                     ]
                 }
+            },
+            "overview":{
+                "name": "Overview",
+                "warning": "Please select at least one layer."
             }
         }
     }

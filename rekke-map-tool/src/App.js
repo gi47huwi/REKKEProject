@@ -78,6 +78,72 @@ function App() {
     setSubresuliencelayer2,
     setSubresuliencelayer3
   ]
+
+  function handleCultureLayer() {
+    setCultureLayer(!cultureLayer);
+    if (cultureLayer) {
+      setSubcultureLayer1(false);
+      setSubcultureLayer2(false);
+      setSubcultureLayer3(false);
+    } else {
+
+      setSubcultureLayer1(true);
+      setSubcultureLayer2(true);
+      setSubcultureLayer3(true);
+    }
+  }
+
+  function handleSubcultureLayer(index) {
+    setSubCultureLayerList[index](!subcultureLayerList[index]);
+    if (subcultureLayerList[index]) {
+      setCultureLayer(false);
+    } else {
+      var allSelected = true;
+      for (var i = 0; i < subcultureLayerList.length; i++) {
+        if (index != i && !subcultureLayerList[i]) {
+          allSelected = false;
+        }
+      }
+      if (allSelected) {
+        setCultureLayer(true);
+      }
+    }
+
+  }
+
+
+  function handleResilianceLayer() {
+    setResilianceLayer(!resilianceLayer);
+    if (resilianceLayer) {
+      setSubresuliencelayer1(false);
+      setSubresuliencelayer2(false);
+      setSubresuliencelayer3(false);
+    } else {
+
+      setSubresuliencelayer1(true);
+      setSubresuliencelayer2(true);
+      setSubresuliencelayer3(true);
+    }
+  }
+
+  function handleSubresuliencelayer(index) {
+    setSubResuliencelayerList[index](!subresuliencelayerList[index]);
+    if (subresuliencelayerList[index]) {
+      setResilianceLayer(false);
+    } else {
+      var allSelected = true;
+      for (var i = 0; i < subresuliencelayerList.length; i++) {
+        if (index != i && !subresuliencelayerList[i]) {
+          allSelected = false;
+        }
+      }
+      if (allSelected) {
+        setResilianceLayer(true);
+      }
+    }
+  }
+
+
   return (
     <DndProvider backend={isTouchDevice ? TouchBackend : HTML5Backend}>
       <div className="App">
@@ -133,47 +199,70 @@ function App() {
         <Routes >
           <Route path="/home" element={<Home currentLanguage={currentLanguage} />} />
           <Route path="menue" element={
-          <Menue 
-          currentLanguage={currentLanguage} 
-          leftImage={leftImage}
-          rightImage={rightImage}
-          cultureLayer={cultureLayer}
-          resilianceLayer={resilianceLayer}
-          subcultureLayerList={subcultureLayerList}
-          subresuliencelayerList={subresuliencelayerList}
-          page={page}
-          setPage={setPage}
+            <Menue
+              currentLanguage={currentLanguage}
+              leftImage={leftImage}
+              rightImage={rightImage}
+              cultureLayer={cultureLayer}
+              resilianceLayer={resilianceLayer}
+              subcultureLayerList={subcultureLayerList}
+              subresuliencelayerList={subresuliencelayerList}
+              page={page}
+              setPage={setPage}
 
-
-          />
-          }>
-            <Route path="leftImage" element={
-            <ImageSelection 
-            side="left" 
-            currentLanguage={currentLanguage}
-            setImage={setLeftImage}
-            setSecondaryImage={setRightImage}
-            leftImage={leftImage}
-            rightImage={rightImage}
-            setPage={setPage}
-
-            
-             />
-            } />
-            <Route path="rightImage" element={
-            <ImageSelection 
-            side="right" 
-            currentLanguage={currentLanguage}
-            setImage={setRightImage}
-            setSecondaryImage={setLeftImage}
-            leftImage={leftImage}
-            rightImage={rightImage}
-            setPage={setPage}
 
             />
+          }>
+            <Route path="leftImage" element={
+              <ImageSelection
+                side="left"
+                currentLanguage={currentLanguage}
+                setImage={setLeftImage}
+                setSecondaryImage={setRightImage}
+                leftImage={leftImage}
+                rightImage={rightImage}
+                setPage={setPage}
+
+
+              />
             } />
-            <Route path="additionalLayer" element={<AdditionalLayer currentLanguage={currentLanguage} />} />
-            <Route path="selectionOverview" element={<SelectionOverview currentLanguage={currentLanguage} />} />
+            <Route path="rightImage" element={
+              <ImageSelection
+                side="right"
+                currentLanguage={currentLanguage}
+                setImage={setRightImage}
+                setSecondaryImage={setLeftImage}
+                leftImage={leftImage}
+                rightImage={rightImage}
+                setPage={setPage}
+
+              />
+            } />
+            <Route path="additionalLayer" element={
+              <AdditionalLayer
+                currentLanguage={currentLanguage}
+                cultureLayer={cultureLayer}
+                handleCultureLayer={() => handleCultureLayer()}
+                subcultureLayerList={subcultureLayerList}
+                handleSubcultureLayer={(id) => handleSubcultureLayer(id)}
+                resilianceLayer={resilianceLayer}
+                handleResilianceLayer={() => handleResilianceLayer()}
+                subresuliencelayerList={subresuliencelayerList}
+                handleSubresuliencelayer={(id) => handleSubresuliencelayer(id)}
+                setPage={setPage}
+              />} />
+            <Route path="selectionOverview" element={
+              <SelectionOverview 
+                currentLanguage={currentLanguage} 
+                leftImage={leftImage}
+                rightImage={rightImage}
+                cultureLayer={cultureLayer}
+                resilianceLayer={resilianceLayer}   
+                subcultureLayerList={subcultureLayerList}
+                subresuliencelayerList={subresuliencelayerList}
+                setPage={setPage}
+              />} 
+            />
 
 
           </Route>
@@ -232,7 +321,7 @@ function App() {
                       Institut für Geographie Erlangen Nürnberg
                     </a>
                   </p>
-                 
+
                 </MDBCol>
 
                 <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
