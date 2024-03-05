@@ -1,12 +1,19 @@
 {
     "de": {
         "title": "REKKE Risikokarte",
+        "areas":"Flächen",
         "welcomeText": "Herzlich Willkommen zur Risikokarte des Projekts REKKE der Friedrich-Alexander-Universität Erlangen-Nürnberg.",
         "instruction": "Einführende Worte zu dem Prokjekt",
         "startButton": "Karte konfigurieren",
         "startAgain": "Neue Karte konfigurieren",
+        "selectInstruction":"Verschieben Sie den Regler nach Rechts und Links, um die Unterschiede der beiden Berechnungen zu sehen.",
         "showMap": "Karte anzeigen",
+        "compared":"verglichen mit",
         "preset": "Preset wählen",
+        "legend":"Legende",
+        "legendName":"Prozentuale Abweichung der Vegetationsgesundheit zu Referenzzeitraum*",
+        "legendLong":"Prozentuale Abweichung in der spektralen Reflektanz der Vegetation zu dem Referenzzeitraum (2015-2023).",
+        "with":"bei",
         "navBar": {
             "menue": "Kartenauswahl",
             "info": "Projektinformationen"
@@ -115,12 +122,19 @@
     },
     "en": {
         "title": "REKKE risk map",
+        "areas":"Areas",
         "welcomeText": "Welcome to the webpage for the risk map of the REKKE projekt from Friedrich-Alexander-Universität Erlangen-Nürnberg.",
         "instruction": "short project description",
         "startButton": "select Map",
         "startAgain": "select new Map",
+        "selectInstruction":"Move the slider to the left and right to see the differences between the two calculations.",
         "showMap": "show Map",
+        "compared":"compared to",
+        "with":"with",
         "preset": "choose Preset",
+        "legend":"Legend",
+        "legendName":"Percentage deviation of vegetation health to reference period",
+        "legendLong":"Percentage deviation in the spectral reflectance of vegetation to the reference period (2015-2023).",
         "navBar": {
             "menue": "Configure Map",
             "info": "Project Info"
@@ -192,7 +206,38 @@
                                 "(Historische Landeskulturfluren)",
                                 "(Assoziativer Bedeutungsgehalt)"
                             ]
+                        },
+                        {
+                            "id": 1,
+                            "name": "Landschaftsmerkmale",
+                            "description": [
+                                "Wiesenbewässerung",
+                                "Weiden",
+                                "Wald",
+                                "Streuobst",
+                                "Hecken",
+                                "Weinbergslagen"
+                            ]
+                        },
+                        {
+                            "id": 2,
+                            "name": "Denkmäler",
+                            "description": [
+                                "Bestand Bodendenkmal",
+                                "Erwartung Bodendenkmal",
+                                "Naturdenkmale"
+                            ]
+                        },
+                        {
+                            "id": 3,
+                            "name": "Resilienz",
+                            "description": [
+                                "soziale Treffpunkte",
+                                "Naturnah",
+                                "Bewegung und Sport"
+                            ]
                         }
+
                     ]
                 }
             },

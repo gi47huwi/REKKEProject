@@ -149,7 +149,7 @@ function App() {
       <div className="App">
         <MDBNavbar light expand="md" sticky style={{ backgroundColor: "rgb(175, 213, 175)", width: "100%" }}>
           <MDBContainer fluid >
-            <MDBNavbarBrand href='/rekke/home'>
+            <MDBNavbarBrand href='/rekke/'>
               <h2>REKKE</h2>
             </MDBNavbarBrand>
             <MDBNavbarToggler
@@ -197,7 +197,7 @@ function App() {
           </MDBContainer>
         </MDBNavbar>
         <Routes >
-          <Route path="/home" element={<Home currentLanguage={currentLanguage} />} />
+          <Route path="/" element={<Home currentLanguage={currentLanguage} />} />
           <Route path="menue" element={
             <Menue
               currentLanguage={currentLanguage}
@@ -261,6 +261,12 @@ function App() {
                 subcultureLayerList={subcultureLayerList}
                 subresuliencelayerList={subresuliencelayerList}
                 setPage={setPage}
+                setLeftImage={setLeftImage}
+                setRightImage={setRightImage}
+                setCultureLayer={setCultureLayer}
+                setResilianceLayer={setResilianceLayer}
+                // setSubcultureLayerList={()=>setSubCultureLayerList}
+                // setSubResuliencelayerList={()=>setSubResuliencelayerList}
               />} 
             />
 

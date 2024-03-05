@@ -13,7 +13,7 @@
             "start": 2045,
             "end": 2054,
             "name":{
-                "de":"mitte des 21. Jahrhunderts",
+                "de":"Mitte des 21. Jahrhunderts",
                 "en":"mid of 21st century"
             }
         },
@@ -29,15 +29,17 @@
     "ssp":{
         "ssp1": {
             "name":{
-                "de":"optimistischstes Szenario",
+                "de":"Optimistischstes Klimaszenario",
                 "en":"most optimistic scenario"
-            }
+            },
+            "number":"ssp1"
         },
         "ssp5": {
             "name":{
-                "de":"pessimistischstes Szenario",
+                "de":"Pessimistischstes Klimaszenario",
                 "en":"most pessimistic scenario"
-            }
+            },
+            "number":"ssp5"
         },
         "source":{
             "de":"Quelle",
@@ -116,7 +118,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_max_ndvi_ssp_2045-54_ssp1_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 1** Szenario \n- **2045-2054**",
-                    "id": "0",
+                    "id": 0,
                     "color": "#FFE4B2"
                 },
                 {
@@ -127,7 +129,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2045-54_ssp5_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_max_ndvi_ssp_2045-54_ssp5_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen  \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 5** Szenario \n- **2045-2054**",
-                    "id": "1",
+                    "id": 1,
                     "color": "#FFCC9D"
                 },
                 {
@@ -138,7 +140,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2085-94_ssp1_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_max_ndvi_ssp_2085-94_ssp1_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen   \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 1** Szenario \n- **2085-2094**",
-                    "id": "2",
+                    "id": 2,
                     "color": "#FFC0C0"
                 },
                 {
@@ -149,7 +151,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_max_ndvi_ssp_2085-94_ssp5_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_max_ndvi_ssp_2085-94_ssp5_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen   \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 5** Szenario \n- **2085-2094**",
-                    "id": "3",
+                    "id": 3,
                     "color": "#FF5F5F"
                 },
                 {
@@ -160,7 +162,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_mean_ndvi_ssp_2045-54_ssp1_relChange.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_mean_ndvi_ssp_2045-54_ssp1_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen   \n- **Mittlere** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 1** Szenario \n- **2045-2054**",
-                    "id": "4",
+                    "id": 4,
                     "color": "#FFE4B2"
                 },
                 {
@@ -171,7 +173,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_mean_ndvi_ssp_2045-54_ssp5_relChange.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_mean_ndvi_ssp_2045-54_ssp5_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen \n- **Mittlere** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 5** Szenario \n- **2045-2054**",
-                    "id": "5",
+                    "id": 5,
                     "color": "#FFCC9D"
                 },
                 {
@@ -182,7 +184,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_mean_ndvi_ssp_2085-94_ssp1_relChange.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_mean_ndvi_ssp_2085-94_ssp1_relChange.json",
                     "description": "This is a description",
-                    "id": "6",
+                    "id": 6,
                     "color": "#FFC0C0"
                 },
                 {
@@ -193,18 +195,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_mean_ndvi_ssp_2085-94_ssp5_relChange.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_mean_ndvi_ssp_2085-94_ssp5_relChange.json",
                     "description": "This is a description",
-                    "id": "7",
-                    "color": "#FF5F5F"
-                },
-                {
-                    "name": "moderate 2085-2094 ssp5",
-                    "time_frame": "2090",
-                    "ssp": "ssp5",
-                    "scenario": "mean",
-                    "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=sim_mean_ndvi_ssp_2085-94_ssp5_relChange.png",
-                    "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=sim_mean_ndvi_ssp_2085-94_ssp5_relChange.json",
-                    "description": "This is a description",
-                    "id": "7",
+                    "id": 7,
                     "color": "#FF5F5F"
                 }
 
@@ -213,7 +204,7 @@
         },
         "modelled":{
             "title":{
-                "de":"Flächen mit Wald und Grünland",
+                "de":"Mit Wald und Grünland",
                 "en":"Areas with forest and grassland"
             },
             "name":{
@@ -229,7 +220,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_max_ndvi_ssp_2045-54_ssp1_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_max_ndvi_ssp_2045-54_ssp1_relChange_vf.json",
                     "description": "- Prognose **ohne** Waldflächen \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 1** Szenario \n- **2045-2054**",
-                    "id": "0",
+                    "id": 8,
                     "color": "#FFE4B2"
                 },
                 {
@@ -240,7 +231,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_max_ndvi_ssp_2045-54_ssp5_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_max_ndvi_ssp_2045-54_ssp5_relChange_vf.json",
                     "description": "- Prognose **mit** Waldflächen  \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 5** Szenario \n- **2045-2054**",
-                    "id": "1",
+                    "id": 9,
                     "color": "#FFCC9D"
                 },
                 {
@@ -251,7 +242,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_max_ndvi_ssp_2085-94_ssp1_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_max_ndvi_ssp_2085-94_ssp1_relChange_vf.json",
                     "description": "- Prognose **mit** Waldflächen   \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 1** Szenario \n- **2085-2094**",
-                    "id": "2",
+                    "id": 10,
                     "color": "#FFC0C0"
                 },
                 {
@@ -262,7 +253,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_max_ndvi_ssp_2085-94_ssp5_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_max_ndvi_ssp_2085-94_ssp5_relChange_vf.json",
                     "description": "- Prognose **mit** Waldflächen   \n- **Maximale** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 5** Szenario \n- **2085-2094**",
-                    "id": "3",
+                    "id": 11,
                     "color": "#FF5F5F"
                 },
                 {
@@ -273,7 +264,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2045-54_ssp1_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_mean_ndvi_ssp_2045-54_ssp1_relChange_vf.json",
                     "description": "- Prognose **mit** Waldflächen   \n- **Mittlere** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 1** Szenario \n- **2045-2054**",
-                    "id": "4",
+                    "id": 12,
                     "color": "#FFE4B2"
                 
                 },
@@ -285,7 +276,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2045-54_ssp5_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_mean_ndvi_ssp_2045-54_ssp5_relChange_vf.json",
                     "description": "- Prognose **mit** Waldflächen \n- **Mittlere** Anzahl an Hitzeperioden pro Rasterzelle \n- **SSP 5** Szenario \n- **2045-2054**",
-                    "id": "5",
+                    "id": 13,
                     "color": "#FFCC9D"
                 
                 },
@@ -297,7 +288,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2085-94_ssp1_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_mean_ndvi_ssp_2085-94_ssp1_relChange_vf.json",
                     "description": "This is a description",
-                    "id": "6",
+                    "id": 14,
                     "color": "#FFC0C0"
                 
                 },
@@ -309,7 +300,7 @@
                     "src": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getPng?filename=mod_mean_ndvi_ssp_2085-94_ssp5_relChange_vf.png",
                     "meta": "https://geo-services.geographie.uni-erlangen.de/api/rekke/getMeta?filename=mod_mean_ndvi_ssp_2085-94_ssp5_relChange_vf.json",
                     "description": "This is a description",
-                    "id": "7",
+                    "id": 15,
                     "color": "#FF5F5F"
                 }
             ]

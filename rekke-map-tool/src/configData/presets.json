@@ -2,7 +2,11 @@
     "de":[
     {
         "id":1,
-        "name":"Kulturlandschaft SSP1: 2045-2054 vs. 2085-2094 ",
+        "name":"Kulturlandschaft",
+        "time_frame1": "2050",
+        "time_frame2": "2090",
+        "ssp": "ssp1",
+        "scenario": "mean",
         "description": "Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP1-Szenarios.  \n Dazu werden die Kulturlandschaften der betroffenen Gebiete angezeigt.",
         "leftImage":0,
         "rightImage":2,
@@ -14,11 +18,16 @@
         "social":false,
         "nature":false,
         "sport":false,
-        "language":"de"
+        "language":"de",
+        "color":"#FD9A9A"
     },
     {
         "id":2,
-        "name":"Kulturlandschaft SSP5: 2045-2054 vs. 2085-2094 ",
+        "name":"Kulturlandschaft",
+        "time_frame1": "2050",
+        "time_frame2": "2090",
+        "ssp": "ssp5",
+        "scenario": "mean",
         "description": "Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. \n Dazu werden die Kulturlandschaften der betroffenen Gebiete angezeigt.",
         "leftImage":1,
         "rightImage":3,
@@ -30,12 +39,17 @@
         "social":false,
         "nature":false,
         "sport":false,
-        "language":"de"
+        "language":"de",
+        "color":"#F16363"
     
     },
     {
         "id":3,
-        "name":"Resilienz stiftende Orte SSP1: 2045-2054 vs. 2085-2094 ",
+        "name":"Resilienz stiftende Orte",
+        "time_frame1": "2050",
+        "time_frame2": "2090",
+        "ssp": "ssp1",
+        "scenario": "mean",
         "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP1-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
         "leftImage":0,
         "rightImage":2,
@@ -47,11 +61,16 @@
         "social":true,
         "nature":true,
         "sport":true,
-        "language":"de"
+        "language":"de",
+        "color":"#FD9A9A"
     },
     {
         "id":4,
-        "name":"Resilienz stiftende Orte SSP5: 2045-2054 vs. 2085-2094 ",
+        "name":"Resilienz stiftende Orte ",
+        "time_frame1": "2050",
+        "time_frame2": "2090",
+        "ssp": "ssp5",
+        "scenario": "mean",
         "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
         "leftImage":0,
         "rightImage":1,
@@ -63,89 +82,11 @@
         "social":true,
         "nature":true,
         "sport":true,
-        "language":"de"
-    },
-    {
-        "id":5,
-        "name":"KulturlandschaftenSSP1: 2045-2054 vs. 2085-2094 ",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 ohne interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. Max. Hitzewelle pro Rasterzelle  \n Dazu werden die Kulturlandschaften der betroffenen Gebiete angezeigt.",
-        "leftImage":4,
-        "rightImage":6,
-        "cultureLayer":true,
-        "resilienceLayer":false,
-        "historical":true,
-        "landscape":true,
-        "monument":true,
-        "social":false,
-        "nature":false,
-        "sport":false,
-        "language":"de"
-    },
-    {
-        "id":6,
-        "name":"Kulturlandschaften SSP5: 2045-2054 vs. 2085-2094 ",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. Max. Hitzewelle pro Rasterzelle  \n Dazu werden die Kulturlandschaften der betroffenen Gebiete angezeigt.",
-        "leftImage":5,
-        "rightImage":7,
-        "cultureLayer":true,
-        "resilienceLayer":false,
-        "historical":true,
-        "landscape":true,
-        "monument":true,
-        "social":false,
-        "nature":false,
-        "sport":false,
-        "language":"de"
-    },
-    {
-        "id":7,
-        "name":"Resilienz stiftende Orte SSP5: 2045-2054 vs. 2085-2094 ",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
-        "leftImage":4,
-        "rightImage":6,
-        "cultureLayer":false,
-        "resilienceLayer":true,
-        "historical":false,
-        "landscape":false,
-        "monument":false,
-        "social":true,
-        "nature":true,
-        "sport":true,
-        "language":"de"
-    },
-    {
-        "id":8,
-        "name":"Resilienz stiftende Orte SSP5: 2045-2054 vs. 2085-2094 ",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
-        "leftImage":5,
-        "rightImage":7,
-        "cultureLayer":false,
-        "resilienceLayer":true,
-        "historical":false,
-        "landscape":false,
-        "monument":false,
-        "social":true,
-        "nature":true,
-        "sport":true,
-        "language":"de"
-    },
-    {
-        "id":9,
-        "name":"Kulturlandschaft SSP1 vs. SSP5: 2045-2054 ",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 mit interpolierten Siedlungsflächen und auf Grundlage des SSP1 vs. des SSP5-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
-        "leftImage":4,
-        "rightImage":5,
-        "cultureLayer":true,
-        "resilienceLayer":false,
-        "historical":true,
-        "landscape":true,
-        "monument":true,
-        "social":false,
-        "nature":false,
-        "sport":false,
-        "language":"de"
+        "language":"de",
+        "color":"#F16363"
     }
-
+    
+    
 
 
     ]

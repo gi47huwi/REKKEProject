@@ -22,16 +22,16 @@ function ImageSelection(
 
   const addSelectedImage = (image) => {
     if (side === "left") {
-      if (leftImage === image.src) {
+      if (leftImage === image) {
         return "border border-primary"
-      } else if (rightImage === image.src) {
+      } else if (rightImage === image) {
         return "border border-secondary"
       }
 
     } else {
-      if (rightImage === image.src) {
+      if (rightImage === image) {
         return "border border-primary"
-      } else if (leftImage === image.src) {
+      } else if (leftImage === image) {
         return "border border-secondary"
       }
     }
@@ -55,7 +55,7 @@ function ImageSelection(
                   className={addSelectedImage(image)}
                   style={{ width: "20rem", height: "30rem", margin: "10px" }} key={index}
                 >
-                  <MDBCardImage src={image.src} alt={image.name} style={{ width: "auro", height: "10rem" }} onClick={() => setImage(image.url, side)} />
+                  <MDBCardImage src={image.src} alt={image.name} style={{ width: "auro", height: "10rem" }} onClick={() => setImage(image, side)} />
 
                   <MDBCardBody>
                     <MDBCardTitle>
@@ -77,23 +77,23 @@ function ImageSelection(
                       onClick={
                         () => {
                           if (side === "left") {
-                            if (image.src === rightImage) {
+                            if (image === rightImage) {
                               return
                             }
                           }
                           if (side === "right") {
-                            if (image.src === leftImage) {
+                            if (image === leftImage) {
                               return
                             }
                           }
-                          setImage(image.src, side)
+                          setImage(image, side)
                         }
                       }
-                      value={image.src}
-                      checked={side === "left" ? leftImage === image.src : rightImage === image.src}
-                      disabled={side === "left" ? rightImage === image.src : leftImage === image.src}
+                      value={image}
+                      checked={side === "left" ? leftImage === image : rightImage === image}
+                      disabled={side === "left" ? rightImage === image: leftImage === image}
                       defaultChecked={
-                        side === "left" ? leftImage === image.src : rightImage === image.src
+                        side === "left" ? leftImage === image : rightImage === image
                       }
                       name="flexRadioDefault"
                       id="flexRadioDefault1"
@@ -142,23 +142,23 @@ function ImageSelection(
                       onClick={
                         () => {
                           if (side === "left") {
-                            if (image.src === rightImage) {
+                            if (image === rightImage) {
                               return
                             }
                           }
                           if (side === "right") {
-                            if (image.src === leftImage) {
+                            if (image === leftImage) {
                               return
                             }
                           }
-                          setImage(image.src)
+                          setImage(image)
                         }
                       }
-                      value={image.src}
-                      checked={side === "left" ? leftImage === image.src : rightImage === image.src}
-                      disabled={side === "left" ? rightImage === image.src : leftImage === image.src}
+                      value={image}
+                      checked={side === "left" ? leftImage === image : rightImage === image}
+                      disabled={side === "left" ? rightImage === image : leftImage === image}
                       defaultChecked={
-                        side === "left" ? leftImage === image.src : rightImage === image.src
+                        side === "left" ? leftImage === image : rightImage === image
                       }
                       name="flexRadioDefault"
                       id="flexRadioDefault1"

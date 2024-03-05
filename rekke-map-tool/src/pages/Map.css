@@ -1,5 +1,60 @@
+.slider-box{
+  display: grid;
+  background-color: white;
+  place-items: center;
+  width: 100%;
+  position: relative;
+}
+.slider-container{
+  width: 90%;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+  position: relative;
+  border: 7px solid #fff;
+  height: 714px;
+
+}
+
+@media screen and (max-width: 600px){
+  .slider-container{
+    height: 414px;
+  }
+  
+}
+
+.slider-container .drag-overlay{
+  position:absolute;
+  top: 0px;
+  width: 3px;
+  height: 100%;
+  z-index: 500 !important;
+  background-color: white;
+}
+
+.drag-overlay .drag-middle{
+  position: absolute;
+  left: -13.5px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 100;
+  top: -15px;
+  cursor: pointer;
+
+}
+
+.drag-middle i{
+  position: absolute;
+  top: 50%;
+  left: 50%;;
+  color: #5e5d5d;
+  transform: translate(-50%, -50%) rotate(90deg);
+ }
+
+
+
 .map-container {
-    height: 80%;
+    height: 100%;
     z-index: 10;
     margin-bottom: 10%;
   }
@@ -23,77 +78,25 @@
   z-index: 20;
 }
 
-.drag-bar-container{
-  top: 0;
-  height: 5vh;
-  opacity: 0.7;
-  z-index: 500 !important;
-
+.leaflet-control-layers-overlays{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: start !important;
 }
 
-.drag-bar-line{
-  height: 2px;
-  width: 90vw;
-  margin-left: 5vw;
-  background-color: black;
-  margin-top: 3vh;
-}
+.legend-data{
 
-.drag-handle{
   position: absolute;
-  width: 3vh;
-  height: 3vh;
-  top: 9%;
-  background-color: lightblue;
-  border-radius: 50%;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
+  bottom: 20px;
+  right: 0px;
+  z-index: 1000;
+  background-color: white;
+  padding: 10px;
+  width: 200px;
+
+  
 }
 
-.drag-overlay{
-  cursor: pointer;
-  top: 16.5%;
-  position: absolute;
-  z-index: 500 !important;
-  width: 5px;
-  height: 82vh;
-  background-color: black;
-  opacity: 0.5;
-}
-.drag-overlay:hover{
-  opacity: 1;
-}
-
-.drag-middle{
-  cursor: pointer;
-  position: absolute;
-  z-index: 500 !important;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border-color: black;
-  border-style: solid;
-  border-width: 4px;
-  left: -22px;
-  background-color: lightblue;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
-}
-.drag-bottom{
-  cursor: pointer;
-  position: absolute;
-  z-index: 500 !important;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border-color: black;
-  border-style: solid;
-  border-width: 4px;
-  top:82vh;
-  left: -22px;
-  background-color: lightblue;
-
+.leaflet-botom {
+  z-index: 2000 !important;
 }

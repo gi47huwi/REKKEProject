@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Markdown from 'react-markdown'
-
+import menue from '../configData/menue.json'
 
 function Home({
     currentLanguage
@@ -42,13 +42,25 @@ function Home({
                     {presetData[currentLanguage].map((item) => (
                         <MDBCol key={item.id} md="4" className="mb-4">
 
-                            <MDBCard style={{ height: "100%" }}>
+                            <MDBCard style={{ height: "100%", backgroundColor:item.color }}>
                                 <MDBCardBody>
-                                    <MDBCardTitle>{item.name}</MDBCardTitle>
+                                    <MDBCardTitle>
+                                        <p>
+                                        {item.name + " "}
+                                        {menue.time_frames[item.time_frame1].name[currentLanguage] + " "}
+                                        {languages[currentLanguage].compared + " "}
+                                        {menue.time_frames[item.time_frame2].name[currentLanguage] + " "}
+                                        </p>
+                                        <p>
+                                        {menue.ssp[item.ssp].name[currentLanguage] + " "}
+                                        {menue.scenarios[item.scenario].name[currentLanguage] + " "}
+                                        </p>
+
+                                        </MDBCardTitle>
                                     <MDBCardText>
-                                        <Markdown>
+                                        {/* <Markdown>
                                             {item.description}
-                                        </Markdown>
+                                        </Markdown> */}
                                     </MDBCardText>
                                 </MDBCardBody>
                                 <MDBCardFooter>
@@ -64,7 +76,7 @@ function Home({
             </MDBContainer>
 
             <MDBRow style={{ width: "100%" }} className='d-flex justify-content-center mb-3'>
-                <MDBBtn color="secondary" style={{ width: "50%" }} onClick={() => navigate("/menue")}>
+                <MDBBtn color="secondary" style={{ width: "50%" }} onClick={() => navigate("/menue/leftImage")}>
                     {languages[currentLanguage].startButton}
                 </MDBBtn>
             </MDBRow>
