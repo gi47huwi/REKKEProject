@@ -80,6 +80,8 @@ function MapView({
 
   const [showLegend, setShowLegend] = useState(true);
 
+  const [sliderGrabbed, setSliderGrabbed] = useState(false);
+
 
   const fetchData = async (imageURL) => {
     console.log(imageURL)
@@ -335,10 +337,6 @@ function MapView({
     var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0];
     var prognosisEl = document.querySelectorAll(".prognosis")[0];
     var currentEl = document.querySelectorAll(".current")[0];
-    // console.log(prognosisEl)
-    // console.log(leafletPane)
-    // console.log(currentEl)
-    // console.log(leafletPane.style.transform.split("(")[1].split("px")[0]);
     var imageStart = parseInt(prognosisEl.style.transform.split("(")[1].split("px")[0]) + (parseInt(leafletPane.style.transform.split("(")[1].split("px")[0]));
     var dragOverlay = document.querySelector("#drag-overlay");
 
@@ -350,8 +348,14 @@ function MapView({
       currentEl.style.cssText += `clip: rect(0px,${(document.getElementById("slider-container").style.width - (imageStart ^ 1)) - (document.getElementById("slider-container").style.width - parseFloat(dragOverlay.style.left.split("px")[0]))}px,${currentEl.style.height},0px);`;
     }
 
+
     if (e.pageX != 0 || e.touches && e.touches[0].pageX != 0) {
+
       setDragLeft(`${(e.pageX - ((window.innerWidth * 0.1) / 2)) || e.touches[0].pageX - ((window.innerWidth * 0.1) / 2) - 15}px`);
+    }
+    if(e.screenX != 0 || e.touches && e.touches[0].screenX != 0){
+      setDragLeft(`${(e.screenX - ((window.innerWidth * 0.1) / 2)) || e.touches[0].screenX - ((window.innerWidth * 0.1) / 2) - 15}px`);
+
     }
   };
 
@@ -430,7 +434,9 @@ function MapView({
               </p>
               <p style={{ fontWeight: "bold" }}>
                 <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.ssp[leftImage.ssp].number + " Quelle: " + menue.ssp.source.value} >
-                  <a target='_blank' href={menue.ssp.source.url2}>{menue.ssp[leftImage.ssp].name[currentLanguage] + " "}</a>
+                  <span>
+                    <a target='_blank' href={menue.ssp.source.url2}>{menue.ssp[leftImage.ssp].name[currentLanguage] + " "}</a>
+                  </span>
                 </MDBTooltip>
                 <br />
 
@@ -455,12 +461,14 @@ function MapView({
               </p>
               <p style={{ fontWeight: "bold" }}>
                 <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.ssp[rightImage.ssp].number + " Quelle: " + menue.ssp.source.value} >
-                  <a target='_blank' href={menue.ssp.source.url2}>{menue.ssp[rightImage.ssp].name[currentLanguage] + " "}</a>
+                  <span>
+                    <a target='_blank' href={menue.ssp.source.url2}>{menue.ssp[rightImage.ssp].name[currentLanguage] + " "}</a>
+                  </span>
                 </MDBTooltip>
                 <br />
 
                 <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.time_frames[rightImage.time_frame].name[currentLanguage]}>
-                  <span>{menue.time_frames[rightImage.time_frame].name[currentLanguage]+ " "}</span>
+                  <span>{menue.time_frames[rightImage.time_frame].name[currentLanguage] + " "}</span>
                 </MDBTooltip>
                 <br />
 
@@ -492,17 +500,39 @@ function MapView({
               onTouchEnd={() => document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'}
               onDrag={(e) => handleDragMove(e)}
               onTouchMove={(e) => handleDragMove(e)}
+              onMouseDown={(e) => {
+                if(!sliderGrabbed){
+                  // remove the event listener for the drag move
+                  document.querySelector("#map-container").removeEventListener("mousemove", handleDragMove);
+                }
+                setSliderGrabbed(!sliderGrabbed);
 
-            // onMouseDown={(e) => setSliderGrabbed(!sliderGrabbed)}
-            // onMouseMove={(e) => {
-            //   if (!sliderGrabbed) {
-            //     document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'
-            //     return;
-            //   }
-            //   document.querySelector("#drag-overlay").style.cssText += 'opacity:1'
-            //   handleDragMove(e);
+              }}
+              onMouseUp={(e) => {
+                if (sliderGrabbed) {
+                  // remove the event listener for the drag move
+                  document.querySelector("#map-container").removeEventListener("mousemove", handleDragMove);
+                }
+                setSliderGrabbed(!sliderGrabbed);
+              }}
 
-            // }}
+              onMouseMove={(e) => {
+                if (!sliderGrabbed) {
+                  document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'
+                  
+                  return;
+                }
+                document.querySelector("#drag-overlay").style.cssText += 'opacity:1'
+                // select the map and add the event listener for the drag move
+                document.querySelector("#map-container").addEventListener("mousemove", handleDragMove);
+                // add click event listener to remove the event listener
+                document.querySelector("#map-container").addEventListener("mouseup", () => {
+                  document.querySelector("#map-container").removeEventListener("mousemove", handleDragMove);
+                  setSliderGrabbed(!sliderGrabbed)
+                });
+
+              }}
+
 
             >
               <div className='drag-middle'
@@ -569,7 +599,7 @@ function MapView({
                         className="prognosis"
                         url={rightImage.src}
                         bounds={bounds}
-                        opacity={0.8}
+                        opacity={0.5}
                         zoomAnimation={false}
                         maxZoom={5}
 
