@@ -9,7 +9,7 @@
         "selectInstruction":"Verschieben Sie den Regler nach Rechts und Links, um die Unterschiede der beiden Berechnungen zu sehen.",
         "showMap": "Karte anzeigen",
         "compared":"verglichen mit",
-        "preset": "Preset wählen",
+        "preset": "Vergleich anzeigen",
         "legend":"Legende",
         "legendName":"Prozentuale Abweichung der Vegetationsgesundheit zu Referenzzeitraum*",
         "legendLong":"Prozentuale Abweichung in der spektralen Reflektanz der Vegetation zu dem Referenzzeitraum (2015-2023).",

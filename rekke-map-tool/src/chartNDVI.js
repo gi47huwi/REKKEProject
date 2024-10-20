@@ -1,3 +1,4 @@
+import { MDBRow } from 'mdb-react-ui-kit';
 import React, { useEffect, useRef, useState } from 'react';
 import Plot from 'react-plotly.js';
 
@@ -50,9 +51,10 @@ function ChartNDVI({
             y: [],
             mode: 'markers+lines',
             type: 'scatter',
-            name: 'non forest areas',
+            name: 'forest areas',
             marker: { size: 2 },
-            line: { width: 1, color: "red" }
+            line: { width: 1, color: "lightblue" }
+
 
         }
         var trace2 = {
@@ -60,9 +62,10 @@ function ChartNDVI({
             y: [],
             mode: 'markers+lines',
             type: 'scatter',
-            name: 'forest areas',
+            name: 'non forest areas',
             marker: { size: 2 },
-            line: { width: 1, color: "lightblue" }
+            line: { width: 1, color: "red" }
+
 
 
         }
@@ -85,6 +88,12 @@ function ChartNDVI({
     return (
         loaded ?
             window.innerWidth < 575 ?
+            <>
+            <MDBRow className='px-3 pt-3'>
+                        <h5>
+                        Annual mean NDVI values of forest (blue) and non-forest (red) areas aggregated by the number of heatwaves of the respective pixel. Dashed lines indicate the linear regressions between mean NDVI and number of heat waves. 
+                        </h5>
+                    </MDBRow>
                 <Plot
                     data={data}
                     layout={{
@@ -112,7 +121,14 @@ function ChartNDVI({
                     }}
 
                 />
-                : <Plot
+                </>
+                : <>
+                <MDBRow className='px-3 pt-3'>
+                        <h5>
+                        Annual mean NDVI values of forest (blue) and non-forest (red) areas aggregated by the number of heatwaves of the respective pixel. Dashed lines indicate the linear regressions between mean NDVI and number of heat waves. 
+                        </h5>
+                    </MDBRow>
+                <Plot
                     data={data}
                     layout={{
                         width: window.innerWidth / 1.5,
@@ -138,6 +154,9 @@ function ChartNDVI({
                     }}
 
                 />
+
+                    
+                </>
             : <></>
     );
 

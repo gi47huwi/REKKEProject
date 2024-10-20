@@ -1,93 +1,10 @@
 {
-    "de":[
-    {
-        "id":1,
-        "name":"Kulturlandschaft",
-        "time_frame1": "2050",
-        "time_frame2": "2090",
-        "ssp": "ssp1",
-        "scenario": "mean",
-        "description": "Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP1-Szenarios.  \n Dazu werden die Kulturlandschaften der betroffenen Gebiete angezeigt.",
-        "leftImage":0,
-        "rightImage":2,
-        "cultureLayer":true,
-        "resilienceLayer":false,
-        "historical":true,
-        "landscape":true,
-        "monument":true,
-        "social":false,
-        "nature":false,
-        "sport":false,
-        "language":"de",
-        "color":"#FD9A9A"
+    "de": {
+        "title": "Vorauswahlen",
+        "description":"Im Folgenden können Sie die zu vergleichenden Karten wählen. Hierfür wird in einem ersten Schritt die Kategorie der qualitativ erhobenen Flächen gewählt. In der Tabelle unter dieser Auswahl können Sie die verschiedenen Karten der Szenarien und Zeitabschnitte miteinander vergleichen. "
     },
-    {
-        "id":2,
-        "name":"Kulturlandschaft",
-        "time_frame1": "2050",
-        "time_frame2": "2090",
-        "ssp": "ssp5",
-        "scenario": "mean",
-        "description": "Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. \n Dazu werden die Kulturlandschaften der betroffenen Gebiete angezeigt.",
-        "leftImage":1,
-        "rightImage":3,
-        "cultureLayer":true,
-        "resilienceLayer":false,
-        "historical":true,
-        "landscape":true,
-        "monument":true,
-        "social":false,
-        "nature":false,
-        "sport":false,
-        "language":"de",
-        "color":"#F16363"
-    
-    },
-    {
-        "id":3,
-        "name":"Resilienz stiftende Orte",
-        "time_frame1": "2050",
-        "time_frame2": "2090",
-        "ssp": "ssp1",
-        "scenario": "mean",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP1-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
-        "leftImage":0,
-        "rightImage":2,
-        "cultureLayer":false,
-        "resilienceLayer":true,
-        "historical":false,
-        "landscape":false,
-        "monument":false,
-        "social":true,
-        "nature":true,
-        "sport":true,
-        "language":"de",
-        "color":"#FD9A9A"
-    },
-    {
-        "id":4,
-        "name":"Resilienz stiftende Orte ",
-        "time_frame1": "2050",
-        "time_frame2": "2090",
-        "ssp": "ssp5",
-        "scenario": "mean",
-        "description":"Vergleich der Berechnungen der Klimadaten von 2045-2054 vs. 2085-2094 mit interpolierten Siedlungsflächen und auf Grundlage des SSP5-Szenarios. \n Dazu werden die aus qualitativen Interviews erhobenen resilienz stiftenden Orte angezeigt.",
-        "leftImage":0,
-        "rightImage":1,
-        "cultureLayer":false,
-        "resilienceLayer":true,
-        "historical":false,
-        "landscape":false,
-        "monument":false,
-        "social":true,
-        "nature":true,
-        "sport":true,
-        "language":"de",
-        "color":"#F16363"
+    "en": {
+        "title": "Presets",
+        "description":"In the following you can select the maps to be compared. In a first step, the category of qualitatively collected areas is selected. In the table below this selection, you can compare the different maps of the scenarios and time periods with each other."
     }
-    
-    
-
-
-    ]
 }

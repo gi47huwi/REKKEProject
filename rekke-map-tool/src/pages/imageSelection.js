@@ -73,6 +73,21 @@ function ImageSelection(
                   </MDBCardBody>
                   <MDBCardFooter>
                     <MDBRadio
+                    onChange={
+                      () => {
+                        if (side === "left") {
+                          if (image === rightImage) {
+                            return
+                          }
+                        }
+                        if (side === "right") {
+                          if (image === leftImage) {
+                            return
+                          }
+                        }
+                        setImage(image, side)
+                      }
+                    }
 
                       onClick={
                         () => {

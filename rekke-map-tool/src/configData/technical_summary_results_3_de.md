@@ -1,0 +1,2 @@
+### NDVI-Extrapolation auf Basis von Nicht-Waldflächen
+Unter der Annahme einer vollständigen Entwaldung Oberfrankens werden die relativen NDVI-Änderungen für die Zeiträume 2045-2054 und 2085-2094 nach den Emissionsszenarien SSP1 und SSP5 sowie die jeweilige mittlere (Abb. 6) und maximale (Abb. 7) Anzahl von Hitzewellen pro Jahrzehnt geschätzt.

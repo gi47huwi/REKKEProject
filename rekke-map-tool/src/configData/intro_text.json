@@ -1,0 +1,35 @@
+{
+    "de": {
+        "headerFirst": "Das Projekt REKKE",
+        "first": "Die Auswirkungen des Klimawandels in Bayern bedeuten in der Zukunft eine Tendenz zu länger anhaltenden Hitzephasen im Sommer mit teils deutlich über 40°C. Dadurch steht Kulturlandschaft in ihrer resilienzstiftenden und gesundheitsfördernden Wirkung für die Bevölkerung vor großen Herausforderungen. Es geht dabei nicht nur um den Verlust einer vertrauten ästhetischen Qualität, sondern um konkrete Einschränkungen als Erholungsort, Ort sozialer Teilhabe und Raum für körperliche Aktivität und Sport. Dies betrifft die Nutzbarkeit des heimischen Balkons genauso wie sommerliche Freiluftveranstaltungen oder die wöchentliche Walking-Gruppe im nahen Wald. Die Folgen des Klimawandels treffen dabei nochmals verstärkt vulnerable Bevölkerungsgruppen, die ohnehin nur eingeschränkten Zugang zu gesundheitsfördernden Kulturlandschaftselementen haben. ",
+        "headerSecond": "Entstehung des REKKE Risiko-Tools",
+        "second": [
+            "Um individuelle Resilienzorte der Region zu ermitteln, sind im REKKE-Projekt sowohl Interviews mit der lokalen Bevölkerung in verschiedenen Bamberger Stadtteilen, als auch Stakeholder-Interviews in Stadt- und Landkreis Bamberg durchgeführt worden. ",
+            "Für die Erweiterung des Kulturlandschaftinventars Oberfranken-West wurde die bestehende Kartierung der Kulturlandschaftselemente Oberfranken-West (Thomas Büttner) mit Landnutzungsdaten verschnitten. ",
+            "Um die Ausgesetztheit unserer Flächen gegenüber Hitze zu ermitteln, sind zusätzlich von physischen Geographen verschiedene Klimaprojektion bis Mitte und Ende des 21. Jahrhunderts anhand unterschiedlicher SSP Szenarien und Schätzwerte für die Region berechnet worden.  ",
+            "Diese gesammelten Informationen zu individuellen Resilienzorten, Kulturlandschaften & Klimaprojekten sind in Karten übertragen und in unserem REKKE Risiko-Tool miteinander verknüpft worden. Es wird dadurch ein Abgleich der verschiedenen Ergebnisse ermöglicht. Die gesammelten Informationen können als Layer übereinandergelegt und kontrastiert werden. Daraus lässt sich unter anderem die Vulnerabilität der Kulturlandschaften abschätzen.  "
+        ],
+        "third": "Das Risikoscreening für die Region Oberfranken-West mündet dabei in einen Mediationsprozess mit der lokalen Bevölkerung, in dem erarbeitet wird, wie die nachweislich gesundheitsfördernde Wirkung von Kulturlandschaft sowohl in urbanen wie ländlichen Kontexten Bayerns im Klimawandel erhalten werden kann. Aufgrund vorhandener Leitfäden und Broschüren werden dabei diejenigen Maßnahmen identifiziert und entwickelt, die sich ohne große Mühe im Alltag sofort umsetzen lassen. Dies betrifft sowohl planerische Anpassungen wie auch Verhaltensanpassungen in der alltäglichen Nutzung bestimmter Flächen. Klimaanpassung ist dabei keine Alternative zu essentiellen Klimaschutzbemühungen, sondern ein notwendiger Transformationsprozess, da eine rapide Änderung unserer Umwelt in den nächsten 30 Jahren unausweichlich ist. Im offen geführten Mediationsprozess ist es uns somit wichtig zu vermitteln, dass die nötigen Anpassungen an den Klimawandel nicht als Verlust, sondern als aktiv gestaltete Herausforderung verstanden werden.",
+        "videoDescription": {
+            "title": "Das Video zeigt die Verwendung des Risikokarten-Tools",
+            "description": "Das Risikokarten-Tool ermöglicht es, die Auswirkungen des Klimawandels auf die Kulturlandschaft zu visualisieren und zu analysieren."
+        }
+    },
+    "en": {
+        "headerFirst": "The REKKE project",
+        "first": "The effects of climate change in Bavaria mean that in the future there will be a tendency towards longer-lasting heat waves in summer, with temperatures sometimes significantly exceeding 40°C. As a result, cultural landscapes face major challenges in their resilience-building and health-promoting effects for the population. This is not just about the loss of a familiar aesthetic quality, but about concrete restrictions as a place of recreation, a place of social participation and a space for physical activity and sport. This affects the usability of the home balcony as well as summer open-air events or the weekly walking group in the nearby forest. The consequences of climate change are particularly severe for vulnerable population groups, who already have limited access to health-promoting cultural landscape elements.",
+        "headerSecond": "Development of the REKKE risk tool",
+        "second": [
+            "In order to identify individual resilience locations in the region, interviews were conducted with the local population in various districts of Bamberg, as well as stakeholder interviews in the city and district of Bamberg.",
+            "For the expansion of the cultural landscape inventory Oberfranken-West, the existing mapping of the cultural landscape elements Oberfranken-West (Thomas Büttner) was intersected with land use data.",
+            "In order to determine the exposure of our areas to heat, various climate projections up to the middle and end of the 21st century were calculated by physical geographers based on different SSP scenarios and estimated values for the region.",
+            "These collected information on individual resilience locations, cultural landscapes & climate projects have been transferred to maps and linked together in our REKKE risk tool. This allows a comparison of the different results. The collected information can be overlaid and contrasted as layers. This can be used, among other things, to estimate the vulnerability of cultural landscapes."
+            
+        ],
+        "third": "The risk screening for the Oberfranken-West region leads to a mediation process with the local population, in which it is worked out how the proven health-promoting effect of cultural landscapes can be preserved in both urban and rural contexts in Bavaria in the face of climate change. Based on existing guidelines and brochures, those measures are identified and developed that can be implemented immediately in everyday life without much effort. This concerns both planning adjustments and behavioral adjustments in the everyday use of certain areas. Climate adaptation is not an alternative to essential climate protection efforts, but a necessary transformation process, as a rapid change in our environment is inevitable in the next 30 years. In the open mediation process, it is important for us to convey that the necessary adjustments to climate change are not to be understood as a loss, but as an actively designed challenge.",
+        "videoDescription": {
+            "title": "The video shows the use of the risk map tool",
+            "description": "The risk map tool allows you to visualize and analyze the effects of climate change on cultural landscapes."
+        }
+    }
+}

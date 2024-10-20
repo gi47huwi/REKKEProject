@@ -100,3 +100,11 @@
 .leaflet-botom {
   z-index: 2000 !important;
 }
+
+.popupButton{
+  cursor: pointer;
+}
+
+span{
+  color: black;
+}

@@ -12,7 +12,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import menue from '../configData/menue.json'
 import languages from '../configData/languages.json'
 import LegendDummy from '../configData/LegendDummy.png'
-import { MDBBtn, MDBCol, MDBContainer, MDBIcon, MDBRow, MDBTooltip } from 'mdb-react-ui-kit';
+import { MDBBtn, MDBCol, MDBContainer, MDBIcon, MDBPopover, MDBPopoverBody, MDBPopoverHeader, MDBRow, MDBTooltip } from 'mdb-react-ui-kit';
 
 async function toHTMLImage(geoTiffDataRGB, width, height) {
   const canvas = document.createElement("canvas");
@@ -66,7 +66,7 @@ function MapView({
   const [sportsLayer, setSportsLayer] = useState()
 
   const previoisClickedLayer = useRef();
-  const [showPopupOverlay, setShowPopupOverlay] = useState(true);
+  const [showPopupOverlay, setShowPopupOverlay] = useState(false);
 
   const [southWest, setSouthWest] = useState([49.5333, 9.9])
   const [northEast, setNorthEast] = useState([49.9333, 10.7])
@@ -78,7 +78,7 @@ function MapView({
   var map;
   const [popupData, setPopupData] = useState({});
 
-  const [showLegend, setShowLegend] = useState(true);
+  const [showLegend, setShowLegend] = useState(false);
 
   const [sliderGrabbed, setSliderGrabbed] = useState(false);
 
@@ -332,6 +332,7 @@ function MapView({
   }
 
   function handleDragMove(e) {
+    console.log(e.pageX, e.pageX, e.clientX);
     e.preventDefault();
 
     var leafletPane = document.querySelectorAll(".leaflet-map-pane")[0];
@@ -349,17 +350,20 @@ function MapView({
     }
 
 
-    if (e.pageX != 0 || e.touches && e.touches[0].pageX != 0) {
+    // if (e.pageX != 0 || e.touches && e.touches[0].pageX != 0) {
 
+    //   setDragLeft(`${(e.pageX - ((window.innerWidth * 0.1) / 2)) || e.touches[0].pageX - ((window.innerWidth * 0.1) / 2) - 15}px`);
+    // }
+    if (e.pageX != 0 || e.touches && e.touches[0].pageX != 0) {
       setDragLeft(`${(e.pageX - ((window.innerWidth * 0.1) / 2)) || e.touches[0].pageX - ((window.innerWidth * 0.1) / 2) - 15}px`);
-    }
-    if(e.screenX != 0 || e.touches && e.touches[0].screenX != 0){
-      setDragLeft(`${(e.screenX - ((window.innerWidth * 0.1) / 2)) || e.touches[0].screenX - ((window.innerWidth * 0.1) / 2) - 15}px`);
 
     }
   };
 
   function highlightFeature(e, layer, popupD) {
+    if(!showPopupOverlay){
+      setShowPopupOverlay(true);
+    }
     layer.setStyle({ color: "yellow", fillColor: "#ffee00ec" })
     setPopupData(prev => popupD);
     previoisClickedLayer.current = layer;
@@ -388,6 +392,8 @@ function MapView({
 
 
 
+
+
   return (
     <>
       <div className="map-overlay">
@@ -403,7 +409,7 @@ function MapView({
                   onClick={() => {
                     navigate("/menue/selectionOverview?leftImage=" + searchParams.get("leftImage") + "&rightImage=" + searchParams.get("rightImage") + "&historical=" + searchParams.get("historical") + "&landscape=" + searchParams.get("landscape") + "&monument=" + searchParams.get("monument") + "&social=" + searchParams.get("social") + "&nature=" + searchParams.get("nature") + "&sports=" + searchParams.get("sports"))
 
-                    window.location.href = `/rekke/menue/selectionOverview?leftImage=${searchParams.get("leftImage")}&rightImage=${searchParams.get("rightImage")}&historical=${searchParams.get("historical")}&landscape=${searchParams.get("landscape")}&monument=${searchParams.get("monument")}&social=${searchParams.get("social")}&nature=${searchParams.get("nature")}&sports=${searchParams.get("sports")}`
+                    // window.location.href = `/rekke/menue/selectionOverview?leftImage=${searchParams.get("leftImage")}&rightImage=${searchParams.get("rightImage")}&historical=${searchParams.get("historical")}&landscape=${searchParams.get("landscape")}&monument=${searchParams.get("monument")}&social=${searchParams.get("social")}&nature=${searchParams.get("nature")}&sports=${searchParams.get("sports")}`
                   }} style={{ margin: "10px" }}>
                   <MDBIcon fas icon="arrow-left" className='mx-3' />
                 </MDBBtn>
@@ -432,55 +438,93 @@ function MapView({
                 {leftImage.id >= menue.config_items.simulated.image_configuration.length ? menue.config_items.modelled.name[currentLanguage] : menue.config_items.simulated.name[currentLanguage]}
 
               </p>
-              <p style={{ fontWeight: "bold" }}>
-                <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.ssp[leftImage.ssp].number + " Quelle: " + menue.ssp.source.value} >
+              <MDBPopover size='lg' color='none' tag={'a'} wrapperProps={{ href: '#' }} dismiss btnChildren={
+                <MDBIcon fas icon="info-circle" className='mx-3 popupButton' />
+              } placement='right'>
+                <MDBPopoverHeader>
+                  <MDBRow>
+                    Information
+                  </MDBRow>
+                </MDBPopoverHeader>
+                <MDBPopoverBody>
+                  <p>
+                    {menue.ssp[leftImage.ssp].name[currentLanguage] + ": " +
+                      menue.ssp[leftImage.ssp].number +
+                      "( Quelle: " + menue.ssp.source.value + ") "}
+                  </p>
+                  <p>
+                    {menue.time_frames[leftImage.time_frame].name[currentLanguage] + ": " +
+                      menue.time_frames[leftImage.time_frame].start + " - " + menue.time_frames[leftImage.time_frame].end}
+                  </p>
+                  <p>
+                    {menue.scenarios[leftImage.scenario].name[currentLanguage] + ": " + menue.scenarios[leftImage.scenario].description[currentLanguage]}
+                  </p>
+                </MDBPopoverBody>
+
+              </MDBPopover>
+              <MDBCol>
+
+                <p style={{ fontWeight: "bold" }}>
                   <span>
                     <a target='_blank' href={menue.ssp.source.url2}>{menue.ssp[leftImage.ssp].name[currentLanguage] + " "}</a>
                   </span>
-                </MDBTooltip>
-                <br />
-
-                <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.time_frames[leftImage.time_frame].name[currentLanguage] + " " + menue.time_frames[leftImage.time_frame].start + " - " + menue.time_frames[leftImage.time_frame].end} >
+                  <br />
                   <span>
                     {menue.time_frames[leftImage.time_frame].name[currentLanguage] + " "}
                   </span>
-                </MDBTooltip>
-                <br />
+                  <br />
 
-                <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.scenarios[leftImage.scenario].name[currentLanguage] + " = " + menue.scenarios[leftImage.scenario].description[currentLanguage]} >
                   <span>
                     {menue.scenarios[leftImage.scenario].name[currentLanguage]}
                   </span>
-                </MDBTooltip>
-              </p>
+                </p>
+              </MDBCol>
             </MDBCol>
             <MDBCol>
               <p style={{ fontWeight: "bold" }}>
                 {languages[currentLanguage].areas + " "}
                 {rightImage.id >= menue.config_items.simulated.image_configuration.length ? menue.config_items.modelled.name[currentLanguage] : menue.config_items.simulated.name[currentLanguage]}
               </p>
-              <p style={{ fontWeight: "bold" }}>
-                <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.ssp[rightImage.ssp].number + " Quelle: " + menue.ssp.source.value} >
+              <MDBCol>
+
+                <MDBPopover size='lg' color='none' tag={'a'} wrapperProps={{ href: '#' }} dismiss btnChildren={
+                  <MDBIcon fas icon="info-circle" className='mx-3 popupButton' />
+                } placement='right'>
+                  <MDBPopoverHeader>
+                    Information
+                  </MDBPopoverHeader>
+                  <MDBPopoverBody>
+                    <p>
+                      {menue.ssp[rightImage.ssp].name[currentLanguage] + ": " + menue.ssp[rightImage.ssp].number}
+                    </p>
+                    <p>
+                      {menue.time_frames[rightImage.time_frame].name[currentLanguage] + ": " + menue.time_frames[rightImage.time_frame].start + " - " + menue.time_frames[rightImage.time_frame].end}
+                    </p>
+                    <p>
+                      {menue.scenarios[rightImage.scenario].name[currentLanguage] + ": " + menue.scenarios[rightImage.scenario].description[currentLanguage]}
+                    </p>
+                  </MDBPopoverBody>
+
+                </MDBPopover>
+                <p style={{ fontWeight: "bold" }}>
                   <span>
                     <a target='_blank' href={menue.ssp.source.url2}>{menue.ssp[rightImage.ssp].name[currentLanguage] + " "}</a>
                   </span>
-                </MDBTooltip>
-                <br />
+                  <br />
 
-                <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.time_frames[rightImage.time_frame].name[currentLanguage]}>
                   <span>{menue.time_frames[rightImage.time_frame].name[currentLanguage] + " "}</span>
-                </MDBTooltip>
-                <br />
-
-                <MDBTooltip tag={"a"} wrapperProps={{ href: '#' }} title={menue.scenarios[rightImage.scenario].name[currentLanguage]}>
+                  <br />
                   <span>  {menue.scenarios[rightImage.scenario].name[currentLanguage]}</span>
-                </MDBTooltip>
 
-              </p>
+                </p>
+              </MDBCol>
+
+
+
 
             </MDBCol>
           </MDBRow>
-        </MDBContainer>
+        </MDBContainer >
       }
       <div className='slider-box'>
 
@@ -501,7 +545,8 @@ function MapView({
               onDrag={(e) => handleDragMove(e)}
               onTouchMove={(e) => handleDragMove(e)}
               onMouseDown={(e) => {
-                if(!sliderGrabbed){
+
+                if (!sliderGrabbed) {
                   // remove the event listener for the drag move
                   document.querySelector("#map-container").removeEventListener("mousemove", handleDragMove);
                 }
@@ -519,7 +564,7 @@ function MapView({
               onMouseMove={(e) => {
                 if (!sliderGrabbed) {
                   document.querySelector("#drag-overlay").style.cssText += 'opacity:0.5'
-                  
+
                   return;
                 }
                 document.querySelector("#drag-overlay").style.cssText += 'opacity:1'
@@ -648,7 +693,7 @@ function MapView({
                                 color: "lightblue",
                                 weight: 1,
                                 opacity: 1,
-                                fillOpacity: 0.8
+                                fillOpacity: 0.3 
                               });
                             }
                             }
@@ -711,7 +756,7 @@ function MapView({
                             key={index}
                             data={geojson}
                             style={{
-                              color: "#bd56df",
+                              color: "#bd56dfff",
                               weight: 1,
                               opacity: 0.4,
                               fillColor: "#bd56df",
@@ -721,7 +766,7 @@ function MapView({
                             pointToLayer={(feature, latlng) => {
                               return L.circleMarker(latlng, {
                                 radius: 8,
-                                fillColor: "#bd56df",
+                                fillColor: "#bd56df44",
                                 color: "#bd56df",
                                 weight: 1,
                                 opacity: 1,
@@ -749,10 +794,10 @@ function MapView({
                             key={index}
                             data={geojson}
                             style={{
-                              color: "#32e1c1",
+                              color: "#cfac62",
                               weight: 1,
                               opacity: 0.4,
-                              fillColor: "#32e1c1",
+                              fillColor: "#e1b232",
                               fillOpacity: 0.5,
 
 
@@ -761,8 +806,8 @@ function MapView({
                             pointToLayer={(feature, latlng) => {
                               return L.circleMarker(latlng, {
                                 radius: 8,
-                                fillColor: "#32e1c1",
-                                color: "#32e1c1",
+                                fillColor: "#e1c432",
+                                color: "#e1c432",
                                 weight: 1,
                                 opacity: 1,
                                 fillOpacity: 0.8
@@ -792,7 +837,7 @@ function MapView({
                               color: "#206736",
                               weight: 1,
                               opacity: 0.4,
-                              fillColor: "#206736",
+                              fillColor: "#2067373e",
                               fillOpacity: 0.5
                             }
                             }
@@ -800,7 +845,7 @@ function MapView({
                               return L.circleMarker(latlng, {
                                 radius: 8,
                                 fillColor: "#206736",
-                                color: "#206736",
+                                color: "#20673742",
                                 weight: 1,
                                 opacity: 1,
                                 fillOpacity: 0.8

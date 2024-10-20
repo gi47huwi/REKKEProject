@@ -1,4 +1,4 @@
-## References
+## Quellen
 
 BayernAtlas: https://www.bayernatlas.de, last access: 6 November 2023.
 
@@ -31,3 +31,16 @@ BÜTTNER, T. (2004): *Erläuterungsbericht zum Pilotprojekt. Die historische Kul
 OPENSTREETMAP (2023): *Overpass Turbo.* Online abrufbar unter: [https://overpass-turbo.eu/](https://overpass-turbo.eu/) (letzter Zugriff 19.12.2023).
 
 STADT BAMBERG (2023): *Sozialberichterstattung. Sozialstrukturatlas.* Online abrufbar unter: [https://www.stadt.bamberg.de/B%C3%BCrgerservice/%C3%84mter/Amt-f%C3%BCr-Inklusion/Sachgebiet-Sozialplanung/index.php?La=1&object=tx,3481.257.1&kat=&kuo=2&sub=0&NavID=2730.386&La=1](https://www.stadt.bamberg.de/B%C3%BCrgerservice/%C3%84mter/Amt-f%C3%BCr-Inklusion/Sachgebiet-Sozialplanung/index.php?La=1&object=tx,3481.257.1&kat=&kuo=2&sub=0&NavID=2730.386&La=1) (letzter Zugriff: 14.12.2023).
+
+Collier, E., T. Mölg, 2020: BAYWRF: a high-resolution present-day climatological atmospheric dataset for Bavaria. Earth Syst. Sci. Data, 12, 3097–3112, doi: 10.5194/essd-12-3097-2020.
+
+Eyring, V., S. Bony, G. A. Meehl, C. A. Senior, B. Stevens, R. J. Stouffer, K. E. Taylor, 2016: Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6) experimental design and organization. Geosci. Model Dev., 9, 1937–1958, doi: 10.5194/gmd-9-1937-2016.
+
+Gidden, M. J., and Coauthors, 2019: Global emissions pathways under different socioeconomic scenarios for use in CMIP6: a dataset of harmonized emissions trajectories through the end of the century. Geosci. Model Dev., 12, 1443–1475, doi: 10.5194/gmd-12-1443-2019.
+
+Hersbach, H., and Coauthors, 2020: The ERA5 global reanalysis. Q.J.R. Meteorol. Soc., 146, 1999–2049, doi: 10.1002/qj.3803.
+
+O'Neill, B. C., and Coauthors, 2016: The Scenario Model Intercomparison Project (ScenarioMIP) for CMIP6. Geosci. Model Dev., 9, 3461–3482, doi: 10.5194/gmd-9-3461-2016.
+
+
+Pickler, C., T. Mölg, 2021: General Circulation Model Selection Technique for Downscaling: Exemplary Application to East Africa. J. Geophys. Res. Atmos., 126, doi: 10.1029/2020JD033033.

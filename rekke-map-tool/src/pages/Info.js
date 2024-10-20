@@ -39,21 +39,21 @@ function Info({
   };
 
   useEffect(() => {
+    console.log(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_intro_${currentLanguage}.md`)
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_intro_${currentLanguage}.md`, setMarkdownIntro);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_data_${currentLanguage}.md`, setMarkdownData);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_1_2_${currentLanguage}.md`, setMarkdownMethodsI);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_3_heatwave_${currentLanguage}.md`, setMarkdownMethodsII);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_4_ssp_${currentLanguage}.md`, setMarkdownMethodsIII);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_5_extrapolation_${currentLanguage}.md`, setMarkdownMethodsIV);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_6_7_${currentLanguage}.md`, setMarkdownMethodsV);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_1_${currentLanguage}.md`, setMarkdownResultI);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_2_${currentLanguage}.md`, setMarkdownResultII);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_3_${currentLanguage}.md`, setMarkdownResultIII);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_references_${currentLanguage}.md`, setMarkdownReferences);
+    fetchMarkdown(`https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_qualitative_${currentLanguage}.md`, setMarkdownInfoQualitative);
 
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_intro.md', setMarkdownIntro);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_data.md', setMarkdownData);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_1_2.md', setMarkdownMethodsI);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_3_heatwave.md', setMarkdownMethodsII);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_4_ssp.md', setMarkdownMethodsIII);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_5_extrapolation.md', setMarkdownMethodsIV);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_methods_6_7.md', setMarkdownMethodsV);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_1.md', setMarkdownResultI);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_2.md', setMarkdownResultII);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_results_3.md', setMarkdownResultIII);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_references.md', setMarkdownReferences);
-    fetchMarkdown('https://geo-services.geographie.uni-erlangen.de/api/rekke/getMarkdown?filename=technical_summary_qualitative.md', setMarkdownInfoQualitative);
-
-  }, [])
+  }, [currentLanguage])
 
 
   return (

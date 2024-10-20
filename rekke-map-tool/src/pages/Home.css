@@ -1,8 +1,43 @@
+.bold{
+    font-weight: bold;
+
+}
+
+.presetButton{
+    width: 15vh;
+    height: 7vh;
+}
+
+.presetButton.center{
+    background-color: rgb(255, 255, 255) !important;
+    color: black !important;
+
+}
+
+.presetButton.left{
+    background-color: rgb(223, 198, 136)!important;
+    color: black !important;
+
+}
+
+.presetButton.right{
+    background-color: rgb(188, 223, 136)!important;
+    color: black !important;
+
+}
 
 .center_panel{
-    background-color: rgb(175, 213, 175);
+    background-color: rgb(213, 229, 213);
     box-shadow: 5px 5px 10px;
     
+}
+
+.textPpanel{
+    text-wrap: wrap;
+    text-align: justify;
+    hyphens: auto;
+    font-size: large;
+
 }
 .bottom_panel{
     height: 90vh;
@@ -15,7 +50,7 @@
 }
 
 .backgroundContainer{
-    background-color: rgb(175, 213, 175) ;
+    background-color: rgb(213, 229, 213) ;
     box-shadow: 5px 5px 10px ;
 }
 
@@ -37,4 +72,9 @@
 
 .swiper-pagination-bullet-active{
     background:rgb(60, 60, 60) !important;
+}
+
+.videoTag{
+    width: 100%;
+    position: relative;
 }

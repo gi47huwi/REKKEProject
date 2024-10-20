@@ -1,0 +1,251 @@
+input[type="radio"] {
+    display: none;
+  }
+  
+  label {
+    color: white;
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+  h4 {
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  .black-font {
+    color: black !important;
+  }
+  
+  .main-container {
+    display: inline-block;
+    vertical-align: middle;
+    width: 90%;
+    height: 50px;
+    border-radius: 100px;
+    background-color: #4d4d4d;
+    position: relative;
+    top: 20%;
+    left: 5%;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+  }
+  
+  .switch {
+    height: 44px;
+    width: 30%;
+    background-color: white;
+    border-radius: 100px;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    transition: ease-in;
+  }
+  
+  /*---------------- LEFT ------------------- */
+  .switch.left-to-center {
+    animation-name: leftToCenter;
+    animation-duration: 0.5s;
+  }
+  
+  .switch.left-to-right {
+    animation-name: leftToRight;
+    animation-duration: 0.5s;
+  }
+  
+  .switch.left-position {
+    left: 1%;
+    background-color: rgb(223, 198, 136);
+  }
+  
+  .left-label {
+    position: absolute;
+  }
+  
+  #left + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 30%;
+    border-radius: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  #left:checked + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 30%;
+    border-radius: 100px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+  }
+  
+  @keyframes leftToCenter {
+    from {
+      left: 3px;
+    }
+    to {
+      left: 30%;
+    }
+  }
+  
+  @keyframes leftToRight {
+    from {
+      left: 3px;
+    }
+    to {
+      left: 60%;
+    }
+  }
+  
+  /* -------------------- center ------------------ */
+  .switch.center-to-left {
+    animation-name: centerToLeft;
+    animation-duration: 0.5s;
+  }
+  
+  .switch.center-to-right {
+    animation-name: centerToRight;
+    animation-duration: 0.5s;
+  }
+  
+  .switch.center-position {
+    left: 35%;
+    background-color: white;
+  }
+  
+  .center-label {
+    position: absolute;
+    left: 35%;
+  }
+  
+  #center + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 30%;
+    border-radius: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  #center:checked + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 30%;
+    border-radius: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: black;
+
+  }
+  
+  @keyframes centerToLeft {
+    from {
+      left: 85px;
+    }
+    to {
+      left: 3px;
+    }
+  }
+  
+  @keyframes centerToRight {
+    from {
+      left: 85px;
+    }
+    to {
+      right: 1px;
+    }
+  }
+  
+  /* ------------------- RIGHT ------------------- */
+  .switch.right-to-left {
+    animation-name: rightToLeft;
+    animation-duration: 0.5s;
+  }
+  
+  .switch.right-to-center {
+    animation-name: rightToCenter;
+    animation-duration: 0.5s;
+  }
+  
+  .switch.right-position {
+    left: 69%;
+    background-color: rgb(188, 223, 136);
+  }
+  
+  .right-label {
+    position: absolute;
+    right: 1%;
+  }
+  
+  #right + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 30%;
+    border-radius: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  #right:checked + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 30%;
+    border-radius: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  @keyframes rightToLeft {
+    from {
+      left: 167px;
+    }
+    to {
+      left: 3px;
+    }
+  }
+  
+  @keyframes rightToCenter {
+    from {
+      left: 167px;
+    }
+    to {
+      right: 85px;
+    }
+  }
+  
+  @media screen and (max-width: 600px)
+  {
+    #right + label,  #right:checked + label{
+        justify-content: start;
+    }
+    #center + label, #center:checked + label{
+        justify-content: start;
+    }
+    #left + label, #left:checked + label{
+        justify-content: start;
+    }
+
+
+
+    
+  }

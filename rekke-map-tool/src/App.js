@@ -296,14 +296,8 @@ function App() {
             </div>
 
             <div>
-              <a href='' className='me-4 text-reset'>
+              <a href='https://www.instagram.com/fau.geo/?img_index=1' className='me-4 text-reset'>
                 <MDBIcon fab icon="instagram" />
-              </a>
-              <a href='' className='me-4 text-reset'>
-                <MDBIcon fab icon="linkedin" />
-              </a>
-              <a href='' className='me-4 text-reset'>
-                <MDBIcon fab icon="github" />
               </a>
             </div>
           </section>
@@ -313,18 +307,54 @@ function App() {
               <MDBRow className='mt-3'>
                 <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
                   <h6 className='text-uppercase fw-bold mb-4'>
-                    REKKE Project FAU Erlangen-Nürnberg
+                    REKKE-Projekt FAU Erlangen-Nürnberg
                   </h6>
                   <p>
 
                   </p>
                 </MDBCol>
 
-                <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
+                <MDBCol md="3" lg="3" xl="3"  className='mx-auto mb-4'>
                   <h6 className='text-uppercase fw-bold mb-4'>Partners</h6>
                   <p>
                     <a href='https://www.geographie.nat.fau.de/' className='text-reset'>
                       Institut für Geographie Erlangen Nürnberg
+                    </a>
+                  </p>
+                  <p>
+                    <a href='https://www.vkg.bayern.de/projekte/rekke.htm' className='text-reset'>
+                    Verbundprojekt Klimawandel und Gesundheit (VKG)
+                    </a>
+                  </p>
+                  <p>
+                    <a href='https://www.stmgp.bayern.de/' className='text-reset'>
+                    Bayerisches Staatsministerium für Gesundheit, Pflege und Prävention	
+                    </a>
+                  </p>
+                  <p>
+                    <a href='https://www.stmuv.bayern.de/index.htm' className='text-reset'>
+                    Bayerisches Staatsministerium für Umwelt und Verbraucherschutz
+                    </a>
+                  </p>
+                 
+                
+
+                </MDBCol>
+                <MDBCol md="3" lg="3" xl="3" className='mx-auto mb-4'>
+                
+                  <p>
+                    <a href='https://www.lfu.bayern.de/index.htm' className='text-reset'>
+                    Bayerisches Landesamt für Umwelt (LfU)
+                    </a>
+                  </p>
+                  <p>
+                    <a href='https://www.lgl.bayern.de/' className='text-reset'>
+                    Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)
+                    </a>
+                  </p>
+                  <p>
+                    <a href='https://www.lgl.bayern.de/' className='text-reset'>
+                    Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)
                     </a>
                   </p>
 
