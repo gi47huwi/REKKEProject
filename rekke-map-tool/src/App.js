@@ -147,7 +147,7 @@ function App() {
   return (
     <DndProvider backend={isTouchDevice ? TouchBackend : HTML5Backend}>
       <div className="App">
-        <MDBNavbar light expand="md" sticky style={{ backgroundColor: "rgb(175, 213, 175)", width: "100%" }}>
+        <MDBNavbar light expand="md" sticky style={{ backgroundColor: "rgb(175, 213, 175)", width: "100%", height:"50px" }}>
           <MDBContainer fluid >
             <MDBNavbarBrand href='/rekke/'>
               <h2>REKKE</h2>
@@ -162,13 +162,13 @@ function App() {
             </MDBNavbarToggler>
             <MDBCollapse navbar show={showNav}>
               <MDBNavbarNav>
-                <MDBNavbarItem className='mx-3'>
+                {/* <MDBNavbarItem className='mx-3'>
 
                   <NavLink to={`menue/leftImage`}>
                     {languages[currentLanguage].navBar.menue}
                   </NavLink>
 
-                </MDBNavbarItem>
+                </MDBNavbarItem> */}
                 <MDBNavbarItem className='mx-3'>
 
                   <NavLink to={`info`}>
@@ -198,7 +198,7 @@ function App() {
         </MDBNavbar>
         <Routes >
           <Route path="/" element={<Home currentLanguage={currentLanguage} />} />
-          <Route path="menue" element={
+          {/* <Route path="menue" element={
             <Menue
               currentLanguage={currentLanguage}
               leftImage={leftImage}
@@ -271,7 +271,7 @@ function App() {
             />
 
 
-          </Route>
+          </Route> */}
           <Route path="map" element={<MapView currentLanguage={currentLanguage} />} />
           <Route path="info" element={<Info currentLanguage={currentLanguage} />} />
           <Route path="impressum" element={<Impressum currentLanguage={currentLanguage} />} />

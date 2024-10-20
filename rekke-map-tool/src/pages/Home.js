@@ -39,21 +39,21 @@ function Home({
 
 
     return (
-        <MDBContainer>
-            <MDBRow className='center_panel my-3 px-2'>
+        <>
+            <MDBRow className='center_panel m-3 px-2'>
                 <MDBRow className='mt-3'>
                     <h2>
                         {languages[currentLanguage].welcomeText}
                     </h2>
                 </MDBRow>
-                <MDBRow className='my-3 textPpanel'>
+                <MDBRow className='m-3 textPpanel'>
                     <h4 style={{textDecoration:"underline", marginBottom:"10px"}}>{introText[currentLanguage].headerFirst}</h4>
                     <p style={{fontSize:"20px", lineHeight:"150%"}}>
                         {introText[currentLanguage].first}
 
                     </p>
                 </MDBRow>
-                <MDBRow className='my-3 textPpanel'>
+                <MDBRow className='m-3 textPpanel'>
                 <h4 style={{textDecoration:"underline", marginBottom:"10px"}}>{introText[currentLanguage].headerSecond}</h4>
 
                     {introText[currentLanguage].second.map((item, index) => (
@@ -78,7 +78,7 @@ function Home({
                 </MDBRow>
             </MDBRow>
 
-            <MDBRow className='center_panel my-3'>
+            <MDBRow className='center_panel m-3'>
 
             {/* Generate a grid view with small cards for each item in the preset.json*/}
             <MDBContainer className='p-3' >
@@ -284,7 +284,7 @@ function Home({
 
             </MDBRow>
 
-        </MDBContainer>
+        </>
     )
 }
 
