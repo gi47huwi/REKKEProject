@@ -1,0 +1,10 @@
+{
+  "short_name": "REKKE RiskMap",
+  "name": "Risk Map of REKKE Project FAU-Erlangen",
+  "icons": [
+  ],
+  "start_url": "/home",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
